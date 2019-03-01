@@ -5,6 +5,8 @@ namespace kjBotModule\Asin\Home;
 use kjBot\Framework\Module;
 use kjBot\Framework\GroupMessageEvent;
 use kjBot\SDK\CQCode;
+use \Log;
+
 /**
  * 
  */

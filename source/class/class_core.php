@@ -15,11 +15,12 @@ require_once GO_ROOT . './source/class/class_Log.php';
 
 if(function_exists('spl_autoload_register')) {
 	spl_autoload_register(array('core', 'autoload'));
-} else {
-	function __autoload($class) {
-		return core::autoload($class);
-	}
 }
+//  else {
+// 	function __autoload($class) {
+// 		return core::autoload($class);
+// 	}
+// }
 
 /**
  * 

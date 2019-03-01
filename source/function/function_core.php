@@ -41,10 +41,6 @@ function getgpc($k, $type='GP',$value=NULL) {
             break;
     }
 
-    Log::Debug('var==>'.json_encode($var));
-    Log::Debug('k====>'.$k);
-    Log::Debug('value=>'.$var[$k]);
-
     return (isset($var[$k]) && $var[$k] != 'null') ? $var[$k] : $value;
 
 }

@@ -20,12 +20,10 @@ if (empty($param)) {
 	$res['errMsg'] = '没有参数';
 } else {
 
-	Log::Debug('==>'.json_encode($param));
+	$param = json_decode($param,true);
 
 	// 获取响应模组
 	$mod = getgpc('mod','PARAM');
-
-	Log::Debug('--->'.$mod);
 
 	if (empty($mod)) {
 		// 如果没有响应模组或者请求模组中未携带_，则返回错误信息

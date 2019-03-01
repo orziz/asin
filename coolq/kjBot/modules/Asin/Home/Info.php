@@ -15,7 +15,7 @@ class Info extends Module
 	
 	public function process(array $args, $event){
 		$msg = '';
-		if($event instanceof GroupMessageEvent){
+		if(($event instanceof GroupMessageEvent)) {
 			Log::Debug('不是群消息？');
 			$senderInfo = $event->getSenderInfo();
 			$msg .= CQCode::At($senderInfo['user_id']);

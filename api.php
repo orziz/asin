@@ -25,6 +25,8 @@ if (empty($param)) {
 	// 获取响应模组
 	$mod = getgpc('mod','PARAM');
 
+	Log::Debug('--->'.$mod);
+
 	if (empty($mod)) {
 		// 如果没有响应模组或者请求模组中未携带_，则返回错误信息
 		$res['errCode'] = -2;

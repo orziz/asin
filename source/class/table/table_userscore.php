@@ -55,7 +55,8 @@ class table_userscore extends C
 	 * @param  [type] $db [description]
 	 * @return [type]     [description]
 	 */
-	public function getRankList($db) {
+	public function getRankList($db=null) {
+		if (!$db) global $db;
 		$scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq');
 		$rankList = [];
 		for ($i = 0; $i < count($scoreArr); $i++) {

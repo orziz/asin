@@ -15,4 +15,8 @@ class Main extends Plugin{
         if(false !== strpos($event->getMsg(), '你好')) return $event->sendBack('Hello, world!');
         else return NULL;
     }
+
+    public function process(array $args, MessageEvent $event){
+        return $event->sendBack('Hello, world!');
+    }
 }

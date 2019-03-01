@@ -14,6 +14,8 @@ $res = array();
 // 获取响应内容
 $param = getgpc('param');
 
+Log::Info('param===>'.$param);
+
 if (empty($param)) {
 	// 如果没有响应内容，则返回错误信息
 	$res['errCode'] = -1;

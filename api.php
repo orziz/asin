@@ -20,6 +20,8 @@ if (empty($param)) {
 	$res['errMsg'] = '没有参数';
 } else {
 
+	Log::Debug('==>'.json_encode($param));
+
 	// 获取响应模组
 	$mod = getgpc('mod','PARAM');
 

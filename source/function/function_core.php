@@ -168,7 +168,7 @@ function param_post($url = '', $param = '') {
     if (empty($url) || empty($param) || !is_array($param)) {
         return false;
     }
-    $pamram = json_encode($param);
+    $param = json_encode($param);
     $data = request_post($url,json_encode(array('param' => $param)));
     $data = json_decode($data,true);
     return $data;

@@ -17,6 +17,7 @@ class Info extends Module
 		$msg = '';
 		if($event instanceof GroupMessageEvent){
 			$senderInfo = $event->getSenderInfo();
+			Log::Debug('--->'.json_encode($senderInfo));
 			$msg .= CQCode::At($senderInfo['user_id']);
         }
 

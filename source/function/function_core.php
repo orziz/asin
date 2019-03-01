@@ -92,10 +92,10 @@ function detect_encoding($str) {
 }
 
 function runquery($sql) {
-    global $gConfig;
+    global $_config;
     global $db;
-    $tablepre = $gConfig['dbhost']['tablepre'];
-    $dbcharset = $gConfig['dbhost']['dbcharset'];
+    $tablepre = $_config['dbhost']['tablepre'];
+    $dbcharset = $_config['dbhost']['dbcharset'];
 
     $sql = str_replace(array(' cdb_', ' `cdb_', ' pre_', ' `pre_'), array(' {tablepre}', ' `{tablepre}', ' {tablepre}', ' `{tablepre}'), $sql);
     $sql = str_replace("\r", "\n", str_replace(array(' {tablepre}', ' `{tablepre}'), array(' '.$tablepre, ' `'.$tablepre), $sql));

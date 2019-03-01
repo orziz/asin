@@ -108,5 +108,5 @@ class core
 class C extends core {}
 class DB extends DBConn {}
 
-$db = new DBConn($gConfig['dbhost']['ip'], $gConfig['dbhost']['user'], $gConfig['dbhost']['pwd'], $gConfig['dbhost']['base'],$gConfig['dbhost']['port']);
+$db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'], $_config['dbhost']['base'],$_config['dbhost']['port']);
 $rcnb = new RCNB();

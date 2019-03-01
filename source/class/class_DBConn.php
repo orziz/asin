@@ -182,9 +182,9 @@ class _DBConn
      * @return [type] [description]
      */
     public static function init() {
-        global $gConfig;
+        global $_config;
         if (self::$db) return self::$db;
-        $conn = mysql_connect($gConfig['dbhost']['ip'], $gConfig['dbhost']['user'], $gConfig['dbhost']['pwd'],$gConfig['dbhost']['base']);
+        $conn = mysql_connect($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'],$_config['dbhost']['base']);
 
         if ($conn === false) return false;
 

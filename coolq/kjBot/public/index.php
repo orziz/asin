@@ -1,7 +1,6 @@
 <?php
 
 if(function_exists('fastcgi_finish_request'))fastcgi_finish_request();
-require_once('../../../source/class/class_core.php');
 require_once('init.php');
 
 $kjBot = new kjBot\Framework\KjBot(new kjBot\SDK\CoolQ($Config['API'], $Config['token']), $Config['self_id']);

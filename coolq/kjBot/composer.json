@@ -8,7 +8,10 @@
             "kjBotModule\\": "modules/",
             "kjBotPlugin\\": "plugins/"
         },
-        "files": ["framework/helpers.php"]
+        "files": [
+            "../../source/class/class_core.php",
+            "framework/helpers.php"
+        ]
     },
     "require": {
         "php": "^7.2",

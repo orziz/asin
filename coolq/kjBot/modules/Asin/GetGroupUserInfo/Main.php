@@ -3,14 +3,26 @@
 namespace kjBotModule\Asin\GetGroupUserInfo;
 
 use kjBot\Framework\Module;
-use kjBot\Framework\Event\MessageEvent;
+use kjBot\Framework\Event\GroupMessageEvent;
 
 class Main extends Module
 {
 
-    public function process(array $args, MessageEvent $event){
-    	Log::Debug('-->',json_encode($this));
-    	return $event->sendBack(json_encode($this->senderInfo));
+    public function process(array $args, $event){
+        if(!($event instanceof GroupMessageEvent)){
+            q('只有群聊才能使用本命令');
+        }
+        global $kjBot;
+    	$userList = $kjBot->getCoolQ()->getGroupMemberList($event->groupId);
+    	// $userList = json_decode($userList,true);
+    	for ($i = 0; $i < count($userList); $i++) {
+    		$userInfo = json_encode($userList[$i]);
+    		$userInfo = json_decode($userInfo,true);
+        	// C::t('userinfo')->getUserInfo($userInfo['user_id']);
+    		// return $event->sendBack('加群时间为： '.date('Y-m-d H:i:s',$userInfo['join_time']));
+    		return $event->sendBack('加群时间为： '.getTime());
+    	}
+    	// return $event->sendBack(count($userList));
         // return $event->sendBack('Hello, world!');
     }
 

@@ -15,6 +15,7 @@ class Info extends Module
 	
 	public function pprocess(array $args, $event){
 		$msg = '';
+        Log::Debug('完全不知道崩在哪了');
 		if($event instanceof GroupMessageEvent){
 			$senderInfo = $event->getSenderInfo();
 			$msg .= CQCode::At($senderInfo['user_id']);

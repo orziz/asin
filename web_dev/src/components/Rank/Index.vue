@@ -9,8 +9,15 @@ export default {
 	name: 'Index',
 	data () {
 		return {
-			msg: '欢迎来到刺客组织'
+			msg: '欢迎来到刺客组织',
+			rankList: []
 		}
+	},
+	mounted: function() {
+		orzzz.$post({
+			mod: 'rank_rank',
+			action: 'getRankList'
+		})
 	}
 };
 </script>

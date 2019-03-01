@@ -44,14 +44,14 @@ class Utils {
     // if (UData.userinfo) if (UData.userinfo.openid) param.openid = UData.userinfo.openid;
     console.log('param:::',param);
     param = JSON.stringify(param);
-    var url = obj.url ? obj.url : 'https://gstatic.xxh5.net/api2.php';
+    var url = obj.url ? obj.url : _config.server;
     axios.post(url,{param: param})
       .then((res)=>{
         console.log(res);
         if (res.status == 200) {
           let data = res.data;
           if (data.errCode >= 200 && data.errCode < 300) {
-            if (obj.success) obj.success(data.errMsg);
+            if (obj.success) obj.success(data.data);
           } else {
             if (obj.fail) obj.fail(data);
           }
@@ -83,7 +83,7 @@ class Utils {
     // formData.append('file',fileInputElement.files[0]);
     // if (UData.userinfo) if (UData.userinfo.openid) param.openid = UData.userinfo.openid;
     // console.log('formData:::',formData.get());
-    var url = obj.url ? obj.url : 'https://gstatic.xxh5.net/api2.php';
+    var url = obj.url ? obj.url : _config.server;
     instance.post(url,formData,config)
       .then((res)=>{
         console.log(res);

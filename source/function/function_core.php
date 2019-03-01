@@ -164,6 +164,16 @@ function request_post($url = '', $param = '') {
     return $data;
 }
 
+function param_post($url = '', $param = '') {
+    if (empty($url) || empty($param) || !is_array($param)) {
+        return false;
+    }
+    $pamram = json_encode($param);
+    $data = request_post($url,json_encode(array('param' => $param)));
+    $data = json_decode($data,true);
+    return $data;
+}
+
 if(PHP_VERSION >= '7.0.0'){
     function mysql_pconnect($dbhost, $dbuser, $dbpass){
         global $dbport;

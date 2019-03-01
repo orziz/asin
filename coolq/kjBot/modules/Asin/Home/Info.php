@@ -20,11 +20,8 @@ class Info extends Module
 			$msg .= CQCode::At($senderInfo['user_id']);
         }
 
-        $param = json_encode(array('mod' => 'home_userinfo', 'action'=>'getUserInfo'));
-        Log::Debug('1-->'.$param);
-        $data = request_post('http://asin.ygame.cc/api.php',json_encode(array('param' => $param)));
-
-        return $event->sendBack($data);
+        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo'));
+        if ($data['errMsg'] !== 200) return $event->sendBack($msg.' '.$data['errMsg']);
     	// $userList = json_decode($userList,true);
     	for ($i = 0; $i < count($userList); $i++) {
     		$userInfo = json_encode($userList[$i]);

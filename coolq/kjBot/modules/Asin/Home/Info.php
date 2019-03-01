@@ -15,13 +15,15 @@ class Info extends Module
 	
 	public function process(array $args, $event){
 		$msg = '';
+		$atqq = isset($args[1]) ? getAtQQ($args[1]) : null;
+		$User_id = $event->getId();
+		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent){
 			$senderInfo = $event->getSenderInfo();
-			Log::Debug('--->'.json_encode($senderInfo));
-			$msg .= CQCode::At($senderInfo['user_id']);
+			$msg .= CQCode::At($qq);
         }
 
-        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo'));
+        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
         if ($data['errMsg'] !== 200) return $event->sendBack($msg.' '.$data['errMsg']);
     	// $userList = json_decode($userList,true);
     	for ($i = 0; $i < count($userList); $i++) {

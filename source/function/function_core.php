@@ -46,6 +46,15 @@ function getgpc($k, $type='GP',$value=NULL) {
 }
 
 /**
+ * 获取被艾特人的QQ
+ * @param  [type] $str QQ号
+ * @return [type]      [description]
+ */
+function getAtQQ($str) {
+    return (int)$str ? (int)$str : (int)(substr($str, 10, -1));
+}
+
+/**
  * 记录数据
  * @param string $filePath 相对于 storage/data/ 的路径
  * @param $data 要存储的数据内容

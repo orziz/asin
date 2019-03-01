@@ -6,15 +6,13 @@ Vue.use(Router)
 
 export default new Router({
 	mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },{
-    	path: '/rank',
-    	name: 'Rank',
-    	component: require('@/components/Rank/Index').default
-    }
-  ]
+	routes: [{
+		path: '/',
+		name: 'HelloWorld',
+		component: HelloWorld
+	},{
+		path: '/rank',
+		name: 'Rank',
+		component: require('@/components/Rank/Index').default
+	}]
 })

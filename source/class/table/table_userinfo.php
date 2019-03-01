@@ -14,9 +14,11 @@ class table_userinfo extends C
 		parent::__construct();
 	}
 
-	public function getUserInfo($db,$qq) {
+	public function getUserInfo($qq,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		return mysql_fetch_array($db->execute(sprintf("SELECT * FROM %s WHERE qq=%d",$this->_table, $qq)));
+		$userInfo = $db->fetch($this->_table,array('qq'=>$qq));
+		return ($userInfo ? $userInfo[0] : false);
 	}
 
 	public function newUserInfo($db,$qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce) {

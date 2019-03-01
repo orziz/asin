@@ -14,6 +14,7 @@ export default {
 		}
 	},
 	mounted: function() {
+		console.log(this);
 		orzzz.$post({
 			mod: 'rank_rank',
 			action: 'getRankList'

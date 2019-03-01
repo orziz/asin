@@ -3,7 +3,7 @@
 namespace kjBotModule\Asin\Home;
 
 use kjBot\Framework\Module;
-use kjBot\Framework\GroupMessageEvent;
+use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
 use \Log;
 
@@ -15,8 +15,7 @@ class Info extends Module
 	
 	public function process(array $args, $event){
 		$msg = '';
-		if(!($event instanceof GroupMessageEvent)) {
-			Log::Debug('不是群消息？');
+		if($event instanceof GroupMessageEvent){
 			$senderInfo = $event->getSenderInfo();
 			$msg .= CQCode::At($senderInfo['user_id']);
         }

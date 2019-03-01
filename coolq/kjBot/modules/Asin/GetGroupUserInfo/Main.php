@@ -9,7 +9,7 @@ class Main extends Module
 {
 
     public function process(array $args, MessageEvent $event){
-    	global $sender;
+    	global $senderInfo;
     	return $event->sendBack(json_encode($sender));
         // return $event->sendBack('Hello, world!');
     }

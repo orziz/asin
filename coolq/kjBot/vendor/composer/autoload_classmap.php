@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'kjBotModule\\Hello\\Main' => $baseDir . '/modules/Hello/Main.php',
+    'kjBotPlugin\\Authcheck\\Main' => $baseDir . '/plugins/Authcheck/Main.php',
     'kjBot\\Framework\\DataStorage' => $baseDir . '/framework/DataStorage.php',
     'kjBot\\Framework\\Event\\BaseEvent' => $baseDir . '/framework/Event/BaseEvent.php',
     'kjBot\\Framework\\Event\\EventFactory' => $baseDir . '/framework/Event/EventFactory.php',

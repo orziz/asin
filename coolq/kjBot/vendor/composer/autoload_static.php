@@ -15,6 +15,7 @@ class ComposerStaticInit67fef41d203dcf8b06c525ec685049d3
         array (
             'kjBot\\SDK\\' => 10,
             'kjBot\\Framework\\' => 16,
+            'kjBotPlugin\\' => 12,
             'kjBotModule\\' => 12,
         ),
     );
@@ -28,6 +29,10 @@ class ComposerStaticInit67fef41d203dcf8b06c525ec685049d3
         array (
             0 => __DIR__ . '/../..' . '/framework',
         ),
+        'kjBotPlugin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/plugins',
+        ),
         'kjBotModule\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules',
@@ -35,6 +40,8 @@ class ComposerStaticInit67fef41d203dcf8b06c525ec685049d3
     );
 
     public static $classMap = array (
+        'kjBotModule\\Hello\\Main' => __DIR__ . '/../..' . '/modules/Hello/Main.php',
+        'kjBotPlugin\\Authcheck\\Main' => __DIR__ . '/../..' . '/plugins/Authcheck/Main.php',
         'kjBot\\Framework\\DataStorage' => __DIR__ . '/../..' . '/framework/DataStorage.php',
         'kjBot\\Framework\\Event\\BaseEvent' => __DIR__ . '/../..' . '/framework/Event/BaseEvent.php',
         'kjBot\\Framework\\Event\\EventFactory' => __DIR__ . '/../..' . '/framework/Event/EventFactory.php',

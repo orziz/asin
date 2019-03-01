@@ -19,7 +19,7 @@ class Info extends Module
         }
 
         $param = json_encode(array('mode' => 'home_userinfo', 'action'=>'getUserInfo'));
-
+        Log::Debug('1-->'.$param);
         $data = request_post('http://asin.ygame.cc/api.php',json_encode(array('param' => $param)));
 
         return $event->sendBack($data);

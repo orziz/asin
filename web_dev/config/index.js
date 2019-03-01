@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        "/api": {
+            target: "http://asin.ygame.cc/",
+            changeOrigin: true,
+            pathRewrite: {
+                '^/api': '/api.php',
+            }
+        }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

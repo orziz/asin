@@ -21,7 +21,6 @@ class Main extends Module
     	for ($i = 0; $i < count($userList); $i++) {
     		$userInfo = json_encode($userList[$i]);
     		$userInfo = json_decode($userInfo,true);
-        	C::t('userscore')->getRankList();
     		// return $event->sendBack('加群时间为： '.date('Y-m-d H:i:s',$userInfo['join_time']));
     		return $event->sendBack('加群时间为： '.getTime());
     	}

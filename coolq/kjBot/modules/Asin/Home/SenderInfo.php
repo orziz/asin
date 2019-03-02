@@ -31,16 +31,16 @@ class SenderInfo extends Module
 			// level：刺客大师
 			// role：admin
 			// title：人事部经理
-			if ($key == 'nickname'）$k = '昵称';
-			if ($key == 'card'）$k = '群昵称';
-			if ($key == 'level'）$k = '聊天等级';
-			if ($key == 'title'）$k = '头衔';
-			if ($key == 'role') {
-				$k = '权限';
-				if ($value == 'owner') $value = '群主';
-				if ($value == 'admin') $value = '管理员';
-				if ($value == 'member') $value = '成员';
-			}
+			// if ($key == 'nickname'）$k = '昵称';
+			// if ($key == 'card'）$k = '群昵称';
+			// if ($key == 'level'）$k = '聊天等级';
+			// if ($key == 'title'）$k = '头衔';
+			// if ($key == 'role') {
+			// 	$k = '权限';
+			// 	if ($value == 'owner') $value = '群主';
+			// 	if ($value == 'admin') $value = '管理员';
+			// 	if ($value == 'member') $value = '成员';
+			// }
 			$msg .= "\n".$key.'：'.$value;
 		}
 		return $event->sendBack($msg);

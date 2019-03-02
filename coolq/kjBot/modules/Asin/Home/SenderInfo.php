@@ -24,7 +24,7 @@ class SenderInfo extends Module
 		$senderInfo = $event->getSenderInfo();
 		$msg .= 'QQ：'.$User_id;
 		foreach ($senderInfo as $key => $value) {
-			if (!$value || $key == 'isGroupSender') continue;
+			// if (!$value || $key == 'isGroupSender') continue;
 			// nickname：欧阳尘星
 			// isGroupSender：1
 			// card：江苏-欧阳尘星

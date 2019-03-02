@@ -31,7 +31,9 @@ class SenderInfo extends Module
 			// level：刺客大师
 			// role：admin
 			// title：人事部经理
-			if ($key == 'nickname'）$abcde = '昵称';
+			if ($key == 'nickname'）{
+				$abcde = '昵称';
+			}
 			// if ($key == 'card'）$_k = '群昵称';
 			// if ($key == 'level'）$_k = '聊天等级';
 			// if ($key == 'title'）$_k = '头衔';

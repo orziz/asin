@@ -23,7 +23,8 @@ class SenderInfo extends Module
 		$senderInfo = json_decode($senderInfo,true);
 		if($event instanceof GroupMessageEvent){
 			global $kjBot;
-			$userInfo = $kjBot->getCoolQ()->getGroupMemberInfo($event->groupId,$User_id);
+			// $userInfo = $kjBot->getCoolQ()->getGroupMemberInfo($event->groupId,$User_id);
+			$userInfo = $kjBot->getCoolQ()->getStrangerInfo($User_id);
 			foreach ($userInfo as $key => $value) {
 				if (!in_array($key, $senderInfo)) array_push($senderInfo, array($key=>$value));
 			}

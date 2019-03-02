@@ -18,14 +18,23 @@ class SenderInfo extends Module
 		$atqq = isset($args[1]) ? getAtQQ($args[1]) : null;
 		$User_id = $event->getId();
 		$qq = $atqq ? $atqq : $User_id;
-		if($event instanceof GroupMessageEvent){
-			$msg .= CQCode::At($qq)."\n";
-			$msg .= '群号：'.$event->groupId."\n";
-		}
 		$senderInfo = $event->getSenderInfo();
+		if($event instanceof GroupMessageEvent){
+			global $kjBot;
+			$userInfo = $kjBot->getCoolQ()->getGroupMemberInfo($event->groupId,$User_id);
+			foreach ($userInfo as $key => $value) {
+				if (!in_array($key, $senderInfo)) array_push($senderInfo, array($key=>$value));
+			}
+			$msg .= CQCode::At($qq)."\n";
+		}
 		$msg .= 'QQ：'.$User_id;
 		foreach ($senderInfo as $key => $value) {
-			if (!$value || $key == 'isGroupSender') continue;
+			if (!$value) continue;
+			if ($key == 'isGroupSender') continue;
+			if ($key == 'join_time') continue;
+			if ($key == 'last_sent_time') continue;
+			if ($key == 'title_expire_time') continue;
+			if ($key == 'card_changeable') continue;
 			// nickname：欧阳尘星
 			// isGroupSender：1
 			// card：江苏-欧阳尘星
@@ -42,7 +51,22 @@ class SenderInfo extends Module
 				if ($value == 'admin') $value = '管理员';
 				if ($value == 'member') $value = '成员';
 			}
+			if ($key == 'sex') {
+				$k = '性别';
+				if ($value == 'male') $value = '男';
+				if ($value == 'female') $value = '女';
+				if ($value == 'unknown') $value = '未知';
+			}
+			if ($key == 'age') $k = '年龄';
+			if ($key == 'area') $k = '地区';
+			if ($key == 'unfriendly') {
+				$k = '是否是不良记录成员';
+				$value = $value ? '是' : '否';
+			}
 			$msg .= "\n".$k.'：'.$value;
+		}
+		if($event instanceof GroupMessageEvent){
+
 		}
 		return $event->sendBack($msg);
 	}

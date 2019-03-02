@@ -20,6 +20,7 @@ class SenderInfo extends Module
 		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($qq)."\n";
+			$msg .= '群号：'.$event->groupId."\n";
 		}
 		$senderInfo = $event->getSenderInfo();
 		$msg .= 'QQ：'.$User_id;

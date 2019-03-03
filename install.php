@@ -1,7 +1,6 @@
 <?php
 
 require_once 'source/class/class_core.php';
-require_once 'source/function/function_conn.php';
 
 $sql = <<<EOF
 

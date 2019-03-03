@@ -14,5 +14,9 @@ export default new Router({
 		path: '/rank',
 		name: 'Rank',
 		component: require('@/components/Rank/Index').default
+	},{
+		path: '/admin',
+		name: 'Admin/Index',
+		component: require('@/components/Admin/Index').default
 	}]
 })

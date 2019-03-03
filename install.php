@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `cdb_userskill` (
 
 CREATE TABLE IF NOT EXISTS `cdb_checkin` (
   `qq` bigint NOT NULL,
-  `count` int DEFAUTL 0,
+  `count` int DEFAULT 0,
 	`lday` date NOT NULL,
 	PRIMARY KEY (`qq`),
   KEY `lday` (`lday`) USING BTREE

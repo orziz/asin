@@ -78,10 +78,11 @@ function getData(string $filePath) {
 
 /**
  * 获取当前时间
- * @param string $time 时间格式
+ * @param string $format    时间格式
+ * @param string $time      时间戳
  */
-function getTime(string $time='Y-m-d H:i:s') {
-    return date($time, time());
+function getTime(string $format='Y-m-d H:i:s',$time=time()) {
+    return date($format, $time);
 }
 
 /**

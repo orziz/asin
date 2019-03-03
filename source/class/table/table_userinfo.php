@@ -21,19 +21,42 @@ class table_userinfo extends C
 		return ($userInfo ? $userInfo[0] : false);
 	}
 
-	public function newUserInfo($db,$qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce) {
+	public function setUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		$data = $this->getUserInfo($db,$qq);
-		if ($data) return $this->updateUserInfo($db,$qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce);
-		//$fid = time() * 10000 + mt_rand(0, 9999);
-		return $db->execute(sprintf("INSERT INTO %s (qq, nickname, sex, age, height, weight, free, str, dex, con, ine, wis, cha, arms, introduce) VALUES (%d,'%s',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,'%s','%s')",$this->_table,$qq,$nickname,intval($sex),intval($age),intval($height),intval($weight),intval($free),intval($str),intval($dex),intval($con),intval($ine),intval($wis),intval($cha),$arms,$introduce));
+		$data = $this->getUserInfo($qq,$db);
+		if ($data) return $this->updateUserInfo($qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce,$db);
+		return $this->newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce,$db);
 	}
 
-	public function updateUserInfo($db,$qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce) {
-		if (!$qq) return false;
-		$data = $this->getUserInfo($db,$qq);
-		if (!$data) return false;
-		return $db->execute(sprintf("UPDATE %s SET nickname='%s',sex=%d,age=%d,height=%d,weight=%d, free=%d, str=%d, dex=%d, con=%d, ine=%d, wis=%d, cha=%d, arms='%s', introduce='%s' WHERE qq=%d",$this->_table,$nickname,intval($sex),intval($age),intval($height),intval($weight),intval($free),intval($str),intval($dex),intval($con),intval($ine),intval($wis),intval($cha),$arms,$introduce,$qq));
+	private function newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db) {
+		$time = time();
+		return $db->insert($this->_table,array(
+			'qq'=>$qq,
+			'nickname'=>$nickname,
+			'sex'=>(int)$sex,
+			'age'=>(int)$age,
+			'height'=>(int)$height,
+			'weight'=>(int)$weight,
+			'arms'=>$free,
+			'introduce'=>$introduce,
+			'ctime'=>$time,
+			'utime'=>$utime
+		));
+	}
+
+	private function updateUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db) {
+		$time = time();
+		return $db->update($this->_table,array(
+			'nickname'=>$nickname,
+			'sex'=>(int)$sex,
+			'age'=>(int)$age,
+			'height'=>(int)$height,
+			'weight'=>(int)$weight,
+			'arms'=>$free,
+			'introduce'=>$introduce,
+			'utime'=>$time
+		),array('qq'=>$qq));
 	}
 
 

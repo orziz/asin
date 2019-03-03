@@ -13,6 +13,12 @@ export default {
 		return {
 			msg: '欢迎来到刺客组织'
 		}
+	},
+	mounted: function() {
+		const rcnb = require('rcnb');
+		var a = 'ƝBŘċňBŖcƞƄȐčńÞŕcRÇńÞNþrȼNBRƈȒȻÑƅȵƁRĆŔȻŃƅřćňƁňƅŕƈŃbrĉRÇńßřƇƞƃȵBȓcřĆǹƅŃþŖċrƈņbŔcŃbŕƈǸƀŇƃŕĈnƀɌćnƃrčřĊńƃRČǹƀrCƝƄnbȐĆnÞřÇrċÑþǸƄɌƇƦcnßŖƇnƀȵƁȒĈrČǸbƞßȐCŅƅŘĈȒȼnƁrćnƄńƁɌȻŅBrĆRĈNÞȓĈŇƃŗȼƝƃÑƁrcrcńƃƝƅrcNbŗÇɌȻNbrčńBɌćnƃƝƄȓƇrćȠƄȵƃȐCNƁŖĆRčŅƁřĈŅßNƄȐĈǸÞŕčrCȠƀŇbŔȼƞƁŘȼRƈŇƁŔƇȵƅnƄŕĉŖÇȵbŃBŕƇNƁȐċƞƁȐCǸƃrĆǹÞŔĉƝƄrCrcnßŇbȐČǸƅƦȻŔĉƞƃȓȻNßřCņƁrĆņƄņƀƦĊŘÇŅÞRĈƝƄƝƀȒÇȒĊņBňƄřĈrĈǸƅƝÞȒÇŕĈņbrČnþŔƇȵÞǸÞȒĉrȻƞþÑþRƈrĉǸÞȒÇNÞrÇńƅŅƀŖČȠBRƇrcņßňƄȒÇȐcNƃRƈǹƁƝþȒÇŕcNbrƈŃƅŇbŕƈnßŔƈňƁŗĉrćȠƁŖčǹƀřĉȵÞrĉŃƄņƃŖČƞBRčrȻÑƁƝbRCȑcŅbƞƁȒȻrĆňBȒÇƝƀRÇńbrČƝƃrcnb';
+		var b = rcnb.decode(a);
+		console.log('rcnb:',b);
 	}
 };
 </script>

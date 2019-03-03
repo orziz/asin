@@ -8,57 +8,58 @@ $sql = <<<EOF
 CREATE TABLE IF NOT EXISTS `cdb_userinfo` (
   `qq` bigint NOT NULL,
   `nickname` varchar(255) DEFAULT NULL,
-  `sex` int DEFAULT NULL,
-  `age` int NOT NULL,
-  `height` int NOT NULL,
-  `weight` int NOT NULL,
-  `str` int NOT NULL,
-  `dex` int NOT NULL,
-  `con` int NOT NULL,
-  `ine` int NOT NULL,
-  `wis` int NOT NULL,
-  `cha` int NOT NULL,
-  `arms` mediumtext NOT NULL,
-  `skill` mediumtext NOT NULL,
-  `weakness` mediumtext NOT NULL,
-  `introduce` mediumtext NOT NULL,
+  `sex` int DEFAULT 0,
+  `age` int DEFAULT 0,
+  `height` int DEFAULT 0,
+  `weight` int DEFAULT 0,
+  `arms` mediumtext DEFAULT NULL,
+  `introduce` mediumtext  DEFAULT NULL,
+  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `utime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`qq`)
 );
 
 CREATE TABLE IF NOT EXISTS `cdb_userscore` (
 	`qq` bigint NOT NULL,
-	`score` int DEFAULT NULL,
-	`utime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`score` int DEFAULT 0,
+  `credit` bigint DEFAULT 0,
+  `rank` int DEFAULT 0,
+  `scorerank` bigint DEFAULT 0,
 	PRIMARY KEY (`qq`),
-	KEY `idx1` (`score`, `utime`) USING BTREE
+	KEY `scorerank` (`scorerank`) USING BTREE,
+  KEY `credit` (`credit`) USING BTREE
 );
 
-CREATE TABLE IF NOT EXISTS `asin_checkin` (
-	`day` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`member` mediumtext DEFAULT NULL,
-	PRIMARY KEY (`day`)
-);
-
-
-CREATE TABLE IF NOT EXISTS `asin_userskill` (
+CREATE TABLE IF NOT EXISTS `cdb_userattr` (
   `qq` bigint NOT NULL,
-  `skill1` mediumtext DEFAULT NULL,
-  `skill1cd` int DEFAULT NULL,
-  `skill1time` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
-  `skill2` mediumtext DEFAULT NULL,
-  `skill2cd` int DEFAULT NULL,
-  `skill2time` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
-  `skill3` mediumtext DEFAULT NULL,
-  `skill3cd` int DEFAULT NULL,
-  `skill3time` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
-  `skill4` mediumtext DEFAULT NULL,
-  `skill4cd` int DEFAULT NULL,
-  `skill4time` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
+  `str` int DEFAULT 0,
+  `dex` int DEFAULT 0,
+  `con` int DEFAULT 0,
+  `ine` int DEFAULT 0,
+  `wis` int DEFAULT 0,
+  `cha` int DEFAULT 0,
+  `free` int DEFAULT 0,
   PRIMARY KEY (`qq`)
 );
 
-CREATE TABLE IF NOT EXISTS `asin_taskjoin` (
+CREATE TABLE IF NOT EXISTS `cdb_userskill` (
+  `qq` bigint NOT NULL,
+  `skill1` mediumtext DEFAULT NULL,
+  `skill2` mediumtext DEFAULT NULL,
+  `skill3` mediumtext DEFAULT NULL,
+  `skill4` mediumtext DEFAULT NULL,
+  PRIMARY KEY (`qq`)
+);
+
+CREATE TABLE IF NOT EXISTS `cdb_checkin` (
+  `qq` bigint NOT NULL,
+  `count` int DEFAUTL 0,
+	`lday` date NOT NULL,
+	PRIMARY KEY (`qq`),
+  KEY `lday` (`lday`) USING BTREE
+);
+
+CREATE TABLE IF NOT EXISTS `cdb_taskjoin` (
   `day` date NOT NULL,
   `maxmember` int DEFAULT NULL,
   `begintime` varchar(255) DEFAULT NULL,
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `asin_taskjoin` (
   PRIMARY KEY (`day`)
 );
 
-CREATE TABLE IF NOT EXISTS `asin_userfight` (
+CREATE TABLE IF NOT EXISTS `cdb_userfight` (
   `id` int auto_increment NOT NULL,
   `qq` bigint DEFAULT NULL,
   `pkqq` bigint DEFAULT NULL,
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `asin_userfight` (
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `asin_userbag` (
+CREATE TABLE IF NOT EXISTS `cdb_userbag` (
   `qq` bigint NOT NULL,
   `bag` mediumtext DEFAULT NULL,
   PRIMARY KEY (`qq`)

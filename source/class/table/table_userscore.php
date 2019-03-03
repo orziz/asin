@@ -14,9 +14,11 @@ class table_userscore extends C
 		parent::__construct();
 	}
 
-	public function getUserScore($db,$qq) {
+	public function getUserScore($qq,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		return mysql_fetch_array($db->execute(sprintf("SELECT * FROM %s WHERE qq=%d",$this->_table, $qq)));
+		$data = $db->fetch($this->_table,array('qq'=>$qq));
+		return $data ? $data[0] : false;
 	}
 
 	/**
@@ -73,36 +75,36 @@ class table_userscore extends C
 	 * 设置用户积分数据
 	 * @param  [type] $db       [description]
 	 * @param  [type] $qq       qq号/唯一标识
-	 * @param  [type] $nickname 昵称
 	 * @param  [type] $score    积分
 	 * @param  [type] $rank     排行（非指定即为0）
 	 * @return [type]           [description]
 	 */
-	public function setUserScore($db,$qq,$nickname,$score,$rank) {
+	public function setUserScore($qq,$score=0,$credit=0,$rank=0,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		$data = $this->getUserScore($db,$qq);
-		if ($data) return $this->updateUserScore($db,$qq,$nickname,$score,$rank);
-		return $this->newUserScore($qq,$nickname,$score,$rank,$qq);
+		$data = $this->getUserScore($qq,$db);
+		if ($data) return $this->updateUserScore($qq,$nickname,$score,$rank,$db);
+		return $this->newUserScore($qq,$nickname,$score,$rank,$qq,$db);
 	}
 
 	/**
 	 * 私有方法 新增用户积分数据
 	 * @param  [type] $qq       qq号/唯一标识
-	 * @param  [type] $nickname 昵称
 	 * @param  [type] $score    积分
 	 * @param  [type] $rank     排行（非指定即为0）
 	 * @param  [type] $db       [description]
 	 * @return [type]           [description]
 	 */
-	private function newUserScore($qq,$nickname,$score,$rank,$db=null) {
-		$time = date('Y-m-d H:i:s', time());
+	private function newUserScore($qq,$score,$credit,$rank,$db) {
+		$time = getTime();
+		$score = (int)$score;
+		$scoreRank = $score*10000000000+time();
 		return $db->insert($this->_table,array(
 			'qq'=>$qq,
-			'nickname'=>$nickname,
 			'score'=>intval($score),
+			'credit'=>intval($credit),
 			'rank'=>intval($rank),
-			'ctime'=>$time,
-			'utime'=>$time
+			'scorerank'=>intval($scoreRank)
 		));
 	}
 
@@ -115,13 +117,15 @@ class table_userscore extends C
 	 * @param  [type] $db       [description]
 	 * @return [type]           [description]
 	 */
-	private function updateUserScore($qq,$nickname,$score,$rank,$db=null) {
-		$time = date('Y-m-d H:i:s', time());
+	private function updateUserScore($qq,$score,$credit,$rank,$db) {
+		$time = getTime();
+		$score = (int)$score;
+		$scoreRank = $score*10000000000+time();
 		return $db->update($this->_table,array(
-			'nickname'=>$nickname,
 			'score'=>$score,
-			'rank'=>$rank,
-			'utime'=>$time
+			'credit'=>intval($credit),
+			'rank'=>intval($rank),
+			'scorerank'=>intval($scoreRank)
 		),array('qq'=>$qq));
 	}
 

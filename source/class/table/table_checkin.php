@@ -14,47 +14,46 @@ class table_checkin extends C
 		parent::__construct();
 	}
 
-	public function getCheckin($db,$qq) {
+	public function getCheckin($qq,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		date_default_timezone_set('Asia/Shanghai');
-		$day = date('Y-m-d', time());
-		$data = $this->getCheckinByDay($db,$day);
-		if (!$data) return false;
-		return ($data["$qq"] ? $data["$qq"] : false);
+		$data = $db->fetch($this->_table,array('qq'=>$qq));
+		return $data ? $data[0] : false;
 	}
 
-	public function getCheckinByDay($db,$day) {
-		if (!$day) return false;
-		$data = mysql_fetch_array($db->execute(sprintf("SELECT * FROM %s WHERE day='%s'",$this->_table, $day)));
-		return ($data ? unserialize($data['member']) : false);
+	public function getCheckinByDay($day=null,$db=null) {
+		if (!$db) global $db;
+		if (!$day) $day = getTime('Y-m-d');
+		return $db->fetch($this->_table,array('lday'=>$day));
 	}
 
-	public function newDay($db,$qq) {
+	public function setUserCheckin($qq,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		date_default_timezone_set('Asia/Shanghai');
-		$day = date('Y-m-d', time());
-		$time = date('Y-m-d H:i:s', time());
-		$data = $this->getCheckinByDay($db,$day);
-		if ($data) return $this->updateDay($db,$qq);
-		$cont = $this->getCont($db,$qq);
-		$cont = intval($cont) + 1;
-		$checkinArr = [];
-		$checkinArr["$qq"] = array('cont'=>$cont,'time'=>$time);
-		return $db->execute(sprintf("INSERT INTO %s (day, member) VALUES ('%s','%s')",$this->_table,$day,serialize($checkinArr)));
+		$data = $this->getCheckin($qq,$db);
+		if ($data) return $this->updateUserCheckIn($qq,$db);
+		return $this->newUserCheckIn($qq,$db);
 	}
 
-	public function updateDay($db,$qq) {
-		if (!$qq) return false;
-		date_default_timezone_set('Asia/Shanghai');
-		$day = date('Y-m-d', time());
-		$time = date('Y-m-d H:i:s', time());
-		$data = $this->getCheckinByDay($db,$day);
-		if (!$data) return $this->newDay($db,$qq);
-		if ($data["$qq"]) return 201;
-		$cont = $this->getCont($db,$qq);
-		$cont = intval($cont) + 1;
-		$data["$qq"] = array('cont'=>$cont,'time'=>$time);
-		return $db->execute(sprintf("UPDATE %s SET member='%s' WHERE day='%s'",$this->_table,serialize($data),$day));
+	private function newUserCheckin($qq,$db) {
+		$day = getTime('Y-m-d');
+		return $db->insert($this->_table,array(
+			'qq'=>$qq,
+			'count'=>1,
+			'lday'=>$day
+		))
+	}
+
+	private function updateUserCheckin($qq,$db) {
+		$data = $this->getCheckin($qq,$db);
+		$yday = getTime('Y-m-d',time()-86400);
+		$day = getTime('Y-m-d');
+		$count = ($data['lday'] == $yday) ? (int)$data['count'] : 0;
+		$count++;
+		return $db->update($this->_table,array(
+			'count'=>$count,
+			'lday'=$day
+		),array('qq'=>$qq));
 	}
 
 	public function getCont($db,$qq) {

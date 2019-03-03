@@ -81,7 +81,8 @@ function getData(string $filePath) {
  * @param string $format    时间格式
  * @param string $time      时间戳
  */
-function getTime(string $format='Y-m-d H:i:s',$time=time()) {
+function getTime(string $format='Y-m-d H:i:s',$time=null) {
+    if (!$time) $time = time();
     return date($format, $time);
 }
 

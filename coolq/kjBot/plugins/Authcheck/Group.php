@@ -16,12 +16,11 @@ class Group extends Plugin {
         if($event instanceof GroupMessageEvent) {
             global $asinGroup;
             if (in_array($event->groupId,$asinGroup)) {
-                global $modules;
+                global $Modules;
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
                     return $event->sendBack(CQCode::At($event->getId()).' 暂不支持自动加入刺客组织，请联系千刃');
                 } 
-                return $event->sendBack(json_encode($modules));
-                array_push($modules, array(
+                array_push($Modules, array(
                     '加入刺客组织' => kjBotModule\Asin\Home\JoinOrgan::class
                 ));
             }

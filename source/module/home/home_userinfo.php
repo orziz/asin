@@ -14,9 +14,9 @@ $height = getgpc('height','param',0);
 $weight = getgpc('weight','param',0);
 // 力量
 $str = getgpc('str','param',0);
-// 体质
-$dex = getgpc('dex','param',0);
 // 敏捷
+$dex = getgpc('dex','param',0);
+// 体质
 $con = getgpc('con','param',0);
 // 智力
 $ine = getgpc('ine','param',0);

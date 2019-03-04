@@ -13,6 +13,7 @@ class Group extends Plugin {
     public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
     //此处以正常群聊消息举例
     public function message_group_normal(MessageEvent $event): ?Message{
+        if(false !== strpos($event->getMsg(), '1')) return $event->sendBack('2');
         if($event instanceof GroupMessageEvent) {
             global $asinGroup;
             return $event->sendBack(json_encode($asinGroup));

@@ -12,17 +12,15 @@ class Group extends Plugin {
 
     public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
     //此处以正常群聊消息举例
-    public function message_group_normal($event,&$Modules): ?Message{
+    public function message_group_normal($event): ?Message{
         if($event instanceof GroupMessageEvent) {
             global $asinGroup;
             if (in_array($event->groupId,$asinGroup)) {
-                // global $Modules;
+                global $Modules;
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
                     return $event->sendBack(CQCode::At($event->getId()).' 暂不支持自动加入刺客组织，请联系千刃');
                 } 
-                array_push($Modules, array(
-                    '加入刺客组织' => kjBotModule\Asin\Join\JoinOrgan::class
-                ));
+                $Modules['加入刺客组织'] = kjBotModule\Asin\Join\JoinOrgan::class;
                 return $event->sendBack(json_encode($Modules));
             }
         }

@@ -3,7 +3,7 @@
 /**
  * 
  */
-class userattr extends C
+class table_userattr extends C
 {
 	
 	function __construct()

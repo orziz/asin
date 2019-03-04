@@ -14,25 +14,39 @@ class table_userskill extends C
 		parent::__construct();
 	}
 
-	public function getUserSkill($db,$qq) {
+	public function getUserSkill($qq,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		return mysql_fetch_array($db->execute(sprintf("SELECT * FROM %s WHERE qq=%d",$this->_table, $qq)));
+		$data = $db->fetch($this->_table,array('qq'=>$qq));
+		return $data ? $data[0] : 0;
 	}
 
-	public function newUserSkill($db,$qq,$skill1,$skill2,$skill3,$skill4) {
+	public function setUserSkill($qq,$skill1='',$skill2='',$skill3='',$skill4='',$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		$data = $this->getUserSkill($db,$qq);
-		if ($data) return $this->updateUserSkill($db,$qq,$skill1,$skill2,$skill3,$skill4);
-		$time = '2000-01-01 00:00:01';
-		return $db->execute(sprintf("INSERT INTO %s (qq, skill1, skill1time, skill2, skill2time, skill3, skill3time, skill4, skill4time) VALUES (%d,'%s','%s','%s','%s','%s','%s','%s','%s')",$this->_table,$qq,$skill1,$time,$skill2,$time,$skill3,$time,$skill4,$time));
+		$data = $this->getUserSkill($qq,$db);
+		if ($data) return $this->updateUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db);
+		return $this->newUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db);
 	}
 
-	public function updateUserSkill($db,$qq,$skill1,$skill2,$skill3,$skill4) {
-		if (!$qq) return false;
-		$data = $this->getUserSkill($db,$qq);
-		if (!$data) return false;
-		$time = '2000-01-01 00:00:01';
-		return $db->execute(sprintf("UPDATE %s SET skill1='%s', skill1time='%s', skill2='%s', skill2time='%s', skill3='%s', skill3time='%s', skill4='%s', skill4time='%s' WHERE qq=%d",$this->_table,$skill1,$time,$skill2,$time,$skill3,$time,$skill4,$time,$qq));
+	private function newUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db) {
+		return $db->insert($this->_table,array(
+			'qq'=>$qq,
+			'skill1'=>$skill1,
+			'skill2'=>$skill2,
+			'skill3'=>$skill3,
+			'skill4'=>$skill4
+		));
+	}
+
+	private function updateUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db) {
+		return $db->update($this->_table,array(
+			'qq'=>$qq,
+			'skill1'=>$skill1,
+			'skill2'=>$skill2,
+			'skill3'=>$skill3,
+			'skill4'=>$skill4
+		),array('qq'=>$qq));
 	}
 
 	public function setCD($db,$qq,$skill1cd=0,$skill2cd=0,$skill3cd=0,$skill4cd=0) {

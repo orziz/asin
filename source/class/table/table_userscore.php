@@ -70,8 +70,8 @@ class table_userscore extends C
 		if (!$db) global $db;
 		if (!$qq) return false;
 		$data = $this->getUserScore($qq,$db);
-		if ($data) return $this->updateUserScore($qq,$nickname,$score,$rank,$db);
-		return $this->newUserScore($qq,$nickname,$score,$rank,$qq,$db);
+		if ($data) return $this->updateUserScore($qq,$score,$credit,$rank,$db);
+		return $this->newUserScore($qq,$score,$credit,$rank,$db);
 	}
 
 	/**

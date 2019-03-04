@@ -29,6 +29,7 @@ class SenderInfo extends Module
 				if (!in_array($key, $senderInfo)) array_push($senderInfo, array($key=>$value));
 			}
 			$msg .= CQCode::At($qq)."\n";
+			$msg .= '群号：'.$event->groupId."\n";
 		}
 		$msg .= 'QQ：'.$User_id;
 		foreach ($senderInfo as $key => $value) {

@@ -21,7 +21,6 @@ class Group extends Plugin {
                     return $event->sendBack(CQCode::At($event->getId()).' 暂不支持自动加入刺客组织，请联系千刃');
                 } 
                 $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;
-                return $event->sendBack(json_encode($Modules));
             }
         }
         return NULL;

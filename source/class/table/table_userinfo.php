@@ -30,7 +30,7 @@ class table_userinfo extends C
 	}
 
 	private function newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db) {
-		$time = time();
+		$time = getTime();
 		return $db->insert($this->_table,array(
 			'qq'=>$qq,
 			'nickname'=>$nickname,
@@ -46,7 +46,7 @@ class table_userinfo extends C
 	}
 
 	private function updateUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db) {
-		$time = time();
+		$time = getTime();
 		return $db->update($this->_table,array(
 			'nickname'=>$nickname,
 			'sex'=>(int)$sex,

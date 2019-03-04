@@ -20,7 +20,7 @@ class Group extends Plugin {
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
                     return $event->sendBack(CQCode::At($event->getId()).' 暂不支持自动加入刺客组织，请联系千刃');
                 } 
-                $Modules['加入刺客组织'] = kjBotModule\Asin\Join\JoinOrgan::class;
+                $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;
                 return $event->sendBack(json_encode($Modules));
             }
         }

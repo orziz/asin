@@ -15,10 +15,6 @@ export default {
 		}
 	},
 	mounted: function() {
-		const rcnb = require('rcnb');
-		var a = 'ƝBŘċňBŖcƞƄȐčńÞŕcRÇńÞNþrȼNBRƈȒȻÑƅȵƁRĆŔȻŃƅřćňƁňƅŕƈŃbrĉRÇńßřƇƞƃȵBȓcřĆǹƅŃþŖċrƈņbŔcŃbŕƈǸƀŇƃŕĈnƀɌćnƃrčřĊńƃRČǹƀrCƝƄnbȐĆnÞřÇrċÑþǸƄɌƇƦcnßŖƇnƀȵƁȒĈrČǸbƞßȐCŅƅŘĈȒȼnƁrćnƄńƁɌȻŅBrĆRĈNÞȓĈŇƃŗȼƝƃÑƁrcrcńƃƝƅrcNbŗÇɌȻNbrčńBɌćnƃƝƄȓƇrćȠƄȵƃȐCNƁŖĆRčŅƁřĈŅßNƄȐĈǸÞŕčrCȠƀŇbŔȼƞƁŘȼRƈŇƁŔƇȵƅnƄŕĉŖÇȵbŃBŕƇNƁȐċƞƁȐCǸƃrĆǹÞŔĉƝƄrCrcnßŇbȐČǸƅƦȻŔĉƞƃȓȻNßřCņƁrĆņƄņƀƦĊŘÇŅÞRĈƝƄƝƀȒÇȒĊņBňƄřĈrĈǸƅƝÞȒÇŕĈņbrČnþŔƇȵÞǸÞȒĉrȻƞþÑþRƈrĉǸÞȒÇNÞrÇńƅŅƀŖČȠBRƇrcņßňƄȒÇȐcNƃRƈǹƁƝþȒÇŕcNbrƈŃƅŇbŕƈnßŔƈňƁŗĉrćȠƁŖčǹƀřĉȵÞrĉŃƄņƃŖČƞBRčrȻÑƁƝbRCȑcŅbƞƁȒȻrĆňBȒÇƝƀRÇńbrČƝƃrcnb';
-		var b = rcnb.decode(a);
-		console.log('rcnb:',b);
 	}
 };
 </script>

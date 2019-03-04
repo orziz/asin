@@ -18,5 +18,9 @@ export default new Router({
 		path: '/admin',
 		name: 'Admin/Index',
 		component: require('@/components/Admin/Index').default
+	},{
+		path: '/admin/joinOrgan',
+		name: 'Admin/JoinOrgan',
+		component: require('@/components/Admin/JoinOrgan').default
 	}]
 })

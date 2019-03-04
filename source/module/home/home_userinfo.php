@@ -3,7 +3,7 @@
 // 账号唯一标识（QQ号绑定）
 $qq = getgpc('qq','param',0);
 // 刺客名
-$nickName = getgpc('nickName','param','');
+$nickname = getgpc('nickname','param','');
 // 性别
 $sex = getgpc('sex','param',0);
 // 年龄
@@ -53,7 +53,7 @@ if ($action == 'newUserInfo') {
 		$res['errCode'] = 301;
 		$res['errMsg'] = '该账户已存在';
 	} else {
-		$newUserInfo = C::t('userinfo')->setUserInfo($qq,$nickName,$sex,$age,$height,$weight,$arms,$introduce);
+		$newUserInfo = C::t('userinfo')->setUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce);
 		if ($newUserInfo) {
 			$newUserScore = C::t('userscore')->setUserScore($qq,$score,$credit,$rank);
 			if ($newUserScore) {

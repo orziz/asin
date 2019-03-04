@@ -60,8 +60,25 @@ if ($action == 'newUserInfo') {
 				$newUserAttr = C::t('userattr')->setUserAttr($qq,$str,$dex,$con,$ine,$wis,$cha,$free);
 				if ($newUserAttr) {
 					$newUserSkill = C::t('userskill')->setUserAttr($qq,$skill1,$skill2,$skill3,$skill4);
+					if ($newUserSkill) {
+						$rank = C::t('userscore')->getRank($qq);
+						$res['errCode'] = 200;
+						$res['data'] = array('rank':$rank);
+					} else {
+						$res['errCode'] = 305;
+						$res['errMsg'] = '写入 userskill 失败';
+					}
+				} else {
+					$res['errCode'] = 304;
+					$res['errMsg'] = '写入 userattr 失败';
 				}
+			} else {
+				$res['errCode'] = 303;
+				$res['errMsg'] = '写入 userscore 失败';
 			}
+		} else {
+			$res['errCode'] = 302;
+			$res['errMsg'] = '写入 userinfo 失败';
 		}
 	}
 } elseif ($action == 'setUserInfo') {

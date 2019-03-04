@@ -14,18 +14,22 @@ class JoinOrgan extends Module
 {
 	
 	public function process(array $args, $event){
-		return $event->sendBack('暂不支持自动加入刺客组织，请联系 '.CQCode::At('2354782466'));
+        $arr = ['1063614727','2426311997','2354782466'];
+        $User_id = $event->getId();
+        if (!in_array($User_id, $arr)) return $event->sendBack('暂不支持自动加入刺客组织，请联系 '.CQCode::At('2354782466'));
 		$msg = '';
-		$atqq = isset($args[1]) ? getAtQQ($args[1]) : null;
-		$User_id = $event->getId();
-		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent){
-			$senderInfo = $event->getSenderInfo();
-			$msg .= CQCode::At($qq);
+			$msg .= CQCode::At($User_id).' ';
         }
 
-        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
-        if ($data['errMsg'] !== 200) return $event->sendBack($msg.' '.$data['errMsg']);
+        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$User_id));
+        if ($data['errCode'] === 200) {
+            $msg .= '刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank'].' 请努力晋升吧！';
+            return $event->sendBack($msg);
+        } else {
+            Log::Error('Coolq JoinOrgan===>'.$data['errMsg']);
+            return $event->sendBack('加入刺客组织失败');
+        }
     	// $userList = json_decode($userList,true);
     	for ($i = 0; $i < count($userList); $i++) {
     		$userInfo = json_encode($userList[$i]);

@@ -27,28 +27,15 @@ class table_userscore extends C
 	 * @param  [type] $qq [description]
 	 * @return [type]     [description]
 	 */
-	public function getRank($db,$qq) {
+	public function getRank($qq,$db=null) {
+		if (!$db) global $db;
 		if (!$qq) return false;
-		$data = $this->getUserScore($db,$qq);
+		$data = $this->getUserScore($qq,$db);
 		if (!$data) return false;
 		if ($data['rank']) return $data['rank'];
-		if (intval($data['score']) > 300) {
-			$rank = $db->execute(sprintf("SELECT count(qq) AS count FROM %s WHERE score > %d OR (score = %d AND utime < '%s')", $this->_table, intval($data['score']), intval($data['score']), $data['utime']));
-			$rank = mysql_fetch_array($rank)['count'];
-			$rank = intval($rank) + 11001;
-		} elseif (intval($data['score']) > 200) {
-			$rank = $db->execute(sprintf("SELECT count(qq) AS count FROM %s WHERE score < %d AND score > %d OR (score = %d AND utime < '%s')", $this->_table, 301, intval($data['score']), intval($data['score']), $data['utime']));
-			$rank = mysql_fetch_array($rank)['count'];
-			$rank = intval($rank) + 13001;
-		} elseif (intval($data['score']) > 100) {
-			$rank = $db->execute(sprintf("SELECT count(qq) AS count FROM %s WHERE score < %d AND score > %d OR (score = %d AND utime < '%s')", $this->_table, 201, intval($data['score']), intval($data['score']), $data['utime']));
-			$rank = mysql_fetch_array($rank)['count'];
-			$rank = intval($rank) + 15001;
-		} else {
-			$rank = $db->execute(sprintf("SELECT count(qq) AS count FROM %s WHERE score < %d AND score > %d OR (score = %d AND utime < '%s')", $this->_table, 101, intval($data['score']), intval($data['score']), $data['utime']));
-			$rank = mysql_fetch_array($rank)['count'];
-			$rank = intval($rank) + 17501;
-		}
+		$rank = $db->fetch($this->_table,'scorerank > '.$data['scorerank'],'count(qq) AS count');
+		$rank = $rank[0]['count'];
+		$rank = (int)$rank + 17365;
 		return $rank;
 	}
 

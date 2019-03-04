@@ -2,115 +2,11 @@
 	<div id="joinOrgan">
 		<ul>
 			<li><span class="tdTile">栏目</span><span class="tdTile">值</span><span class="tdTile">备注</span></li>
-			<li>
-				<label for="qq" class="must">QQ：</label>
-				<input type="number" id="qq" ref='qq' value="">
-				必填/用户QQ号，用作账号绑定
-			</li>
-			<li>
-				<label for="nickname" class="must">姓名：</label>
-				<input type="text" id="nickname" ref="nickname" value="">
-				必填/显示在刺客组织里的名称
-			</li>
-			<li>
-				<label for="sex">性别：</label>
-				<input type="number" id="sex" ref="sex" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="age">年龄：</label>
-				<input type="number" id="age" ref="age" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="height">身高：</label>
-				<input type="number" id="height" ref="height" value="">
-				默认为0，单位为cm
-			</li>
-			<li>
-				<label for="weight">体重：</label>
-				<input type="number" id="weight" ref="weight" value="">
-				默认为0，单位为kg
-			</li>
-			<li>
-				<label for="free">自由属性点：</label>
-				<input type="number" id="free" ref="free" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="str">力量：</label>
-				<input type="number" id="free" ref="free" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="dex">敏捷：</label>
-				<input type="number" id="dex" ref="dex" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="con">体质：</label>
-				<input type="number" id="con" ref="con" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="ine">智力：</label>
-				<input type="number" id="ine" ref="ine" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="wis">感知：</label>
-				<input type="number" id="wis" ref="wis" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="cha">魅力：</label>
-				<input type="number" id="cha" ref="cha" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="arms">武器：</label>
-				<textarea id="arms" ref="arms"></textarea>
-				默认为空
-			</li>
-			<li>
-				<label for="introduce">介绍：</label>
-				<textarea id="introduce" ref="introduce"></textarea>
-				默认为空
-			</li>
-			<li>
-				<label for="skill1">技能1：</label>
-				<textarea id="skill1" ref="skill1"></textarea>
-				默认为空
-			</li>
-			<li>
-				<label for="skill2">技能2：</label>
-				<textarea id="skill2" ref="skill2"></textarea>
-				默认为空
-			</li>
-			<li>
-				<label for="skill3">技能3：</label>
-				<textarea id="skill3" ref="skill3"></textarea>
-				默认为空
-			</li>
-			<li>
-				<label for="skill4">技能4：</label>
-				<textarea id="skill4" ref="skill4"></textarea></textarea>
-				默认为空
-			</li>
-			<li>
-				<label for="score">积分：</label>
-				<input type="number" id="score" ref="score" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="credit">暗币：</label>
-				<input type="number" id="credit" ref="credit" value="">
-				默认为0
-			</li>
-			<li>
-				<label for="rank">排名：</label>
-				<input type="number" id="rank" ref="rank" value="">
-				默认为0
+			<li v-for="(item,key) in liObj">
+				<label :for="key" :class="item.must ? 'must' : ''">{{ item.title }}</label>
+				<input v-if="item.type != 'textarea'" :type="item.type" :id="key" :ref="key">
+				<textarea v-else :id="key" :ref="key"></textarea>
+				<span>{{ item.note }}</span>
 			</li>
 		</ul>
 		<br>
@@ -123,13 +19,129 @@ export default {
 	name: 'JoinOrgan',
 	data () {
 		return {
+			liObj: {
+				qq: {
+					title: 'QQ',
+					type: 'number',
+					note: '必填/用户QQ号，用作账号绑定',
+					must: true
+				},
+				nickname: {
+					title: '姓名',
+					type: 'text',
+					note: '必填/显示在刺客组织里的名称',
+					must: true
+				},
+				sex: {
+					title: '性别',
+					type: 'number',
+					note: '默认为0'
+				},
+				age: {
+					title: '年龄',
+					type: 'number',
+					note: '默认为0'
+				},
+				height: {
+					title: '身高',
+					type: 'number',
+					note: '默认为0，单位为cm'
+				},
+				weight: {
+					title: '体重',
+					type: 'number',
+					note: '默认为0，单位为kg'
+				},
+				str: {
+					title: '力量',
+					type: 'number',
+					note: '默认为0'
+				},
+				dex: {
+					title: '敏捷',
+					type: 'number',
+					note: '默认为0'
+				},
+				con: {
+					title: '体质',
+					type: 'number',
+					note: '默认为0'
+				},
+				ine: {
+					title: '智力',
+					type: 'number',
+					note: '默认为0'
+				},
+				wis: {
+					title: '感知',
+					type: 'number',
+					note: '默认为0'
+				},
+				cha: {
+					title: '魅力',
+					type: 'number',
+					note: '默认为0'
+				},
+				free: {
+					title: '自有属性点',
+					type: 'number',
+					note: '默认为0'
+				},
+				arms: {
+					title: '武器',
+					type: 'textarea',
+					note: '默认为空'
+				},
+				introduce: {
+					title: '介绍',
+					type: 'textarea',
+					note: '默认为空'
+				},
+				skill1: {
+					title: '技能1',
+					type: 'textarea',
+					note: '默认为空'
+				},
+				skill2: {
+					title: '技能2',
+					type: 'textarea',
+					note: '默认为空'
+				},
+				skill3: {
+					title: '技能3',
+					type: 'textarea',
+					note: '默认为空'
+				},
+				skill4: {
+					title: '技能4',
+					type: 'textarea',
+					note: '默认为空'
+				},
+				score: {
+					title: '积分',
+					type: 'number',
+					note: '默认为0'
+				},
+				credit: {
+					title: '暗币',
+					type: 'number',
+					note: '默认为0'
+				},
+				rank: {
+					title: '排名',
+					type: 'number',
+					note: '默认为0，一般不填此值'
+				}
+			}
 		}
+	},
+	methods: {
+
 	},
 	mounted: function() {
 	}
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #joinOrgan { text-align: left; }

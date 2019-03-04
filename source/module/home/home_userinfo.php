@@ -63,7 +63,7 @@ if ($action == 'newUserInfo') {
 					if ($newUserSkill) {
 						$rank = C::t('userscore')->getRank($qq);
 						$res['errCode'] = 200;
-						$res['data'] = array('rank':$rank);
+						$res['data'] = array('rank'=>$rank);
 					} else {
 						$res['errCode'] = 305;
 						$res['errMsg'] = '写入 userskill 失败';

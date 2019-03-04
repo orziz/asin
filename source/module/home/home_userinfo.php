@@ -59,7 +59,7 @@ if ($action == 'newUserInfo') {
 			if ($newUserScore) {
 				$newUserAttr = C::t('userattr')->setUserAttr($qq,$str,$dex,$con,$ine,$wis,$cha,$free);
 				if ($newUserAttr) {
-					$newUserSkill = C::t('userskill')->setUserAttr($qq,$skill1,$skill2,$skill3,$skill4);
+					$newUserSkill = C::t('userskill')->setUserSkill($qq,$skill1,$skill2,$skill3,$skill4);
 					if ($newUserSkill) {
 						$rank = C::t('userscore')->getRank($qq);
 						$res['errCode'] = 200;

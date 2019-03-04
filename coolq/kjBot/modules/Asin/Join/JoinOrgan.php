@@ -14,7 +14,7 @@ class JoinOrgan extends Module
 {
 	
 	public function process(array $args, $event){
-		return $event->sendBack('暂不支持加入刺客组织');
+		return $event->sendBack('暂不支持自动加入刺客组织，请联系千刃');
 		$msg = '';
 		$atqq = isset($args[1]) ? getAtQQ($args[1]) : null;
 		$User_id = $event->getId();

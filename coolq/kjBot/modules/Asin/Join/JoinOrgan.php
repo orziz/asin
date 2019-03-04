@@ -22,7 +22,7 @@ class JoinOrgan extends Module
 			$msg .= CQCode::At($User_id).' ';
         }
         $userInfo = $event->getSenderInfo();
-        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'newUserInfo', 'qq'=>$User_id,'nickname'=>$userInfo['nickname']));
+        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'newUserInfo', 'qq'=>$User_id,'nickname'=>$userInfo->nickname));
         Log::Debug(json_encode($data));
         if ($data['errCode'] === 200) {
             $msg .= '刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank'].' 请努力晋升吧！';

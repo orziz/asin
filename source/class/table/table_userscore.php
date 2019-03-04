@@ -35,7 +35,8 @@ class table_userscore extends C
 		if ($data['rank']) return $data['rank'];
 		$rank = $db->fetch($this->_table,'scorerank > '.$data['scorerank'],'count(qq) AS count');
 		$rank = $rank[0]['count'];
-		$rank = (int)$rank + 17365;
+		$rank = (int)$rank + 1;
+		$rank = $rank + 17365;
 		return $rank;
 	}
 

@@ -17,6 +17,7 @@ class Main extends Plugin {
             global $asinGroup;
             if (in_array($event->groupId,$asinGroup)) {
                 global $modules;
+                return $event->sendBack($event->getMsg());
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
                     return $event->sendBack(CQCode::At($enent->getId()).' 暂不支持自动加入刺客组织，请联系千刃');
                 } 

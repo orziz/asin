@@ -24,7 +24,7 @@ class JoinOrgan extends Module
         $userInfo = $event->getSenderInfo();
         $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'newUserInfo', 'qq'=>$User_id,'nickname'=>$userInfo->nickname));
         if ($data['errCode'] === 200) {
-            $msg .= $data['data']['nickname'].' 刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank'].' ，请努力提高排名吧！';
+            $msg .= $data['data']['nickname'].'，刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank'].' ，请努力提高排名吧！';
             return $event->sendBack($msg);
         } elseif ($data['errCode'] === 301) {
             return $event->sendBack($msg.' 您已加入刺客组织，请努力提高排名吧！');
@@ -32,14 +32,5 @@ class JoinOrgan extends Module
             Log::Error('Coolq JoinOrgan===>'.$data['errMsg']);
             return $event->sendBack('加入刺客组织失败');
         }
-    	// $userList = json_decode($userList,true);
-    	for ($i = 0; $i < count($userList); $i++) {
-    		$userInfo = json_encode($userList[$i]);
-    		$userInfo = json_decode($userInfo,true);
-    		// return $event->sendBack('加群时间为： '.date('Y-m-d H:i:s',$userInfo['join_time']));
-    		return $event->sendBack('加群时间为： '.getTime());
-    	}
-    	// return $event->sendBack(count($userList));
-        // return $event->sendBack('Hello, world!');
     }
 }

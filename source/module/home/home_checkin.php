@@ -5,7 +5,7 @@ $qq = getgpc('qq','param',0);
 
 if ($action == 'checkin') {
 	$userInfo = C::t('userinfo')->getUserInfo($qq);
-	if (!$userinfo) {
+	if (!$userInfo) {
 		$res['errCode'] = 301;
 		$res['errMsg'] = '没有该用户';
 	} else {

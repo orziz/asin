@@ -3,7 +3,7 @@ namespace kjBotPlugin\Authcheck;
 
 use kjBot\Framework\Plugin;
 use kjBot\Framework\Message;
-use kjBot\Framework\Event\GroupMessageEvent;
+use kjBot\Framework\Event\MessageEvent;
 use kjBot\SDK\CQCode;
 
 class Group extends Plugin {

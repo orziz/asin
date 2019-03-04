@@ -23,6 +23,7 @@ class Group extends Plugin {
                 array_push($Modules, array(
                     '加入刺客组织' => kjBotModule\Asin\Join\JoinOrgan::class
                 ));
+                return $event->sendBack(json_encode($Modules));
             }
         }
         return NULL;

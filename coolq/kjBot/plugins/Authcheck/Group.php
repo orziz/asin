@@ -6,7 +6,7 @@ use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
 
-class Main extends Plugin {
+class Group extends Plugin {
     public $handleDepth = 3; //捕获到最底层的事件
     public $handleQueue = true; //声明是否要捕获消息队列
 

@@ -38,10 +38,10 @@ class table_userinfo extends C
 			'age'=>(int)$age,
 			'height'=>(int)$height,
 			'weight'=>(int)$weight,
-			'arms'=>$free,
+			'arms'=>$arms,
 			'introduce'=>$introduce,
 			'ctime'=>$time,
-			'utime'=>$utime
+			'utime'=>$time
 		));
 	}
 
@@ -53,7 +53,7 @@ class table_userinfo extends C
 			'age'=>(int)$age,
 			'height'=>(int)$height,
 			'weight'=>(int)$weight,
-			'arms'=>$free,
+			'arms'=>$arms,
 			'introduce'=>$introduce,
 			'utime'=>$time
 		),array('qq'=>$qq));

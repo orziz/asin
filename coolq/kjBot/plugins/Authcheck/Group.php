@@ -15,6 +15,7 @@ class Main extends Plugin {
     public function message_group_normal(MessageEvent $event): ?Message{
         if($event instanceof GroupMessageEvent) {
             global $asinGroup;
+            return $event->sendBack(json_encode($asinGroup));
             if (in_array($event->groupId,$asinGroup)) {
                 global $modules;
                 return $event->sendBack($event->getMsg());

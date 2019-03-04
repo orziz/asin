@@ -26,6 +26,8 @@ class JoinOrgan extends Module
         if ($data['errCode'] === 200) {
             $msg .= $data['data']['nickname'].' 刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank'].' ，请努力提高排名吧！';
             return $event->sendBack($msg);
+        } elseif ($data['errCode'] === 301) {
+            return $event->sendBack($msg.' 您已加入刺客组织，请努力提高排名吧！');
         } else {
             Log::Error('Coolq JoinOrgan===>'.$data['errMsg']);
             return $event->sendBack('加入刺客组织失败');

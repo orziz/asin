@@ -25,11 +25,11 @@ class table_userskill extends C
 		if (!$db) global $db;
 		if (!$qq) return false;
 		$data = $this->getUserSkill($qq,$db);
-		if ($data) return $this->updateUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db);
-		return $this->newUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db);
+		if ($data) return $this->updateUserSkill($qq,$skill1,$skill2,$skill3,$skill4,$db);
+		return $this->newUserSkill($qq,$skill1,$skill2,$skill3,$skill4,$db);
 	}
 
-	private function newUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db) {
+	private function newUserSkill($qq,$skill1,$skill2,$skill3,$skill4,$db) {
 		return $db->insert($this->_table,array(
 			'qq'=>$qq,
 			'skill1'=>$skill1,
@@ -39,7 +39,7 @@ class table_userskill extends C
 		));
 	}
 
-	private function updateUserSkill($qq,$skill,$skil2,$skil3,$skil4,$db) {
+	private function updateUserSkill($qq,$skill1,$skill2,$skill3,$skill4,$db) {
 		return $db->update($this->_table,array(
 			'qq'=>$qq,
 			'skill1'=>$skill1,

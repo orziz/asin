@@ -25,8 +25,8 @@ class table_userinfo extends C
 		if (!$db) global $db;
 		if (!$qq) return false;
 		$data = $this->getUserInfo($qq,$db);
-		if ($data) return $this->updateUserInfo($qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce,$db);
-		return $this->newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$free,$str,$dex,$con,$ine,$wis,$cha,$arms,$introduce,$db);
+		if ($data) return $this->updateUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db);
+		return $this->newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db);
 	}
 
 	private function newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db) {

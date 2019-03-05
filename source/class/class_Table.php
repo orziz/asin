@@ -36,7 +36,7 @@ class Table
 	 * @param array  $data 信息数据
 	 * @param [type] $db   [description]
 	 */
-	public function setData($pk,array $datas=null,$db=null) {
+	public function setData($pk,array $datas=array(),$db=null) {
 		if (!$db) global $db;
 		if (!$pk) return false;
 		$data = $this->getData($pk,$db);

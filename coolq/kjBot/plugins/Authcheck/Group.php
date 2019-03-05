@@ -27,6 +27,8 @@ class Group extends Plugin {
                 $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
+
+                $Modules['清除死鱼'] = \kjBotModule\Asin\GroupControl\KickDead::class;
             }
         }
         return NULL;

@@ -53,6 +53,7 @@ class table_checkin extends Table
 		$data = $this->getData($qq,$db);
 		$yday = getTime('Y-m-d',time()-86400);
 		$day = getTime('Y-m-d');
+		Log::Debug('data===>'.json_encode($data));
 		$count = ($data['lday'] == $yday) ? (int)$data['count'] : 0;
 		Log::Debug('yday=>'.$yday.' day=>'.$day.' count=>'.$count.' $data[\'count\']=>'.$data['count']);
 		$count++;

@@ -127,7 +127,7 @@ if ($action == 'newUserInfo') {
 		$res['errCode'] = 301;
 		$res['errMsg'] = '没有此用户';
 	} else {
-		$isSuccess = C::t('userinfo')->setData($qq,arrar('nickname'=>$nickname));
+		$isSuccess = C::t('userinfo')->setData($qq,array('nickname'=>$nickname));
 		if ($isSuccess) {
 			$res['errCode'] = 200;
 			$res['errMsg'] = '设置成功';

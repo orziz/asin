@@ -450,10 +450,10 @@ class _DBConn
      * @return [type]        [description]
      */
     public static function getWhere($check='') {
+        $where = '';
         if (is_string($check)) {
             $where = $check;
         } elseif (is_array($check)) {
-            $where = '';
             $_k = count($check);
             foreach ($check as $key => $value) {
                 $_k--;

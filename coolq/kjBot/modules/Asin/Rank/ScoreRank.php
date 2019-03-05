@@ -9,7 +9,7 @@ use kjBot\SDK\CQCode;
 /**
  * 
  */
-class CheckinRank extends Module
+class ScoreRank extends Module
 {
 	
 	public function process(array $args, $event){

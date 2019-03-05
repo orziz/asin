@@ -9,7 +9,7 @@ if ($action == 'checkin') {
 		$res['errCode'] = 301;
 		$res['errMsg'] = '没有该用户';
 	} else {
-		$isCheckin = C::t('checkin')->isCheckin();
+		$isCheckin = C::t('checkin')->isCheckin($qq);
 		if ($isCheckin) {
 			$res['errCode'] = 302;
 			$res['errMsg'] = '今天已签到';

@@ -17,7 +17,10 @@ class KickDead extends Module
     	$userList = $kjBot->getCoolQ()->getGroupMemberList($event->groupId);
         for ($i=0; $i < count($userList); $i++) { 
             $memberInfo = $userList[$i];
-            if ($memberInfo->last_sent_time < 1533052801) $kjBot->getCoolQ()->setGroupKick($event->groupId,$memberInfo->user_id);
+            if ($memberInfo->last_sent_time < 1533052801) {
+                Log::Debug('清除死鱼====>'.$memberInfo->user_id);
+                $kjBot->getCoolQ()->setGroupKick($event->groupId,$memberInfo->user_id);
+            }
         }
     	return $event->sendBack('清除成功');
     }

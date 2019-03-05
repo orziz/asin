@@ -35,5 +35,6 @@ class Info extends Module
         $msg .= '体重：'.$userInfo['weight']." kg\n";
         $msg .= '介绍：'.$userInfo['introduce']."\n";
         $msg .= '加入组织时间：'.$userInfo['ctime'];
+        $event->sendBack($msg);
     }
 }

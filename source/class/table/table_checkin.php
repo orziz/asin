@@ -3,7 +3,7 @@
 /**
  * 
  */
-class table_checkin extends C
+class table_checkin extends Table
 {
 	
 	public function __construct() {
@@ -14,46 +14,28 @@ class table_checkin extends C
 		parent::__construct();
 	}
 
-	public function getCheckin($qq,$db=null) {
-		if (!$db) global $db;
-		if (!$qq) return false;
-		$data = $db->fetch($this->_table,array('qq'=>$qq));
-		return $data ? $data[0] : false;
-	}
-
 	public function getCheckinByDay($day=null,$db=null) {
 		if (!$db) global $db;
 		if (!$day) $day = getTime('Y-m-d');
 		return $db->fetch($this->_table,array('lday'=>$day));
 	}
 
-	public function setUserCheckin($qq,$db=null) {
-		if (!$db) global $db;
-		if (!$qq) return false;
-		$data = $this->getCheckin($qq,$db);
-		if ($data) return $this->updateUserCheckIn($qq,$db);
-		return $this->newUserCheckIn($qq,$db);
-	}
-
-	private function newUserCheckin($qq,$db) {
+	protected function newData($pk,array $datas,$db) {
 		$day = getTime('Y-m-d');
-		return $db->insert($this->_table,array(
-			'qq'=>$qq,
-			'count'=>1,
-			'lday'=>$day
-		))
+		$datas['count'] = 1;
+		$datas['lday'] = $day;
+		return parent::newData($pk,$datas,$db);
 	}
 
-	private function updateUserCheckin($qq,$db) {
-		$data = $this->getCheckin($qq,$db);
+	protected function updateData($pk,array $datas,$db) {
+		$data = $this->getData($qq,$db);
 		$yday = getTime('Y-m-d',time()-86400);
 		$day = getTime('Y-m-d');
 		$count = ($data['lday'] == $yday) ? (int)$data['count'] : 0;
 		$count++;
-		return $db->update($this->_table,array(
-			'count'=>$count,
-			'lday'=$day
-		),array('qq'=>$qq));
+		$datas['count'] = $count;
+		$datas['lday'] = $day;
+		return parent::updateData($pk,$datas,$db);
 	}
 
 	public function getCont($db,$qq) {

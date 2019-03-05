@@ -52,7 +52,7 @@ class Table
 	 * @return [type]        [description]
 	 */
 	protected function newData($pk,array $datas,$db) {
-		$datas[$this->pk] = $pk;
+		$datas[$this->_pk] = $pk;
 		return $db->insert($this->_table,$datas);
 	}
 

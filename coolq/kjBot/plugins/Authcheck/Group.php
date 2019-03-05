@@ -23,6 +23,7 @@ class Group extends Plugin {
                 $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;
                 $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
+                $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
             }
         }
         return NULL;

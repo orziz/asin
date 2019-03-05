@@ -44,8 +44,7 @@ class table_userscore extends Table
 		$rankList = [];
 		for ($i = 0; $i < count($scoreArr); $i++) {
 			$data = $scoreArr[$i];
-			Log::Debug(json_encode($data));
-			$data['rank'] = $this->getRank($db,$data['qq']);
+			$data['rank'] = $this->getRank($data['qq'],$db);
 			array_push($rankList, $data);
 		}
 		array_multisort(array_column($rankList,'rank'),SORT_ASC,$rankList);

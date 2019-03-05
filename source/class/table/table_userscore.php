@@ -41,8 +41,8 @@ class table_userscore extends Table
 	 */
 	public function getRankList($limit=0,$db=null) {
 		if (!$db) global $db;
-		if ($limit) $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq',);
-		else $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq','','*','scorerank DESC',0,$limit);
+		if ($limit) $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq','','*','scorerank DESC',0,$limit);
+		else $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq');
 		$rankList = [];
 		for ($i = 0; $i < count($scoreArr); $i++) {
 			$data = $scoreArr[$i];

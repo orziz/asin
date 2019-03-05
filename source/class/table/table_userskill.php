@@ -3,7 +3,7 @@
 /**
  * 
  */
-class table_userskill extends C
+class table_userskill extends Table
 {
 	
 	public function __construct() {

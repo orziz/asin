@@ -4,17 +4,17 @@
 $qq = getgpc('qq','param',0);
 
 if ($action == 'checkin') {
-	$userInfo = C::t('userinfo')->getUserInfo($qq);
+	$userInfo = C::t('userinfo')->getData($qq);
 	if (!$userInfo) {
 		$res['errCode'] = 301;
 		$res['errMsg'] = '没有该用户';
 	} else {
-		$isSuccess = C::t('checkin')->setCheckin($qq);
+		$isSuccess = C::t('checkin')->setData($qq);
 		if (!$isSuccess) {
 			$res['errCode'] = 302;
 			$res['errMsg'] = '签到失败';
 		} else {
-			$data = C::t('checkin')->getCheckin($qq);
+			$data = C::t('checkin')->getData($qq);
 			$res['errCode'] = 200;
 			$res['errMsg'] = '签到成功';
 			$res['data'] = $data;

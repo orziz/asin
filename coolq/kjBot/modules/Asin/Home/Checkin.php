@@ -23,7 +23,7 @@ class Checkin extends Module
 		elseif ($data['errCode'] === 302) $msg .= '签到失败：今天您已签到，无需重复签到';
 		elseif ($data['errCode'] === 303) $msg .= '签到失败';
 		else $msg .= "恭喜你签到成功啦，可惜没奖励……\n你已连续签到 ".$data['data']['count'].' 天，请继续保持';
-		$msg .= "\n该功能由 ".CQCode::At(1845896706).' 赞助';
+		$msg .= "\n（该功能由 ".CQCode::At(1845896706).' 赞助）';
 		return $event->sendBack($msg);
 	}
 }

@@ -59,7 +59,7 @@ if ($action == 'newUserInfo') {
 			'age'=>$age,
 			'height'=>$height,
 			'weight'=>$weight,
-			'aram'=>$arms,
+			'arms'=>$arms,
 			'introduce'=>$introduce
 		));
 		if ($newUserInfo) {

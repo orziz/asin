@@ -109,8 +109,8 @@ export default {
 				introduce: {
 					title: '介绍',
 					type: 'textarea',
-					default: '',
-					note: '默认为空'
+					default: '此人太过神秘，暂时没有相关信息',
+					note: '默认为：此人太过神秘，暂时没有相关信息'
 				},
 				skill1: {
 					title: '技能1',

@@ -21,6 +21,7 @@ class Group extends Plugin {
                     return $event->sendBack(CQCode::At($event->getId()).' 如需加入刺客组织，请输入 `加入刺客组织`');
                 }
                 $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;
+                $Modules['将所有人录入刺客组织'] = \kjBotModule\Asin\Join\AllJoinOrgan::class;
                 $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;

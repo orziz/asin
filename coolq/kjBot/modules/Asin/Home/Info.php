@@ -22,7 +22,6 @@ class Info extends Module
 			$senderInfo = $event->getSenderInfo();
 			$msg .= CQCode::At($qq);
         }
-
         $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
         if ($data['errMsg'] !== 200) return $event->sendBack($msg.' '.$data['errMsg']);
     	// $userList = json_decode($userList,true);

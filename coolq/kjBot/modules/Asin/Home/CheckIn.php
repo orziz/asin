@@ -9,7 +9,7 @@ use kjBot\SDK\CQCode;
 /**
  * 
  */
-class CheckIn extends Module
+class Checkin extends Module
 {
 	
 	public function process(array $args, $event){

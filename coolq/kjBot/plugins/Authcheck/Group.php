@@ -19,8 +19,10 @@ class Group extends Plugin {
                 global $Modules;
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
                     return $event->sendBack(CQCode::At($event->getId()).' 如需加入刺客组织，请输入 `加入刺客组织`');
-                } 
+                }
                 $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;
+                $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
+                $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
             }
         }
         return NULL;

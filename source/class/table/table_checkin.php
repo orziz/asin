@@ -76,4 +76,16 @@ class table_checkin extends Table
 		return ($data['lday'] == getTime('Y-m-d'));
 	}
 
+	/**
+	 * 获取排行榜列表
+	 * @param  integer $limit 获取数量
+	 * @param  [type]  $db    [description]
+	 * @return [type]         [description]
+	 */
+	public function getRankList($limit=0,$db=null) {
+		if (!$db) global $db;
+		if ($limit) return $db->fetch($this->_table,null,null,'countrank DESC',0,$limit);
+		return $db->fetch($this->_table,null,null,'countrank DESC');
+	}
+
 }

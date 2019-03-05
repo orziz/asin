@@ -107,7 +107,7 @@ class DBConn extends mysqli
                 if ($_i != 0) $sql .= ' , ';
             }
         }
-        $where = _DBConn::getWhere($check);
+        $where = $this->getWhere($check);
         $sql = sprintf("UPDATE %s SET %s WHERE %s",_DBConn::table($table),$sql,$where);
         // Log::Sql('update:::'.$sql);
         return $this->query($sql);
@@ -120,7 +120,7 @@ class DBConn extends mysqli
      * @return [type]        [description]
      */
     public function delete($table,$check) {
-        $where = _DBConn::getWhere($check);
+        $where = $this->getWhere($check);
         $sql = sprintf("DELETE FROM %s WHERE %s",_DBConn::table($table),$where);
         return $this->query($sql);
     }
@@ -136,7 +136,7 @@ class DBConn extends mysqli
      * @return [type]          [description]
      */
     public function fetch($table,$check='',$field='*',$order='',$limits=0,$limitn=0) {
-        $where = self::getWhere($check);
+        $where = $this->getWhere($check);
         $sql = sprintf("SELECT %s FROM %s",$field,_DBConn::table($table));
         if (!empty($where)) $sql .= sprintf(" WHERE %s",$where);
         if (!empty($order)) $sql .= sprintf(" ORDER BY %s",$order);
@@ -170,7 +170,7 @@ class DBConn extends mysqli
      * @param  string $check 要转换的查询键值
      * @return [type]        [description]
      */
-    public static function getWhere($check='') {
+    private function getWhere($check='') {
         $where = '';
         if (is_string($check)) {
             $where = $check;

@@ -52,33 +52,16 @@ class table_userscore extends Table
 		return $rankList;
 	}
 
-	/**
-	 * 私有方法 新增用户积分数据
-	 * @param  [type] $qq       qq号/唯一标识
-	 * @param  [type] $score    积分
-	 * @param  [type] $rank     排行（非指定即为0）
-	 * @param  [type] $db       [description]
-	 * @return [type]           [description]
-	 */
-	protected function newData($pk,array $data,$db) {
-		$score = (int)$data['score'];
-		$data['scorerank'] = $score*10000000000+(10000000000-time());
-		return parent::newData($pk,$data,$db);
+	protected function newData($pk,array $datas,$db) {
+		$score = (int)$datas['score'];
+		$datas['scorerank'] = $score*10000000000+(10000000000-time());
+		return parent::newData($pk,$datas,$db);
 	}
 
-	/**
-	 * 私有方法 更新用户积分数据
-	 * @param  [type] $qq       qq号/唯一标识
-	 * @param  [type] $nickname 昵称
-	 * @param  [type] $score    积分
-	 * @param  [type] $rank     排行（非指定即为0）
-	 * @param  [type] $db       [description]
-	 * @return [type]           [description]
-	 */
-	protected function updateData($pk,array $data,$db) {
-		$score = (int)$data['score'];
-		$data['scorerank'] = $score*10000000000+(10000000000-time());
-		return parent::updateUserScore($pk,$data,$db);
+	protected function updateData($pk,array $datas,$db) {
+		$score = (int)$datas['score'];
+		$datas['scorerank'] = $score*10000000000+(10000000000-time());
+		return parent::updateUserScore($pk,$datas,$db);
 	}
 
 	public function add($db,$qq,$type,$num) {

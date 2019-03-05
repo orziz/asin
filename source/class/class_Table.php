@@ -36,36 +36,36 @@ class Table
 	 * @param array  $data 信息数据
 	 * @param [type] $db   [description]
 	 */
-	public function setData($pk,array $data=null,$db=null) {
+	public function setData($pk,array $datas=null,$db=null) {
 		if (!$db) global $db;
 		if (!$pk) return false;
 		$data = $this->getData($pk,$db);
-		if ($data) return $this->updateData($pk,$data,$db);
-		return $this->newData($pk,$data,$db);
+		if ($data) return $this->updateData($pk,$datas,$db);
+		return $this->newData($pk,$datas,$db);
 	}
 
 	/**
 	 * 根据主键新建信息
-	 * @param  [type] $pk   主键
-	 * @param  array  $data 信息数据
-	 * @param  [type] $db   [description]
-	 * @return [type]       [description]
+	 * @param  [type] $pk    主键
+	 * @param  array  $datas 信息数据
+	 * @param  [type] $db    [description]
+	 * @return [type]        [description]
 	 */
-	protected function newData($pk,array $data,$db) {
-		$data[$this->pk] = $pk;
-		return $db->insert($this->_table,$data);
+	protected function newData($pk,array $datas,$db) {
+		$datas[$this->pk] = $pk;
+		return $db->insert($this->_table,$datas);
 	}
 
 	/**
 	 * 根据主键更新信息
-	 * @param  [type] $pk   主键
-	 * @param  array  $data 信息数据
-	 * @param  [type] $db   [description]
-	 * @return [type]       [description]
+	 * @param  [type] $pk    主键
+	 * @param  array  $datas 信息数据
+	 * @param  [type] $db    [description]
+	 * @return [type]        [description]
 	 */
-	protected function updateData($pk,array $data,$db) {
-		if (isset($data[$this->_pk])) unset($data[$this->pk]);
-		return $db->update($this->_table,$data,array($this->_pk=>$pk));
+	protected function updateData($pk,array $datas,$db) {
+		if (isset($datas[$this->_pk])) unset($datas[$this->pk]);
+		return $db->update($this->_table,$datas,array($this->_pk=>$pk));
 	}
 
 	/**

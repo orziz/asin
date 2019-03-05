@@ -23,26 +23,22 @@ class Info extends Module
 			$msg .= CQCode::At($qq)."\n";
         }
         $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
-        Log::Debug('信息Debug===>'.json_encode($data));
         if ($data['errCode'] !== 200) {
             $msg .= $data['errMsg'];
         } else {
             $userInfo = $data['data'];
-            Log::Debug('信息Debug2===>'.json_encode($userInfo));
             $msg .= '姓名：'.$userInfo['nickname']."\n";
             $msg .= '排名：'.$userInfo['rank']."\n";
             $msg .= '积分：'.$userInfo['score']."\n";
             $msg .= '暗币：'.$userInfo['credit']."\n";
             $msg .= '年龄：'.$userInfo['age']."\n";
-            Log::Debug('信息Debug3==========>');
             $msg .= '性别：'.($userInfo['sex'] === 0 ? '未知' : ($userInfo['sex'] === 1 ? '男' : '女'))."\n";
-            Log::Debug('信息Debug4==========>');
             $msg .= '身高：'.$userInfo['height']." cm\n";
             $msg .= '体重：'.$userInfo['weight']." kg\n";
             $msg .= '介绍：'.$userInfo['introduce']."\n";
             $msg .= '加入组织时间：'.$userInfo['ctime'];
         }
         $msg .= "\n（该功能由 ".CQCode::At(1845896706).' 赞助）';
-        $event->sendBack($msg);
+        return $event->sendBack($msg);
     }
 }

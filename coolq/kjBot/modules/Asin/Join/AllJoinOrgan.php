@@ -23,6 +23,9 @@ class AllJoinOrgan extends Module
         for ($i=0; $i < count($groupMemberList); $i++) {
             $memberInfo = $groupMemberList[$i];
             $join_time = $memberInfo->join_time;
+            $score = 0;
+            $credit = 0;
+            $free = 0;
             if ($join_time < 1546272001) {
                  $score = 50;
                  $credit = 10000;
@@ -59,8 +62,8 @@ class AllJoinOrgan extends Module
                 'skill2'=>'',
                 'skill3'=>'',
                 'skill4'=>'',
-                'score'=>0,
-                'credit'=>0,
+                'score'=>0+$score,
+                'credit'=>0+$credit,
                 'rank'=>0
             ));
         }

@@ -26,7 +26,7 @@ class AllJoinOrgan extends Module
             param_post('http://asin.ygame.cc/api.php',array(
                 'mod' => 'home_userinfo',
                 'action'=>'newUserInfo',
-                'qq'=>$User_id,
+                'qq'=>$memberInfo->user_id,
                 'nickname'=>$memberInfo->nickname,
                 'age'=>$memberInfo->age,
                 'sex'=>0,

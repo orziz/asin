@@ -54,7 +54,7 @@ class table_checkin extends Table
 		$yday = getTime('Y-m-d',time()-86400);
 		$day = getTime('Y-m-d');
 		$count = ($data['lday'] == $yday) ? (int)$data['count'] : 0;
-		Log::Debug('yday=>'.$yday.' day=>'.$day.' count=>'.$count);
+		Log::Debug('yday=>'.$yday.' day=>'.$day.' count=>'.$count.' $data[\'count\']=>'.$data['count']);
 		$count++;
 		Log::Debug('count=>'.$count);
 		$num = 10000000000;

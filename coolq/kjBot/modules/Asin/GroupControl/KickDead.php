@@ -1,6 +1,6 @@
 <?php
 
-namespace kjBotModule\Asin\GetGroupUserInfo;
+namespace kjBotModule\Asin\GroupControl;
 
 use kjBot\Framework\Module;
 use kjBot\Framework\Event\GroupMessageEvent;

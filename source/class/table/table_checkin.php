@@ -50,14 +50,11 @@ class table_checkin extends Table
 	 * @return [type]        [description]
 	 */
 	protected function updateData($pk,array $datas,$db) {
-		$data = $this->getData($qq,$db);
+		$data = $this->getData($pk,$db);
 		$yday = getTime('Y-m-d',time()-86400);
 		$day = getTime('Y-m-d');
-		Log::Debug('data===>'.json_encode($data));
 		$count = ($data['lday'] == $yday) ? (int)$data['count'] : 0;
-		Log::Debug('yday=>'.$yday.' day=>'.$day.' count=>'.$count.' $data[\'count\']=>'.$data['count']);
 		$count++;
-		Log::Debug('count=>'.$count);
 		$num = 10000000000;
 		$datas['count'] = $count;
 		$datas['countrank'] = $datas['count']*$num+($num-time());

@@ -14,11 +14,12 @@ class SetNickName extends Module
 {
 	
 	public function process(array $args, $event){
+        $User_id = $event->getId();
+        if ($User_id != '1063614727') q('权限不足');
 		$msg = '';
         if (!isset($args[1])) q('未输入新昵称');
         $nickName = $args[1];
 		$atqq = isset($args[2]) ? getAtQQ($args[2]) : null;
-		$User_id = $event->getId();
 		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent) $msg .= CQCode::At($User_id)."\n";
         $data = param_post('http://asin.ygame.cc/api.php',array(

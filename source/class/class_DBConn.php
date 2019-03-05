@@ -37,7 +37,7 @@ class DBConn extends mysqli
      * @return [type]      [description]
      */
     public function execute($sql) {
-        return $this->query($sql);
+        return $this->query($sql.';');
     }
 
     /**

@@ -8,7 +8,7 @@
 			</li>
 			<li v-for="item in rankList">
 				<span class="rank">{{ item.rank }}</span>
-				<span class="nickname"><router-link :to="'/info/'+item.qq">{{ item.nickname }}</router-link></span>
+				<span class="nickname">{{ item.nickname }}</span>
 				<span class="score">{{ item.score }}</span>
 			</li>
 		</ul>
@@ -24,16 +24,24 @@ export default {
 			rankList: []
 		}
 	},
+	methods: {
+		getUserInfo: function() {
+			let id = this.$route.params.id;
+			orzzz.$post({
+				mod: 'home_userinfo',
+				action: 'getUserInfo',
+				qq: id,
+				success: (res)=> {
+					console.log('success:::',res);
+				},
+				fail: (res)=> {
+					console.log('faile:::',res);
+				}
+			})
+		}
+	},
 	mounted: function() {
-		console.log(this);
-		orzzz.$post({
-			mod: 'rank_score',
-			action: 'getRankList',
-			success: (res)=>{
-				console.log(res);
-				this.rankList = res
-			}
-		})
+		console.log('info::',this.$route);
 	}
 };
 </script>

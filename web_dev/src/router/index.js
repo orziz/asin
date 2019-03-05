@@ -15,6 +15,10 @@ export default new Router({
 		name: 'Rank',
 		component: require('@/components/Rank/Index').default
 	},{
+		path: '/info/:id',
+		name: 'Info',
+		component: require('@/components/Info/Index').default
+	},{
 		path: '/admin',
 		name: 'Admin/Index',
 		component: require('@/components/Admin/Index').default

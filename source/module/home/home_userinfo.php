@@ -109,7 +109,7 @@ if ($action == 'newUserInfo') {
 } elseif ($action == 'setUserInfo') {
 	# code...
 } elseif ($action == 'getUserInfo') {
-	$userInfo = C::t('userinfo')->getUserInfo($qq);
+	$userInfo = C::t('userinfo')->getData($qq);
 	if (!$userInfo) {
 		$res['errCode'] = 301;
 		$res['errMsg'] = '你没有加入刺客组织';

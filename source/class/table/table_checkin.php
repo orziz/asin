@@ -62,9 +62,9 @@ class table_checkin extends Table
 	 * 检测今天是否已签到
 	 * @param  [type]  $pk [description]
 	 * @param  [type]  $db [description]
-	 * @return boolean     [description]
+	 * @return [type]      [description]
 	 */
-	public function isCheckin($pk,$db=null): boolean {
+	public function isCheckin($pk,$db=null) {
 		if (!$db) global $db;
 		if (!$pk) return false;
 		$data = $this->getData($pk,$db);

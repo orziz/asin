@@ -42,6 +42,7 @@ export default {
 	},
 	mounted: function() {
 		console.log('info::',this.$route);
+		this.getUserInfo();
 	}
 };
 </script>

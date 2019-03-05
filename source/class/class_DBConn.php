@@ -136,7 +136,7 @@ class DBConn extends mysqli
      * @return [type]          [description]
      */
     public function fetch($table,$check='',$field='*',$order='',$limits=0,$limitn=0) {
-        $where = _DBConn::getWhere($check);
+        $where = self::getWhere($check);
         $sql = sprintf("SELECT %s FROM %s",$field,_DBConn::table($table));
         if (!empty($where)) $sql .= sprintf(" WHERE %s",$where);
         if (!empty($order)) $sql .= sprintf(" ORDER BY %s",$order);
@@ -163,6 +163,26 @@ class DBConn extends mysqli
     public function quote($v) {
         if (is_int($v) || is_float($v)) return '\'' . $v . '\'';
         if (is_string($v)) return '\'' . $this->real_escape_string($v) . '\'';
+    }
+
+    /**
+     * 将 where 数组转换为 SQL 字符串
+     * @param  string $check 要转换的查询键值
+     * @return [type]        [description]
+     */
+    public static function getWhere($check='') {
+        $where = '';
+        if (is_string($check)) {
+            $where = $check;
+        } elseif (is_array($check)) {
+            $_k = count($check);
+            foreach ($check as $key => $value) {
+                $_k--;
+                $where .= '(' . trim($key,"`'\"") . '=' . $this->quote($value) .')';
+                if ($_k != 0) $where .= ' AND ';
+            }
+        }
+        return $where;
     }
 
 }
@@ -444,23 +464,4 @@ class _DBConn
         return self::$field["$table"];
     }
 
-    /**
-     * 将 where 数组转换为 SQL 字符串
-     * @param  string $check 要转换的查询键值
-     * @return [type]        [description]
-     */
-    public static function getWhere($check='') {
-        $where = '';
-        if (is_string($check)) {
-            $where = $check;
-        } elseif (is_array($check)) {
-            $_k = count($check);
-            foreach ($check as $key => $value) {
-                $_k--;
-                $where .= '(' . trim($key,"`'\"") . '=' . self::quote($value) .')';
-                if ($_k != 0) $where .= ' AND ';
-            }
-        }
-        return $where;
-    }
 }

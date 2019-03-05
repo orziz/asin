@@ -84,8 +84,8 @@ class table_checkin extends Table
 	 */
 	public function getRankList($limit=0,$db=null) {
 		if (!$db) global $db;
-		if ($limit) return $db->fetch($this->_table,'*',null,'countrank DESC',0,$limit);
-		return $db->fetch($this->_table,'*',null,'countrank DESC');
+		if ($limit) return $db->fetch($this->_table,null,'*','countrank DESC',0,$limit);
+		return $db->fetch($this->_table,null,'*','countrank DESC');
 	}
 
 }

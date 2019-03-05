@@ -14,14 +14,14 @@ class table_userinfo extends Table
 		parent::__construct();
 	}
 
-	private function newData($pk,array $data,$db) {
+	protected function newData($pk,array $data,$db) {
 		$time = getTime();
 		$data['ctime'] = $time;
 		$data['utime'] = $time;
 		return parent::newData($pk,$data,$db);
 	}
 
-	private function updateData($pk,array $data,$db) {
+	protected function updateData($pk,array $data,$db) {
 		$time = getTime();
 		$data['utime'] = $time;
 		return parent::updateData($pk,$data,$db);

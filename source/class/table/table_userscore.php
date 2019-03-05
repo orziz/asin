@@ -60,7 +60,7 @@ class table_userscore extends Table
 	 * @param  [type] $db       [description]
 	 * @return [type]           [description]
 	 */
-	private function newData($pk,array $data,$db) {
+	protected function newData($pk,array $data,$db) {
 		$score = (int)$data['score'];
 		$data['scorerank'] = $score*10000000000+(10000000000-time());
 		return parent::newData($pk,$data,$db);
@@ -75,7 +75,7 @@ class table_userscore extends Table
 	 * @param  [type] $db       [description]
 	 * @return [type]           [description]
 	 */
-	private function updateData($pk,array $data,$db) {
+	protected function updateData($pk,array $data,$db) {
 		$score = (int)$data['score'];
 		$data['scorerank'] = $score*10000000000+(10000000000-time());
 		return parent::updateUserScore($pk,$data,$db);

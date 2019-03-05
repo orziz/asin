@@ -35,12 +35,14 @@ class table_userscore extends Table
 
 	/**
 	 * 获取排行榜列表
-	 * @param  [type] $db [description]
-	 * @return [type]     [description]
+	 * @param  [type] $limit 查询的数量
+	 * @param  [type] $db    [description]
+	 * @return [type]        [description]
 	 */
-	public function getRankList($db=null) {
+	public function getRankList($limit=0,$db=null) {
 		if (!$db) global $db;
-		$scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq');
+		if ($limit) $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq',);
+		else $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq','','*','scorerank DESC',0,$limit);
 		$rankList = [];
 		for ($i = 0; $i < count($scoreArr); $i++) {
 			$data = $scoreArr[$i];
@@ -54,12 +56,14 @@ class table_userscore extends Table
 	protected function newData($pk,array $datas,$db) {
 		$score = (int)$datas['score'];
 		$datas['scorerank'] = $score*10000000000+(10000000000-time());
+		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (1000000000-intval($datas['rank']))*10000000000+(10000000000-time());
 		return parent::newData($pk,$datas,$db);
 	}
 
 	protected function updateData($pk,array $datas,$db) {
 		$score = (int)$datas['score'];
 		$datas['scorerank'] = $score*10000000000+(10000000000-time());
+		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (1000000000-intval($datas['rank']))*10000000000+(10000000000-time());
 		return parent::updateUserScore($pk,$datas,$db);
 	}
 

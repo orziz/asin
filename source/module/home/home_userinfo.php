@@ -121,4 +121,19 @@ if ($action == 'newUserInfo') {
 		$res['errCode'] = 200;
 		$res['data'] = $userInfo;
 	}
+} elseif ($action == 'setUserNickName') {
+	$userInfo = C::t('userinfo')->getData($qq);
+	if (!$userInfo) {
+		$res['errCode'] = 301;
+		$res['errMsg'] = '没有此用户';
+	} else {
+		$isSuccess = C::t('userinfo')->setData($qq,arrar('nickname'=>$nickname));
+		if ($isSuccess) {
+			$res['errCode'] = 200;
+			$res['errMsg'] = '设置成功';
+		} else {
+			$res['errCode'] = 302;
+			$res['errMsg'] = '设置失败';
+		}
+	}
 }

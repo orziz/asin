@@ -8,7 +8,7 @@ use kjBot\SDK\CQCode;
 use \Log;
 
 /**
- * 
+ * 查看用户信息
  */
 class Info extends Module
 {

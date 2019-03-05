@@ -20,18 +20,20 @@ class Info extends Module
 		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent){
 			$senderInfo = $event->getSenderInfo();
-			$msg .= CQCode::At($qq);
+			$msg .= CQCode::At($qq)."\n";
         }
         $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
-        if ($data['errMsg'] !== 200) return $event->sendBack($msg.' '.$data['errMsg']);
-    	// $userList = json_decode($userList,true);
-    	for ($i = 0; $i < count($userList); $i++) {
-    		$userInfo = json_encode($userList[$i]);
-    		$userInfo = json_decode($userInfo,true);
-    		// return $event->sendBack('加群时间为： '.date('Y-m-d H:i:s',$userInfo['join_time']));
-    		return $event->sendBack('加群时间为： '.getTime());
-    	}
-    	// return $event->sendBack(count($userList));
-        // return $event->sendBack('Hello, world!');
+        if ($data['errCode'] !== 200) return $event->sendBack($msg.' '.$data['errMsg']);
+        $userInfo = $data['data'];
+        $msg .= '姓名：'.$userInfo['nickname']."\n";
+        $msg .= '排名：'.$userInfo['rank']."\n";
+        $msg .= '积分：'.$userInfo['score']."\n";
+        $msg .= '暗币：'.$userInfo['credit']."\n";
+        $msg .= '年龄：'.$userInfo['age']."\n";
+        $msg .= '性别：'.($userInfo['sex'] === 0 ? '未知' : ($userInfo['sex'] === 1 ? '男' : '女'))."\n";
+        $msg .= '身高：'.$userInfo['height']." cm\n";
+        $msg .= '体重：'.$userInfo['weight']." kg\n";
+        $msg .= '介绍：'.$userInfo['introduce']."\n";
+        $msg .= '加入组织时间：'.$userInfo['ctime'];
     }
 }

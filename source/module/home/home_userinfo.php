@@ -114,6 +114,10 @@ if ($action == 'newUserInfo') {
 		$res['errCode'] = 301;
 		$res['errMsg'] = '你没有加入刺客组织';
 	} else {
+		$userScore = C::t('userscore')->getData($qq);
+		$userInfo['score'] = $userScore['score'];
+		$userInfo['credit'] = $userScore['credit'];
+		$userInfo['rank'] = C::t('userscore')->getRank($qq);
 		$res['errCode'] = 200;
 		$res['data'] = $userInfo;
 	}

@@ -3,7 +3,7 @@
 /**
  * 
  */
-class table_userinfo extends C
+class table_userinfo extends Table
 {
 	
 	public function __construct() {
@@ -14,49 +14,17 @@ class table_userinfo extends C
 		parent::__construct();
 	}
 
-	public function getUserInfo($qq,$db=null) {
-		if (!$db) global $db;
-		if (!$qq) return false;
-		$userInfo = $db->fetch($this->_table,array('qq'=>$qq));
-		return ($userInfo ? $userInfo[0] : false);
-	}
-
-	public function setUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db=null) {
-		if (!$db) global $db;
-		if (!$qq) return false;
-		$data = $this->getUserInfo($qq,$db);
-		if ($data) return $this->updateUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db);
-		return $this->newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db);
-	}
-
-	private function newUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db) {
+	private function newData($pk,array $data,$db) {
 		$time = getTime();
-		return $db->insert($this->_table,array(
-			'qq'=>$qq,
-			'nickname'=>$nickname,
-			'sex'=>(int)$sex,
-			'age'=>(int)$age,
-			'height'=>(int)$height,
-			'weight'=>(int)$weight,
-			'arms'=>$arms,
-			'introduce'=>$introduce,
-			'ctime'=>$time,
-			'utime'=>$time
-		));
+		$data['ctime'] = $time;
+		$data['utime'] = $time;
+		return parent::newData($pk,$data,$db);
 	}
 
-	private function updateUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce,$db) {
+	private function updateData($pk,array $data,$db) {
 		$time = getTime();
-		return $db->update($this->_table,array(
-			'nickname'=>$nickname,
-			'sex'=>(int)$sex,
-			'age'=>(int)$age,
-			'height'=>(int)$height,
-			'weight'=>(int)$weight,
-			'arms'=>$arms,
-			'introduce'=>$introduce,
-			'utime'=>$time
-		),array('qq'=>$qq));
+		$data['utime'] = $time;
+		return parent::updateData($pk,$data,$db);
 	}
 
 

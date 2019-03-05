@@ -3,7 +3,7 @@
 /**
  * 
  */
-class table_userscore extends C
+class table_userscore extends Table
 {
 	
 	public function __construct() {
@@ -12,13 +12,6 @@ class table_userscore extends C
 		$this->_pk    = 'qq';
 
 		parent::__construct();
-	}
-
-	public function getUserScore($qq,$db=null) {
-		if (!$db) global $db;
-		if (!$qq) return false;
-		$data = $db->fetch($this->_table,array('qq'=>$qq));
-		return $data ? $data[0] : false;
 	}
 
 	/**
@@ -30,7 +23,7 @@ class table_userscore extends C
 	public function getRank($qq,$db=null) {
 		if (!$db) global $db;
 		if (!$qq) return false;
-		$data = $this->getUserScore($qq,$db);
+		$data = $this->getData($qq,$db);
 		if (!$data) return false;
 		if ($data['rank']) return $data['rank'];
 		$rank = $db->fetch($this->_table,'scorerank > '.$data['scorerank'],'count(qq) AS count');
@@ -60,22 +53,6 @@ class table_userscore extends C
 	}
 
 	/**
-	 * 设置用户积分数据
-	 * @param  [type] $db       [description]
-	 * @param  [type] $qq       qq号/唯一标识
-	 * @param  [type] $score    积分
-	 * @param  [type] $rank     排行（非指定即为0）
-	 * @return [type]           [description]
-	 */
-	public function setUserScore($qq,$score=0,$credit=0,$rank=0,$db=null) {
-		if (!$db) global $db;
-		if (!$qq) return false;
-		$data = $this->getUserScore($qq,$db);
-		if ($data) return $this->updateUserScore($qq,$score,$credit,$rank,$db);
-		return $this->newUserScore($qq,$score,$credit,$rank,$db);
-	}
-
-	/**
 	 * 私有方法 新增用户积分数据
 	 * @param  [type] $qq       qq号/唯一标识
 	 * @param  [type] $score    积分
@@ -83,17 +60,10 @@ class table_userscore extends C
 	 * @param  [type] $db       [description]
 	 * @return [type]           [description]
 	 */
-	private function newUserScore($qq,$score,$credit,$rank,$db) {
-		$time = getTime();
-		$score = (int)$score;
-		$scoreRank = $score*10000000000+time();
-		return $db->insert($this->_table,array(
-			'qq'=>$qq,
-			'score'=>intval($score),
-			'credit'=>intval($credit),
-			'rank'=>intval($rank),
-			'scorerank'=>intval($scoreRank)
-		));
+	private function newData($pk,array $data,$db) {
+		$score = (int)$data['score'];
+		$data['scorerank'] = $score*10000000000+(10000000000-time());
+		return parent::newData($pk,$data,$db);
 	}
 
 	/**
@@ -105,16 +75,10 @@ class table_userscore extends C
 	 * @param  [type] $db       [description]
 	 * @return [type]           [description]
 	 */
-	private function updateUserScore($qq,$score,$credit,$rank,$db) {
-		$time = getTime();
-		$score = (int)$score;
-		$scoreRank = $score*10000000000+time();
-		return $db->update($this->_table,array(
-			'score'=>$score,
-			'credit'=>intval($credit),
-			'rank'=>intval($rank),
-			'scorerank'=>intval($scoreRank)
-		),array('qq'=>$qq));
+	private function updateData($pk,array $data,$db) {
+		$score = (int)$data['score'];
+		$data['scorerank'] = $score*10000000000+(10000000000-time());
+		return parent::updateUserScore($pk,$data,$db);
 	}
 
 	public function add($db,$qq,$type,$num) {

@@ -47,19 +47,44 @@ $rank = getgpc('rank','param',0);
 
 if ($action == 'newUserInfo') {
 	// 响应请求为新建用户
-	$userInfo = C::t('userinfo')->getUserInfo($qq);
+	$userInfo = C::t('userinfo')->getData($qq);
 	if ($userInfo) {
 		// 如果该用户已存在，则返回错误信息
 		$res['errCode'] = 301;
 		$res['errMsg'] = '该账户已存在';
 	} else {
-		$newUserInfo = C::t('userinfo')->setUserInfo($qq,$nickname,$sex,$age,$height,$weight,$arms,$introduce);
+		$newUserInfo = C::t('userinfo')->setData($qq,array(
+			'nickname'=>$nickname,
+			'sex'=>$sex,
+			'age'=>$age,
+			'height'=>$height,
+			'weight'=>$weight,
+			'aram'=>$arms,
+			'introduce'=>$introduce
+		));
 		if ($newUserInfo) {
-			$newUserScore = C::t('userscore')->setUserScore($qq,$score,$credit,$rank);
+			$newUserScore = C::t('userscore')->setData($qq,array(
+				'score'=>$score,
+				'credit'=>$credit,
+				'rank'=>$rank
+			));
 			if ($newUserScore) {
-				$newUserAttr = C::t('userattr')->setUserAttr($qq,$str,$dex,$con,$ine,$wis,$cha,$free);
+				$newUserAttr = C::t('userattr')->setData($qq,array(
+					'str'=>$str,
+					'dex'=>$dex,
+					'con'=>$con,
+					'ine'=>$ine,
+					'wis'=>$wis,
+					'cha'=>$cha,
+					'free'=>$free
+				));
 				if ($newUserAttr) {
-					$newUserSkill = C::t('userskill')->setUserSkill($qq,$skill1,$skill2,$skill3,$skill4);
+					$newUserSkill = C::t('userskill')->setData($qq,array(
+						'skill1'=>$skill1,
+						'skill2'=>$skill2,
+						'skill3'=>$skill3,
+						'skill4'=>$skill4
+					));
 					if ($newUserSkill) {
 						$rank = C::t('userscore')->getRank($qq);
 						$res['errCode'] = 200;

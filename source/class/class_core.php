@@ -10,6 +10,7 @@ date_default_timezone_set('Asia/Shanghai');
 require_once GO_ROOT . './config/config_global.php';
 require_once GO_ROOT . './source/function/function_core.php';
 require_once GO_ROOT . './source/class/class_DBConn.php';
+require_once GO_ROOT . './source/class/class_Table.php';
 require_once GO_ROOT . './source/class/class_RCNB.php';
 require_once GO_ROOT . './source/class/class_Log.php';
 

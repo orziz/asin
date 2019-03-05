@@ -34,8 +34,10 @@ class table_checkin extends Table
 	 * @return [type]        [description]
 	 */
 	protected function newData($pk,array $datas,$db) {
+		$num = 10000000000;
 		$day = getTime('Y-m-d');
 		$datas['count'] = 1;
+		$datas['countrank'] = $datas['count']*$num+($num-time());
 		$datas['lday'] = $day;
 		return parent::newData($pk,$datas,$db);
 	}
@@ -53,7 +55,9 @@ class table_checkin extends Table
 		$day = getTime('Y-m-d');
 		$count = ($data['lday'] == $yday) ? (int)$data['count'] : 0;
 		$count++;
+		$num = 10000000000;
 		$datas['count'] = $count;
+		$datas['countrank'] = $datas['count']*$num+($num-time());
 		$datas['lday'] = $day;
 		return parent::updateData($pk,$datas,$db);
 	}

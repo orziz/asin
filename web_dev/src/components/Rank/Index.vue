@@ -21,7 +21,7 @@ export default {
 	data () {
 		return {
 			msg: '欢迎来到刺客组织',
-			rankList: []
+			rankList: {}
 		}
 	},
 	mounted: function() {

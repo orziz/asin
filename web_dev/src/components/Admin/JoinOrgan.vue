@@ -10,7 +10,7 @@
 			</li>
 		</ul>
 		<br>
-		<input type="submit" id="postForm" ref="postForm" value="提交" class="postForm">
+		<input type="submit" id="postForm" value="提交" class="postForm" click="postForm">
 	</div>
 </template>
 
@@ -136,7 +136,12 @@ export default {
 		}
 	},
 	methods: {
-
+		postForm: function () {
+			var $refs = this.$refs;
+			for (var i = 0; i < $refs.length; i++) {
+				console.log(refs[i]);
+			}
+		}
 	},
 	mounted: function() {
 	}

@@ -1,17 +1,6 @@
 <template>
 	<div id="main">
-		<ul>
-			<li class="top">
-				<span class="rank">排名</span>
-				<span class="nickname">姓名</span>
-				<span class="score">积分</span>
-			</li>
-			<li v-for="item in rankList">
-				<span class="rank">{{ item.rank }}</span>
-				<span class="nickname">{{ item.nickname }}</span>
-				<span class="score">{{ item.score }}</span>
-			</li>
-		</ul>
+		<div></div>
 	</div>
 </template>
 
@@ -21,7 +10,7 @@ export default {
 	data () {
 		return {
 			msg: '欢迎来到刺客组织',
-			rankList: []
+			userInfo: {}
 		}
 	},
 	methods: {
@@ -33,6 +22,7 @@ export default {
 				qq: id,
 				success: (res)=> {
 					console.log('success:::',res);
+					this.userInfo = res;
 				},
 				fail: (res)=> {
 					console.log('faile:::',res);

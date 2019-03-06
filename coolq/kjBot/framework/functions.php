@@ -18,7 +18,7 @@ function checkAuth($event,$level='group') {
 		case 'asin':
 			if (in_array($userId,[])) return true;
 		default:
-			if ($userId == $Config['master']) return true;
+			if ($userId == Config('master')) return true;
 			return q('权限不足');
 			break;
 	}

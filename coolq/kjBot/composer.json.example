@@ -5,14 +5,9 @@
         "psr-4": {
             "kjBot\\SDK\\": "SDK/",
             "kjBot\\Framework\\": "framework/",
-            "kjBotModule\\": "modules/",
-            "kjBotPlugin\\": "plugins/"
+            "kjBotModule\\": "modules/"
         },
-        "files": [
-            "../../source/class/class_core.php",
-            "framework/helpers.php",
-            "framework/functions.php"
-        ]
+        "files": ["framework/helpers.php"]
     },
     "require": {
         "php": "^7.2",

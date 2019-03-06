@@ -1,6 +1,6 @@
 <?php
 
 $Plugins = [
-    kjBotPlugin\Authcheck\Main::class,
-    kjBotPlugin\Authcheck\Group::class
+    kjBotPlugin\GroupCheck\AsinGroup\_Message::class,
+    kjBotPlugin\GroupCheck\AsinGroup\_Notice::class
 ];

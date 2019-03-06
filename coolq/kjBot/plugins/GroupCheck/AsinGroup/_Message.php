@@ -15,6 +15,7 @@ class _Message extends Plugin {
     public function message_group_normal($event): ?Message{
         if($event instanceof GroupMessageEvent) {
             global $asinGroup;
+            $asinGroup = ['719994813','758507034'];
             if (in_array($event->groupId,$asinGroup)) {
                 global $Modules;
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {

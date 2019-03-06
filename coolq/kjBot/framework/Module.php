@@ -10,6 +10,6 @@ abstract class Module{
     public function processWithCQ(array $args, MessageEvent $event, CoolQ $cq = NULL){}
 
     public function needCQ () {
-    	return $this->$needCQ;
+    	return $this->needCQ;
     }
 }

@@ -23,7 +23,8 @@ class _Notice extends Plugin {
 		if (in_array($event->groupId,$asinGroup)) {
 			Log::Debug('确定为刺客群');
 			$msg = CQCode::At($event->getId())."\n";
-            $memberInfo = $cq->getGroupMemberInfo($evrnt->groupId,$event->getId());
+            $memberInfo = $cq->getGroupMemberInfo($event->groupId,$event->getId());
+            Log::Debug('开始提交数据');
             $data = param_post('http://asin.ygame.cc/api.php',array(
                 'mod' => 'home_userinfo',
                 'action'=>'newUserInfo',
@@ -50,6 +51,8 @@ class _Notice extends Plugin {
                 'credit'=>0,
                 'rank'=>0
             ));
+            Log::Debug('获取到数据了');
+            Log::Debug('查看 errCode：'.$data['errCode']);
             if ($data['errCode'] === 200) {
             	$msg .= $memberInfo->nickname.' ，刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank']." ，请努力提高排名吧！\n";
             } elseif ($data['errCode'] === 301) {

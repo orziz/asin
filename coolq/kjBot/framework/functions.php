@@ -12,6 +12,7 @@ function checkAuth($event,$level='group') {
 	if (!$event) return false;
 	$userInfo = $event->getSenderInfo();
 	$userId = $event->getId();
+	DataStorage::SetData('test.json','======>');
 	switch ($level) {
 		case 'group':
 			if (in_array($userInfo->role,['admin','owner'])) return true;

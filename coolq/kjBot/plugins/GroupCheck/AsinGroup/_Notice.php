@@ -6,6 +6,7 @@ use kjBot\Framework\Plugin;
 use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupIncreaseEvent;
 use kjBot\SDK\CQCode;
+use \Log;
 
 class _Notice extends Plugin {
 
@@ -17,8 +18,10 @@ class _Notice extends Plugin {
 	public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
 	//此处以正常群聊消息举例
 	public function coolq_notice_group_increase($event,$cq): ?Message{
+		Log::Debug('捕获到加群事件');
 		$asinGroup = ['719994813','758507034'];
 		if (in_array($event->groupId,$asinGroup)) {
+			Log::Debug('确定为刺客群');
 			$msg = CQCode::At($event->getId())."\n";
             $memberInfo = $cq->getGroupMemberInfo($evrnt->groupId,$event->getId());
             $data = param_post('http://asin.ygame.cc/api.php',array(

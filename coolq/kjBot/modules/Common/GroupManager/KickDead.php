@@ -14,10 +14,10 @@ use \Log;
 class KickDead extends Module
 {
 
-    const needCQ = true;
+    public $needCQ = true;
 
     // public function processWithCQ(array $args, $event,$cq){
-    public function processWithCQ(array $args, $event, $cq = NULL) {
+    public function processWithCQ(array $args, $event, $cq) {
         Log::Debug('？？？？');
         checkAuth($event);
         $User_id = $event->getId();

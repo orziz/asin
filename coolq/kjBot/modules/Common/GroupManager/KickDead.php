@@ -16,7 +16,8 @@ class KickDead extends Module
 
     const needCQ = true;
 
-    public function processWithCQ(array $args, $event,$cq){
+    // public function processWithCQ(array $args, $event,$cq){
+    public function processWithCQ(array $args, kjBot\Framework\Event\MessageEvent $event, ?kjBot\SDK\CoolQ $cq = NULL) {
         Log::Debug('？？？？');
         checkAuth($event);
         $User_id = $event->getId();

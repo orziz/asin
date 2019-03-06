@@ -56,14 +56,14 @@ class table_userscore extends Table
 	protected function newData($pk,array $datas,$db) {
 		$score = (int)$datas['score'];
 		$datas['scorerank'] = $score*10000000000+(10000000000-time());
-		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (1000000000-intval($datas['rank']))*10000000000+(10000000000-time());
+		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (100000000-intval($datas['rank']))*10000000000+(10000000000-time());
 		return parent::newData($pk,$datas,$db);
 	}
 
 	protected function updateData($pk,array $datas,$db) {
 		$score = (int)$datas['score'];
 		$datas['scorerank'] = $score*10000000000+(10000000000-time());
-		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (1000000000-intval($datas['rank']))*10000000000+(10000000000-time());
+		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (100000000-intval($datas['rank']))*10000000000+(10000000000-time());
 		return parent::updateUserScore($pk,$datas,$db);
 	}
 

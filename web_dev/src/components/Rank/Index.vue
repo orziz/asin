@@ -8,7 +8,8 @@
 			</li>
 			<li v-for="item in rankList">
 				<span class="rank">{{ item.rank }}</span>
-				<span class="nickname"><router-link :to="'/info/'+item.qq">{{ item.nickname }}</router-link></span>
+				<!-- <span class="nickname"><router-link :to="'/info/'+item.qq">{{ item.nickname }}</router-link></span> -->
+				<span class="nickname">{{ item.nickname }}</span>
 				<span class="score">{{ item.score }}</span>
 			</li>
 		</ul>

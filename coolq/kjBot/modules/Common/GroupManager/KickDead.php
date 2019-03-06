@@ -16,10 +16,9 @@ class KickDead extends Module
     const needCQ = true;
 
     public function processWithCQ(array $args, $event, $CQ){
+        checkAuth($event);
         $User_id = $event->getId();
         $senderInfo = $event->getSenderInfo();
-        $isAdmin = ($senderInfo->role == 'admin' || $senderInfo->role == 'owner');
-        if ($User_id != '1063614727' && !$isAdmin) q('权限不足');
     	$userList = $CQ->getGroupMemberList($event->groupId);
         for ($i=0; $i < count($userList); $i++) {
             $memberInfo = $userList[$i];

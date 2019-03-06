@@ -16,7 +16,7 @@ class Info extends Module
 	public function process(array $args, $event){
         checkAuth($event);
 		$msg = '';
-		$atqq = isset($args[1]) ? getAtQQ($args[1]) : null;
+		$atqq = isset($args[1]) ? parseQQ($args[1]) : null;
 		$User_id = $event->getId();
 		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent){

@@ -12,14 +12,18 @@ function checkAuth($event,$level='group') {
 	if (!$event) return false;
 	$userInfo = $event->getSenderInfo();
 	$userId = $event->getId();
-	DataStorage::SetData('test.json','======>');
+	$authArr = DataStorage::GetData('Auth.json');
+	$authArr = $authArr ? json_decode($authArr,true) : array();
 	switch ($level) {
+		case 'tester':
+			if (isset($authArr['tester']) && in_array($userId,$authArr['tester'])) return true;
 		case 'group':
-			if (in_array($userInfo->role,['admin','owner'])) return true;
-		case 'asin':
-			if (in_array($userId,[])) return true;
-		default:
+			if (!empty($userInfo->role) && in_array($userInfo->role,['admin','owner'])) return true;
+		case 'admin':
+			if (isset($authArr['admin']) && in_array($userId,$authArr['admin'])) return true;
+		case 'master':
 			if ($userId == Config('master')) return true;
+		default:
 			return q('权限不足');
 			break;
 	}

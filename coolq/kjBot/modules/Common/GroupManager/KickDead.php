@@ -5,7 +5,6 @@ namespace kjBotModule\Common\GroupManager;
 use kjBot\Framework\Module;
 use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
-use kjBot\SDK\CoolQ;
 use \C;
 use \Log;
 

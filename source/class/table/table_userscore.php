@@ -64,7 +64,7 @@ class table_userscore extends Table
 		$score = (int)$datas['score'];
 		$datas['scorerank'] = $score*10000000000+(10000000000-time());
 		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (100000000-intval($datas['rank']))*10000000000+(10000000000-time());
-		return parent::updateUserScore($pk,$datas,$db);
+		return parent::updateData($pk,$datas,$db);
 	}
 
 	public function add($db,$qq,$type,$num) {

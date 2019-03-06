@@ -3,7 +3,9 @@
 namespace kjBotModule\Common\GroupManager;
 
 use kjBot\Framework\Module;
+use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
+use kjBot\SDK\CoolQ;
 use \C;
 use \Log;
 
@@ -15,7 +17,7 @@ class KickDead extends Module
 
     const needCQ = true;
 
-    public function processWithCQ(array $args, $event,kjBot\SDK\CoolQ $cq){
+    public function processWithCQ(array $args, $event,$cq){
         checkAuth($event);
         $User_id = $event->getId();
         $senderInfo = $event->getSenderInfo();

@@ -1,6 +1,6 @@
 <?php
 
-namespace kjBotModule\Asin\Home;
+namespace kjBotModule\Common\Home;
 
 use kjBot\Framework\Module;
 use kjBot\Framework\Event\GroupMessageEvent;

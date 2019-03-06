@@ -7,6 +7,9 @@
 // 加载核心库
 require_once 'source/class/class_core.php';
 
+// 初始化db链接
+$db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'], $_config['dbhost']['base'],$_config['dbhost']['port']);
+
 // 预设置返回内容
 $res = array();
 

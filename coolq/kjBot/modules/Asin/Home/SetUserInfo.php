@@ -10,7 +10,7 @@ use \Log;
 /**
  * 设置用户昵称
  */
-class SetNickName extends Module
+class SetUserInfo extends Module
 {
 	
 	public function process(array $args, $event){

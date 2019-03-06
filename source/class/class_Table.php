@@ -64,7 +64,7 @@ class Table
 	 * @return [type]        [description]
 	 */
 	protected function updateData($pk,array $datas,$db) {
-		if (isset($datas[$this->_pk])) unset($datas[$this->pk]);
+		if (isset($datas[$this->_pk])) unset($datas[$this->_pk]);
 		return $db->update($this->_table,$datas,array($this->_pk=>$pk));
 	}
 

@@ -19,8 +19,7 @@ class Info extends Module
 		$User_id = $event->getId();
 		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent){
-			$senderInfo = $event->getSenderInfo();
-			$msg .= CQCode::At($qq)."\n";
+			$msg .= CQCode::At($User_id)."\n";
         }
         $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
         if ($data['errCode'] !== 200) {

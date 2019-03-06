@@ -23,12 +23,15 @@ class DBConn extends mysqli
         // 调用 new mysqli 实例化对象
         parent::__construct($host,$user,$passwd,$base,$port);
 
+        // 如果链接错误就直接报错
+        if ($this->connect_errno) {
+            Log::Error('数据库连接失败：'. $this->connect_error);
+            die("连接失败: " . $this->connect_error);
+        }
+
         // 别问，问就是 utf-8
         $this->query('set names utf8');
         $this->query('set character set utf8');
-
-        // 如果链接错误就直接报错
-        if ($this->connect_errno) die("连接失败: " . $this->connect_error);
     }
 
     /**

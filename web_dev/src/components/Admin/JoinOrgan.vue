@@ -1,5 +1,6 @@
 <template>
 	<div id="joinOrgan">
+		<!-- <h2>该项目为开源项目，代码已上传至&nbsp;&lt;&nbsp;<a href="https://github.com/ZiBuYuCHN/asin" target="_blank">github</a>&nbsp;&nbsp;（你懂的）</h2> -->
 		<ul>
 			<li><span class="tdTile">栏目</span><span class="tdTile">值</span><span class="tdTile">备注</span></li>
 			<li v-for="(item,key) in liObj">

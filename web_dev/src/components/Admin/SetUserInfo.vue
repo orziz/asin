@@ -5,7 +5,7 @@
 			<li><span class="tdTile">栏目</span><span class="tdTile">值</span><span class="tdTile">备注</span></li>
 			<li v-for="(item,key) in liObj">
 				<label :for="key" :class="item.must ? 'must' : ''">{{ item.title }}</label>
-				<input v-if="item.type != 'textarea'" :type="item.type" :id="key" :ref="key" @blur="check(key)" :value="item.default" :disabled="item.noChange">
+				<input v-if="item.type != 'textarea'" :type="item.type" :id="key" :ref="key" @blur="check(key)" :value="item.default">
 				<textarea v-else :id="key" :ref="key">{{ item.default }}</textarea>
 				<span>{{ item.note }}</span>
 			</li>
@@ -39,7 +39,7 @@ export default {
 					title: '性别',
 					type: 'number',
 					default: 0,
-					note: '默认为0；0为未知，1为男，2为女'
+					note: '默认为0'
 				},
 				age: {
 					title: '年龄',
@@ -163,7 +163,6 @@ export default {
 			if (key != 'qq') return;
 			let qq = this.$refs.qq[0].value;
 			if (!qq) return;
-			if ('id' in this.$route.params) return;
 			orzzz.$post({
 				mod: 'home_userinfo',
 				action: 'getUserInfo',
@@ -198,24 +197,7 @@ export default {
 				data[key] = refs[key][0].value;
 			}
 			orzzz.$post(data);
-		},
-		getUserInfo: function () {
-			orzzz.$post({
-				mod: 'home_userinfo',
-				action: 'getUserInfo',
-				qq: this.$route.params.id,
-				success: (res)=>{
-					// this.liObj.qq.noChange = true;
-					for (let key in res) {
-						if (this.liObj[key]) this.liObj[key].default = res[key];
-					}
-				}
-			})
 		}
-	},
-	mounted: function () {
-		console.log(this.$route);
-		if ('id' in this.$route.params) this.getUserInfo();
 	}
 };
 </script>

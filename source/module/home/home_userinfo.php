@@ -133,6 +133,32 @@ if ($action == 'newUserInfo') {
 		$res['errCode'] = 200;
 		$res['data'] = $userInfo;
 	}
+} elseif ($action == 'getUserInfoByWeb') {
+	$userInfo = C::t('userinfo')->getData($qq);
+	if (!$userInfo) {
+		$res['errCode'] = 301;
+		$res['errMsg'] = '你没有加入刺客组织';
+	} else {
+		$userScore = C::t('userscore')->getData($qq);
+		$userAttr = C::t('userattr')->getData($qq);
+		$userSkill = C::t('userskill')->getData($qq);
+		$userInfo['score'] = $userScore['score'];
+		$userInfo['credit'] = $userScore['credit'];
+		$userInfo['rank'] = $userScore['rank'];
+		$userInfo['str'] = $userScore['str'];
+		$userInfo['dex'] = $userScore['dex'];
+		$userInfo['con'] = $userScore['con'];
+		$userInfo['ine'] = $userScore['ine'];
+		$userInfo['wis'] = $userScore['wis'];
+		$userInfo['cha'] = $userScore['cha'];
+		$userInfo['free'] = $userScore['free'];
+		$userInfo['skill1'] = $userSkill['skill1'];
+		$userInfo['skill2'] = $userSkill['skill2'];
+		$userInfo['skill3'] = $userSkill['skill3'];
+		$userInfo['skill4'] = $userSkill['skill4'];
+		$res['errCode'] = 200;
+		$res['data'] = $userInfo;
+	}
 } elseif ($action == 'setUserNickName') {
 	$userInfo = C::t('userinfo')->getData($qq);
 	if (!$userInfo) {

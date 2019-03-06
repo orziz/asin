@@ -107,7 +107,19 @@ if ($action == 'newUserInfo') {
 		}
 	}
 } elseif ($action == 'setUserInfo') {
-	# code...
+	$userFields = C::t('userinfo')->getFields();
+	$datas = array();
+	foreach ($param as $key => $value) {
+		if (isset($userFields[$key])) $datas[$key] = $value;
+	}
+	$isSuccess = C::t('userinfo')->setData($qq,$datas);
+	if ($isSuccess) {
+		$res['errCode'] = 200;
+		$res['errMsg'] = '设置成功';
+	} else {
+		$res['errCode'] = 301;
+		$res['errMsg'] = '设置失败';
+	}
 } elseif ($action == 'getUserInfo') {
 	$userInfo = C::t('userinfo')->getData($qq);
 	if (!$userInfo) {

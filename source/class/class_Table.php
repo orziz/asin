@@ -80,4 +80,15 @@ class Table
 		if (is_array($pk)) return $db->delete($this->_table,$this->_pk.' IN ('.implode(',',$pk).')');
 		return $db->delete($this->_table,array($this->_pk=>$pk));
 	}
+
+	/**
+	 * 获取表字段信息
+	 * @param  [type] $db [description]
+	 * @return [type]     [description]
+	 */
+	public function getFields($db=null) {
+		if (!$db) global $db;
+		if (!$this->_table) return false;
+		return $db->getFields($this->_table);
+	}
 }

@@ -26,7 +26,7 @@ class SetUserInfo extends Module
 		if($event instanceof GroupMessageEvent) $msg .= CQCode::At($User_id)."\n";
         $datas = array(
             'mod' => 'home_userinfo',
-            'action'=>'getUserInfo',
+            'action'=>'setUserInfo',
             'qq'=>$qq
         );
         switch ($type) {
@@ -41,9 +41,6 @@ class SetUserInfo extends Module
                 break;
             case '身高':
                 $datas['height'] = $value;
-                break;
-            case '体重':
-                $datas['weight'] = $value;
                 break;
             case '体重':
                 $datas['weight'] = $value;

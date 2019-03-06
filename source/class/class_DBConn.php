@@ -193,6 +193,20 @@ class DBConn extends mysqli
         return $where;
     }
 
+    /**
+     * 获取数据表的字段信息（但是好像没啥用）
+     * @param  [type] $table 要查询的数据表
+     * @return [type]        [description]
+     */
+    public function getFields($table) {
+        $result = $this->query(sprintf("DESC %s",self::table($table)));
+        $resArr = array();
+        while($row = $result->fetch_assoc()) {
+            $resArr[$row['Field']] = $row['Type'];
+        }
+        return $resArr;
+    }
+
 }
 
 /**

@@ -10,9 +10,11 @@ class _Message extends Plugin {
     public $handleDepth = 3; //捕获到最底层的事件
     public $handleQueue = true; //声明是否要捕获消息队列
 
+    const cq_message_group_normal = true;
+
     public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
     //此处以正常群聊消息举例
-    public function message_group_normal($event): ?Message{
+    public function coolq_message_group_normal($event,$cq): ?Message{
         if($event instanceof GroupMessageEvent) {
             global $asinGroup;
             $asinGroup = ['719994813','758507034'];

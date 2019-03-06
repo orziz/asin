@@ -11,7 +11,7 @@ function checkAuth($event,$level='group') {
 	global $Config;
 	if (!$event) return false;
 	$userInfo = $event->getSenderInfo();
-	$userId = $userInfo->user_id;
+	$userId = $event->getId();
 	switch ($level) {
 		case 'group':
 			if (in_array($userInfo->role,['admin','owner'])) return true;

@@ -199,7 +199,7 @@ class DBConn extends mysqli
      * @return [type]        [description]
      */
     public function getFields($table) {
-        $result = $this->query(sprintf("DESC %s",self::table($table)));
+        $result = $this->query(sprintf("DESC %s",_DBConn::table($table)));
         $resArr = array();
         while($row = $result->fetch_assoc()) {
             $resArr[$row['Field']] = $row['Type'];

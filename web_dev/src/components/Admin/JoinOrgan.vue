@@ -202,7 +202,7 @@ export default {
 		getUserInfo: function () {
 			orzzz.$post({
 				mod: 'home_userinfo',
-				action: 'getUserInfo',
+				action: 'getUserInfoByWeb',
 				qq: this.$route.params.id,
 				success: (res)=>{
 					// this.liObj.qq.noChange = true;

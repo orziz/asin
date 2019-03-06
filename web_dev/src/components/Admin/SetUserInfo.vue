@@ -5,7 +5,7 @@
 			<li><span class="tdTile">栏目</span><span class="tdTile">值</span><span class="tdTile">备注</span></li>
 			<li v-for="(item,key) in liObj">
 				<label :for="key" :class="item.must ? 'must' : ''">{{ item.title }}</label>
-				<input v-if="item.type != 'textarea'" :type="item.type" :id="key" :ref="key" @blur="check(key)" :value="item.default">
+				<input v-if="item.type != 'textarea'" :type="item.type" :id="key" :ref="key" @blur="check(key)" :value="item.default" :disabled="item.noChange">
 				<textarea v-else :id="key" :ref="key">{{ item.default }}</textarea>
 				<span>{{ item.note }}</span>
 			</li>
@@ -39,7 +39,7 @@ export default {
 					title: '性别',
 					type: 'number',
 					default: 0,
-					note: '默认为0'
+					note: '默认为0；0为未知，1为男，2为女'
 				},
 				age: {
 					title: '年龄',
@@ -96,7 +96,7 @@ export default {
 					note: '默认为0'
 				},
 				free: {
-					title: '自有属性点',
+					title: '自由属性点',
 					type: 'number',
 					default: 20,
 					note: '默认为20'
@@ -141,7 +141,7 @@ export default {
 					title: '积分',
 					type: 'number',
 					default: 0,
-					note: '默认为0'
+					note: '默认为0/NPC设置为负数'
 				},
 				credit: {
 					title: '暗币',
@@ -153,7 +153,7 @@ export default {
 					title: '排名',
 					type: 'number',
 					default: 0,
-					note: '默认为0，一般不填此值'
+					note: '设置NPC排名/默认为0，一般不填此值'
 				}
 			}
 		}
@@ -163,6 +163,7 @@ export default {
 			if (key != 'qq') return;
 			let qq = this.$refs.qq[0].value;
 			if (!qq) return;
+			if (this._hasId) return;
 			orzzz.$post({
 				mod: 'home_userinfo',
 				action: 'getUserInfo',
@@ -174,15 +175,23 @@ export default {
 		},
 		postForm: function () {
 			var refs = this.$refs;
+			let action = this._hasId ? 'newUserInfoByWeb' :'newUserInfo';
+			let qq = this.$refs.qq[0].value;
 			let data = {
 				mod: 'home_userinfo',
-				action: 'newUserInfo',
+				action: action,
 				success: (res)=>{
-					alert('添加成功');
-					this.$router.replace({path:'/info/'+qq});
+					let msg = '';
+					if (this._hasId) msg = '修改成功';
+					else msg = '添加成功';
+					alert(msg);
+					this.$router.replace({path:'/admin/setUserInfo/'+qq});
 				},
 				fail: (res)=>{
-					alert("添加失败\n错误代码："+res.errCode+"\n错误信息："+res.errMsg);
+					let msg = '';
+					if (this._hasId) msg = '修改失败';
+					else msg = '添加失败';
+					alert(msg+"\n错误代码："+res.errCode+"\n错误信息："+res.errMsg);
 				}
 			};
 			for (let key in refs) {
@@ -197,6 +206,32 @@ export default {
 				data[key] = refs[key][0].value;
 			}
 			orzzz.$post(data);
+		},
+		getUserInfo: function () {
+			orzzz.$post({
+				mod: 'home_userinfo',
+				action: 'getUserInfoByWeb',
+				qq: this.$route.params.id,
+				success: (res)=>{
+					this.liObj.qq.noChange = true;
+					for (let key in res) {
+						if (this.liObj[key]) this.liObj[key].default = res[key];
+					}
+				},
+				fail: (res)=>{
+					alert('没有该用户');
+					this.$router.replace({path:'/admin/setUserInfo/'});
+				}
+			})
+		}
+	},
+	mounted: function () {
+		console.log(this.$route);
+		if (this._hasId) this.getUserInfo();
+	},
+	computed: {
+		_hasId: function () {
+			return ('id' in this.$route.params);
 		}
 	}
 };

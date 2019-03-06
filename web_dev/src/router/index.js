@@ -27,24 +27,16 @@ export default new Router({
 		name: 'Admin/Index',
 		component: require('@/components/Admin/Index').default
 	},{
-		path: '/admin/joinOrgan',
-		name: 'Admin/JoinOrgan',
-		component: require('@/components/Admin/JoinOrgan').default
+		path: '/admin/setUserInfo',
+		name: 'Admin/SetUserInfo',
+		component: require('@/components/Admin/SetUserInfo').default
 	},{
-		path: '/admin/joinOrgan/:id',
-		name: 'Admin/JoinOrgan/Id',
-		component: require('@/components/Admin/JoinOrgan').default
+		path: '/admin/setUserInfo/:id',
+		name: 'Admin/SetUserInfo/',
+		component: require('@/components/Admin/SetUserInfo').default
 	},{
 		path: '/admin/list',
 		name: 'Admin/List',
 		component: require('@/components/Admin/List').default
-	},{
-		path: '/admin/setUserInfo',
-		name: 'Admin/SetUserInfo/Index',
-		component: require('@/components/Admin/SetUserInfo').default
-	},{
-		path: '/admin/setUserInfo/:id',
-		name: 'Admin/SetUserInfo/Id',
-		component: require('@/components/Admin/SetUserInfo').default
 	}]
 })

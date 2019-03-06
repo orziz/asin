@@ -6,14 +6,14 @@
 				<span class="qq">QQ</span>
 				<span class="nickname">姓名</span>
 				<span class="score">积分</span>
-				<span class="control">操作</span>
+				<span class="control"><router-link :to="'/admin/setUserInfo/'">新增</router-link></span>
 			</li>
 			<li v-for="item in rankList">
 				<span class="rank">{{ item.rank }}</span>
 				<span class="qq">{{ item.qq }}</span>
 				<span class="nickname"><router-link :to="'/info/'+item.qq">{{ item.nickname }}</router-link></span>
 				<span class="score">{{ item.score }}</span>
-				<span class="control"><router-link :to="'/admin/changeUserInfo/'+item.qq">修改</router-link></span>
+				<span class="control"><router-link :to="'/admin/setUserInfo/'+item.qq">修改</router-link></span>
 			</li>
 		</ul>
 	</div>

@@ -18,6 +18,7 @@ class KickDead extends Module
     const needCQ = true;
 
     public function processWithCQ(array $args, $event,$cq){
+        Log::Debug('？？？？');
         checkAuth($event);
         $User_id = $event->getId();
         $senderInfo = $event->getSenderInfo();

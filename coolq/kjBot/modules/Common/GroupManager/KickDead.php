@@ -14,7 +14,7 @@ use \Log;
 class KickDead extends Module
 {
 
-    const needCQ = true;
+    protected $needCQ = true;
 
     // public function processWithCQ(array $args, $event,$cq){
     public function processWithCQ(array $args, $event, $cq = NULL) {

@@ -29,7 +29,7 @@ class Info extends Module
             $userInfo = $data['data'];
             $msg .= '姓名：'.$userInfo['nickname']."\n";
             $msg .= '排名：'.$userInfo['rank']."\n";
-            $msg .= '积分：'.($userInfo['score'] < 0 ? $userInfo['score'] : '？？？')."\n";
+            $msg .= '积分：'.($userInfo['score'] < 0 ? '？？？' : $userInfo['score'])."\n";
             $msg .= '暗币：'.$userInfo['credit']."\n";
             $msg .= '年龄：'.$userInfo['age']."\n";
             $msg .= '性别：'.($userInfo['sex'] === 0 ? '未知' : ($userInfo['sex'] === 1 ? '男' : '女'))."\n";

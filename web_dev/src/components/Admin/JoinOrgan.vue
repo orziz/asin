@@ -176,6 +176,7 @@ export default {
 		postForm: function () {
 			var refs = this.$refs;
 			let action = this._hasId ? 'newUserInfoByWeb' :'newUserInfo';
+			let qq = this.$refs.qq[0].value;
 			let data = {
 				mod: 'home_userinfo',
 				action: action,
@@ -184,7 +185,7 @@ export default {
 					if (this._hasId) msg = '修改成功';
 					else msg = '添加成功';
 					alert(msg);
-					this.$router.replace({path:'/info/'+qq});
+					this.$router.replace({path:'/admin/joinOrgan/'+qq});
 				},
 				fail: (res)=>{
 					let msg = '';

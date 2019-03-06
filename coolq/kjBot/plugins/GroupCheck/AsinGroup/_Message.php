@@ -14,7 +14,6 @@ class _Message extends Plugin {
     //此处以正常群聊消息举例
     public function message_group_normal($event): ?Message{
         if($event instanceof GroupMessageEvent) {
-            global $asinGroup;
             $asinGroup = ['719994813','758507034'];
             if (in_array($event->groupId,$asinGroup)) {
                 global $Modules;

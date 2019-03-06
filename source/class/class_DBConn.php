@@ -163,6 +163,11 @@ class DBConn extends mysqli
         return $resultSet;
     }
 
+    /**
+     * 预写数据库，防注入
+     * @param  [type] $v 预写的值
+     * @return [type]    [description]
+     */
     public function quote($v) {
         if (is_int($v) || is_float($v)) return '\'' . $v . '\'';
         if (is_string($v)) return '\'' . $this->real_escape_string($v) . '\'';

@@ -96,7 +96,7 @@ export default {
 					note: '默认为0'
 				},
 				free: {
-					title: '自有属性点',
+					title: '自由属性点',
 					type: 'number',
 					default: 20,
 					note: '默认为20'
@@ -141,7 +141,7 @@ export default {
 					title: '积分',
 					type: 'number',
 					default: 0,
-					note: '默认为0'
+					note: '默认为0/NPC设置为负数'
 				},
 				credit: {
 					title: '暗币',
@@ -153,7 +153,7 @@ export default {
 					title: '排名',
 					type: 'number',
 					default: 0,
-					note: '默认为0，一般不填此值'
+					note: '设置NPC排名/默认为0，一般不填此值'
 				}
 			}
 		}
@@ -163,7 +163,7 @@ export default {
 			if (key != 'qq') return;
 			let qq = this.$refs.qq[0].value;
 			if (!qq) return;
-			if ('id' in this.$route.params) return;
+			if (this._hasId) return;
 			orzzz.$post({
 				mod: 'home_userinfo',
 				action: 'getUserInfo',
@@ -175,15 +175,22 @@ export default {
 		},
 		postForm: function () {
 			var refs = this.$refs;
+			let action = this._hasId ? 'newUserInfoByWeb' :'newUserInfo';
 			let data = {
 				mod: 'home_userinfo',
-				action: 'newUserInfo',
+				action: action,
 				success: (res)=>{
-					alert('添加成功');
+					let msg = '';
+					if (this._hasId) msg = '修改成功';
+					else msg = '添加成功';
+					alert(msg);
 					this.$router.replace({path:'/info/'+qq});
 				},
 				fail: (res)=>{
-					alert("添加失败\n错误代码："+res.errCode+"\n错误信息："+res.errMsg);
+					let msg = '';
+					if (this._hasId) msg = '修改失败';
+					else msg = '添加失败';
+					alert(msg+"\n错误代码："+res.errCode+"\n错误信息："+res.errMsg);
 				}
 			};
 			for (let key in refs) {
@@ -205,17 +212,26 @@ export default {
 				action: 'getUserInfoByWeb',
 				qq: this.$route.params.id,
 				success: (res)=>{
-					// this.liObj.qq.noChange = true;
+					this.liObj.qq.noChange = true;
 					for (let key in res) {
 						if (this.liObj[key]) this.liObj[key].default = res[key];
 					}
+				},
+				fail: (res)=>{
+					alert('没有该用户');
+					this.$router.replace({path:'/admin/joinOrgan/'});
 				}
 			})
 		}
 	},
 	mounted: function () {
 		console.log(this.$route);
-		if ('id' in this.$route.params) this.getUserInfo();
+		if (this._hasId) this.getUserInfo();
+	},
+	computed: {
+		_hasId: function () {
+			return ('id' in this.$route.params);
+		}
 	}
 };
 </script>

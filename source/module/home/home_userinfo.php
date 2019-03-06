@@ -106,6 +106,60 @@ if ($action == 'newUserInfo') {
 			$res['errMsg'] = '写入 userinfo 失败';
 		}
 	}
+} elseif ($action == 'newUserInfoByWeb') {
+	// 响应请求为新建用户
+	$newUserInfo = C::t('userinfo')->setData($qq,array(
+		'nickname'=>$nickname,
+		'sex'=>$sex,
+		'age'=>$age,
+		'height'=>$height,
+		'weight'=>$weight,
+		'arms'=>$arms,
+		'introduce'=>$introduce
+	));
+	if ($newUserInfo) {
+		$newUserScore = C::t('userscore')->setData($qq,array(
+			'score'=>$score,
+			'credit'=>$credit,
+			'rank'=>$rank
+		));
+		if ($newUserScore) {
+			$newUserAttr = C::t('userattr')->setData($qq,array(
+				'str'=>$str,
+				'dex'=>$dex,
+				'con'=>$con,
+				'ine'=>$ine,
+				'wis'=>$wis,
+				'cha'=>$cha,
+				'free'=>$free
+			));
+			if ($newUserAttr) {
+				$newUserSkill = C::t('userskill')->setData($qq,array(
+					'skill1'=>$skill1,
+					'skill2'=>$skill2,
+					'skill3'=>$skill3,
+					'skill4'=>$skill4
+				));
+				if ($newUserSkill) {
+					$rank = C::t('userscore')->getRank($qq);
+					$res['errCode'] = 200;
+					$res['data'] = array('nickname'=>$nickname,'rank'=>$rank);
+				} else {
+					$res['errCode'] = 305;
+					$res['errMsg'] = '写入 userskill 失败';
+				}
+			} else {
+				$res['errCode'] = 304;
+				$res['errMsg'] = '写入 userattr 失败';
+			}
+		} else {
+			$res['errCode'] = 303;
+			$res['errMsg'] = '写入 userscore 失败';
+		}
+	} else {
+		$res['errCode'] = 302;
+		$res['errMsg'] = '写入 userinfo 失败';
+	}
 } elseif ($action == 'setUserInfo') {
 	$userFields = C::t('userinfo')->getFields();
 	$datas = array();

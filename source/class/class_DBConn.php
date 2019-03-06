@@ -53,7 +53,7 @@ class DBConn extends mysqli
         Log::Sql('query:::'.$sql.';');
         $resultSet = parent::query($sql.';', $resultmode);
         if (!$resultSet) {
-            Log::Debug('mysql 查询失败：'.$this->error);
+            Log::Error('mysql 查询失败：'.$this->error);
             die("执行失败：".$this->error);
         }
         return $resultSet;

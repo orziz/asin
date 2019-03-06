@@ -34,7 +34,7 @@ class AllJoinOrgan extends Module
                 $score = 100;
                 $credit = 30000;
                 $free = 30;
-            } else ($join_time < 1546272001) {
+            } elseif ($join_time < 1546272001) {
                 $score = 50;
                 $credit = 10000;
                 $free = 10;

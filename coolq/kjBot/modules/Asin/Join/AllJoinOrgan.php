@@ -22,7 +22,7 @@ class AllJoinOrgan extends Module
         $groupMemberList = $kjBot->getCoolQ()->getGroupMemberList($event->groupId);
         for ($i=0; $i < count($groupMemberList); $i++) {
             $memberInfo = $groupMemberList[$i];
-            if ($memberInfo->user_id === Counfig('self_id')) continue;
+            if ($memberInfo->user_id == '1352219126') continue;
             $join_time = $memberInfo->join_time;
             $score = 0;
             $credit = 0;

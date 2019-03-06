@@ -20,6 +20,7 @@ class ScoreRank extends Module
 			if (intval($rankList[$i]['score']) < 0) $rankList[$i]['score'] = '？？？';
 			$msg .= "\n".$rankList[$i]['rank']."\t\t".$rankList[$i]['nickname']."\t\t".$rankList[$i]['score'];
 		}
+		$msg .= "\n查看完整排行榜请点击链接 http://asin.ygame.cc/rank";
 		return $event->sendBack($msg);
 	}
 }

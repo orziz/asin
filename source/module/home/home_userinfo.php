@@ -29,7 +29,7 @@ $free = getgpc('free','param',0);
 // 武器
 $arms = getgpc('arms','param','');
 // 介绍
-$introduce = getgpc('introduce','param','此人较为神秘，没有任何关于他的信息');
+$introduce = getgpc('introduce','param','');
 // 技能1
 $skill1 = getgpc('skill1','param','');
 // 技能2

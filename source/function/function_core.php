@@ -125,8 +125,8 @@ function runquery($sql) {
                 echo '<br><br>----<br><br>';
                 var_dump($query);
                 echo '<br><br>----<br><br>';
-                createtable($query, $dbcharset);
-                $db->query(createtable($query, $dbcharset));
+                $sql = createtable($query, $dbcharset);
+                $db->query($sql);
                 // $type = strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU", "\\2", $query));
                 // $type = in_array($type, array('MYISAM', 'HEAP')) ? $type : 'MYISAM';
                 // DB::query($query." ENGINE=$type DEFAULT CHARSET=$dbcharset");
@@ -139,11 +139,6 @@ function runquery($sql) {
 }
 
 function createtable($sql, $dbcharset) {
-    echo '？？？';
-    echo '<br><br>';
-    var_dump($sql);
-    echo '<br><br>';
-    var_dump($dbcharset);
     $type = strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU", "\\2", $sql));
     $type = in_array($type, array('MYISAM', 'HEAP')) ? $type : 'MYISAM';
     if (substr($sql, -1) == ';') $sql = substr($sql, 0, -1);

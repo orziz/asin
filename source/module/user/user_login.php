@@ -36,11 +36,11 @@ if ($token) {
 		} else {
 			$password = md5($rcnb->encode(md5(md5($username).md5($password))));
 			if ($password == $userInfo['password']) {
-				$token = $rcnb->encode($password).'_'.time();
+				$token = $password.'_'.time();
 				$_SESSION['asinToken'] = $token;
 				$res['errCode'] = 200;
 				$res['errMsg'] = '登录成功';
-				$res['data'] = array('token'=>$token);
+				$res['data'] = array('token'=>$rcnb->encode($token));
 			} else {
 				$res['errCode'] = 303;
 				$res['errMsg'] = '密码错误';

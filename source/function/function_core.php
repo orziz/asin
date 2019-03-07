@@ -114,6 +114,8 @@ function runquery($sql) {
     }
     unset($sql);
 
+    var_dump($ret);
+
     foreach($ret as $query) {
         $query = trim($query);
         if($query) {

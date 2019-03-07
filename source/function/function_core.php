@@ -135,6 +135,10 @@ function runquery($sql) {
 }
 
 function createtable($sql, $dbcharset) {
+    echo '<br><br>';
+    var_dump($sql);
+    echo '<br><br>';
+    var_dump($dbcharset);
     $type = strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU", "\\2", $sql));
     $type = in_array($type, array('MYISAM', 'HEAP')) ? $type : 'MYISAM';
     if (substr($sql, -1) == ';') $sql = substr($sql, 0, -1);

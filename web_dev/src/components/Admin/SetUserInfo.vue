@@ -159,6 +159,21 @@ export default {
 		}
 	},
 	methods: {
+		checkLogin() {
+			let token = localStorage.getItem("token");
+			if (token) {
+				orzzz.$post({
+					mod: 'user_login',
+					token: token,
+					fail: (res)=> {
+						alert(res.errMsg);
+						this.$router.replace({path:'/admin/login'});
+					}
+				});
+			} else {
+				this.$router.replace({path:'/admin/login'});
+			}
+		},
 		check: function (key) {
 			if (key != 'qq') return;
 			let qq = this.$refs.qq[0].value;
@@ -226,7 +241,7 @@ export default {
 		}
 	},
 	mounted: function () {
-		console.log(this.$route);
+		this.checkLogin();
 		if (this._hasId) this.getUserInfo();
 	},
 	computed: {

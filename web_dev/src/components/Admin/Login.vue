@@ -38,8 +38,9 @@ export default {
 			let data = {
 				mod: 'user_login',
 				success: (res)=>{
-					console.log('success:::',res);
 					alert('登录成功');
+					localStorage.setItem("token", res.token);
+					this.$router.replace({path:'/admin/'});
 				},
 				fail: (res)=>{
 					alert("登录失败\n错误代码："+res.errCode+"\n错误信息："+res.errMsg);

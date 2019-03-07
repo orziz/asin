@@ -28,8 +28,25 @@ export default {
 			rankList: {}
 		}
 	},
+	methods: {
+		checkLogin() {
+			let token = localStorage.getItem("token");
+			if (token) {
+				orzzz.$post({
+					mod: 'user_login',
+					token: token,
+					fail: (res)=> {
+						alert(res.errMsg);
+						this.$router.replace({path:'/admin/login'});
+					}
+				});
+			} else {
+				this.$router.replace({path:'/admin/login'});
+			}
+		}
+	},
 	mounted: function() {
-		console.log(this);
+		this.checkLogin();
 		orzzz.$post({
 			mod: 'rank_score',
 			action: 'getRankList',
@@ -48,14 +65,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 ul { list-style-type: none; padding: 0; margin: 10px auto; }
-li { display: block; font-size: 2em; border-bottom: 1px solid #dedede; }
-li.top { font-size: 4em; font-weight: bold; width: 100%; border-top: 1px solid #dedede; }
+li { display: block; font-size: 1.1em; border-bottom: 1px solid #dedede; }
+li.top { font-size: 2em; font-weight: bold; width: 100%; border-top: 1px solid #dedede; }
 span { display: inline-block; }
-span.rank { width: 10%; }
+span.rank { width: 12%; }
 span.qq { width: 20%; }
 span.nickname { width: 35%; }
 span.score { width: 15%; }
-span.control { width: 15%; }
+span.control { width: 10%; }
 h1, h2 {
   font-weight: normal;
 }

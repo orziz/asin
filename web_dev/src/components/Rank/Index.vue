@@ -45,10 +45,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 ul { list-style-type: none; padding: 0; margin: 10px auto; }
-li { display: block; font-size: 2em; border-bottom: 1px solid #dedede; }
-li.top { font-size: 4em; font-weight: bold; width: 100%; border-top: 1px solid #dedede; }
+li { display: block; font-size: 1.5em; border-bottom: 1px solid #dedede; }
+li.top { font-size: 3em; font-weight: bold; width: 100%; border-top: 1px solid #dedede; }
 span { display: inline-block; }
-span.rank { width: 30%; }
+span.rank { width: 25%; }
 span.nickname { width: 35%; }
 span.score { width: 30%; }
 h1, h2 {

@@ -5,6 +5,12 @@ $db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config[
 
 $sql = <<<EOF
 
+CREATE TABLE IF NOT EXISTS `cdb_user` (
+  `username` char(32) NOT NULL,
+  `password` char(32) NOT NULL,
+  PRIMARY KEY (`username`)
+);
+
 CREATE TABLE IF NOT EXISTS `cdb_userinfo` (
   `qq` bigint NOT NULL,
   `nickname` varchar(255) DEFAULT NULL,

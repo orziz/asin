@@ -114,8 +114,6 @@ function runquery($sql) {
     }
     unset($sql);
 
-    var_dump($ret);
-
     foreach($ret as $query) {
         $query = trim($query);
         if($query) {
@@ -123,9 +121,6 @@ function runquery($sql) {
             if(substr($query, 0, 12) == 'CREATE TABLE') {
                 $name = preg_replace("/CREATE TABLE ([a-z0-9_]+) .*/is", "\\1", $query);
                 $sql = createtable($query, $dbcharset);
-                echo '<br><br>----<br><br>';
-                var_dump($sql);
-                echo '<br><br>----<br><br>';
                 $db->query($sql);
                 // $type = strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU", "\\2", $query));
                 // $type = in_array($type, array('MYISAM', 'HEAP')) ? $type : 'MYISAM';

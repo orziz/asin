@@ -33,7 +33,13 @@ export default {
 			success: (res)=>{
 				console.log(res);
 				for (let i = 0; i < res.length; i++) {
-					if (res[i]['score'] < 0) res[i]['score'] = '？？？';
+					if (res[i]['score'] < 0 && res[i]['score'] != '···') res[i]['score'] = '？？？';
+					if (res[i+1] &&
+						(res[i]['rank'] < (res[i+1]['rank']-1)) && 
+						(res[i]['rank'] != '···') &&
+						(res[i]['rank'] != res[i+1]['rank'])) {
+						res.splice(i+1,0,{rank:'···',nickname:'···',score:'···'});
+					}
 				}
 				this.rankList = res
 			}

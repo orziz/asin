@@ -60,18 +60,6 @@ export default {
 		}
 	},
 	mounted: function() {
-		console.log(this);
-		orzzz.$post({
-			mod: 'rank_score',
-			action: 'getRankList',
-			success: (res)=>{
-				console.log(res);
-				for (let i = 0; i < res.length; i++) {
-					if (res[i]['score'] < 0) res[i]['score'] = '？？？';
-				}
-				this.rankList = res
-			}
-		})
 	}
 };
 </script>

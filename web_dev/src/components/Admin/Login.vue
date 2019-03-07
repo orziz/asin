@@ -1,45 +1,61 @@
 <template>
 	<div id="main">
 		<ul>
-			<li class="top">
-				<span class="rank">排名</span>
-				<span class="qq">QQ</span>
-				<span class="nickname">姓名</span>
-				<span class="score">积分</span>
-				<span class="control"><router-link :to="'/admin/setUserInfo/'">新增</router-link></span>
-			</li>
-			<li v-for="item in rankList">
-				<span class="rank">{{ item.rank }}</span>
-				<span class="qq">{{ item.qq }}</span>
-				<span class="nickname"><router-link :to="'/info/'+item.qq">{{ item.nickname }}</router-link></span>
-				<span class="score">{{ item.score }}</span>
-				<span class="control"><router-link :to="'/admin/setUserInfo/'+item.qq">修改</router-link></span>
+			<li v-for="(item,key) in liObj">
+				<label :for="key" :class="item.must ? 'must' : ''">{{ item.title }}</label>
+				<input v-if="item.type != 'textarea'" :type="item.type" :id="key" :ref="key" :value="item.default" :disabled="item.noChange">
+				<textarea v-else :id="key" :ref="key">{{ item.default }}</textarea>
+				<span>{{ item.note }}</span>
 			</li>
 		</ul>
+		<br>
+		<input type="submit" id="postForm" value="提交" class="postForm" @click="postForm">
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'Login',
+	name: 'Register',
 	data () {
 		return {
-			rankList: {}
+			liObj: {
+				username: {
+					title: '用户名',
+					type: 'text',
+					must: true
+				},
+				password: {
+					title: '密码',
+					type: 'password',
+					must: true
+				}
+			}
+		}
+	},
+	methods: {
+		postForm: function () {
+			var refs = this.$refs;
+			let data = {
+				mod: 'user_login',
+				success: (res)=>{
+					console.log('success:::',res);
+					alert('登录成功');
+				},
+				fail: (res)=>{
+					alert("登录失败\n错误代码："+res.errCode+"\n错误信息："+res.errMsg);
+				}
+			};
+			for (let key in refs) {
+				if (!refs[key][0].value) {
+					alert(this.liObj[key].title+' 不可为空');
+					return;
+				}
+				data[key] = refs[key][0].value;
+			}
+			orzzz.$post(data);
 		}
 	},
 	mounted: function() {
-		console.log(this);
-		orzzz.$post({
-			mod: 'rank_score',
-			action: 'getRankList',
-			success: (res)=>{
-				console.log(res);
-				for (let i = 0; i < res.length; i++) {
-					if (res[i]['score'] < 0) res[i]['score'] = '？？？';
-				}
-				this.rankList = res
-			}
-		})
 	}
 };
 </script>

@@ -2,19 +2,24 @@
 
 $username = getgpc('username','PARAM');
 $password = getgpc('username','PARAM');
-$token = getgpc('username','PARAM');
+$token = getgpc('token','PARAM');
 
 session_set_cookie_params(24*3600); 
 session_start();
 
 if ($token) {
-	$token = $rcnb->decode($token);
-	if ($token == $_SESSION['asinToken']) {
-		$res['errCode'] = 200;
-		$res['errMsg'] = '登录成功';
-	} else {
-		$res['errCode'] = 401;
-		$res['errMsg'] = '登录态失效';
+	try {
+		$token = $rcnb->decode($token);
+		if ($token == $_SESSION['asinToken']) {
+			$res['errCode'] = 200;
+			$res['errMsg'] = '登录成功';
+		} else {
+			$res['errCode'] = 401;
+			$res['errMsg'] = '登录态失效';
+		}
+	} catch (Exception $e) {
+		$res['errCode'] = 402;
+		$res['errMsg'] = '登录态无效';
 	}
 } else {
 	if (!$username) {

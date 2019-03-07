@@ -122,10 +122,10 @@ function runquery($sql) {
             // echo $query.'<br>';
             if(substr($query, 0, 12) == 'CREATE TABLE') {
                 $name = preg_replace("/CREATE TABLE ([a-z0-9_]+) .*/is", "\\1", $query);
-                echo '<br><br>----<br><br>';
-                var_dump($query);
-                echo '<br><br>----<br><br>';
                 $sql = createtable($query, $dbcharset);
+                echo '<br><br>----<br><br>';
+                var_dump($sql);
+                echo '<br><br>----<br><br>';
                 $db->query($sql);
                 // $type = strtoupper(preg_replace("/^\s*CREATE TABLE\s+.+\s+\(.+?\).*(ENGINE|TYPE)\s*=\s*([a-z]+?).*$/isU", "\\2", $query));
                 // $type = in_array($type, array('MYISAM', 'HEAP')) ? $type : 'MYISAM';

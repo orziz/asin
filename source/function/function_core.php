@@ -138,6 +138,7 @@ function runquery($sql) {
 }
 
 function createtable($sql, $dbcharset) {
+    echo '？？？';
     echo '<br><br>';
     var_dump($sql);
     echo '<br><br>';

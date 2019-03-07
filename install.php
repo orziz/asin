@@ -4,6 +4,12 @@ require_once 'source/class/class_core.php';
 
 $sql = <<<EOF
 
+CREATE TABLE IF NOT EXISTS `cdb_user` (
+  `username` char(32) NOT NULL,
+  `password` char(32) NOT NULL,
+  PRIMARY KEY (`username`)
+);
+
 CREATE TABLE IF NOT EXISTS `cdb_userinfo` (
   `qq` bigint NOT NULL,
   `nickname` varchar(255) DEFAULT NULL,

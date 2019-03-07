@@ -27,6 +27,14 @@ export default new Router({
 		name: 'Admin/Index',
 		component: require('@/components/Admin/Index').default
 	},{
+		path: '/admin/login',
+		name: 'Admin/Login',
+		component: require('@/components/Admin/Login').default
+	},{
+		path: '/admin/register',
+		name: 'Admin/Register',
+		component: require('@/components/Admin/Register').default
+	},{
 		path: '/admin/setUserInfo',
 		name: 'Admin/SetUserInfo',
 		component: require('@/components/Admin/SetUserInfo').default

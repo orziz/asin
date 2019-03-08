@@ -27,9 +27,9 @@ class Kick extends Module {
                     if (isset($args[3])) {
                         if (is_numeric($args[3])) {
                             $time = (int)$args[3];
-                            if (!isset($args[4]) || $args[4] != '确认') q('此指令为清除此群内 '.$num.' 名 '.$time.' 天内未发言的所有用户，如确认执行请在末尾加上 `确认`，否则不会执行');
-                        } elseif ($args[3] != '确认') q('此指令为清除此群内 '.$num.' 名 30 天内未发言的所有用户，如确认执行请在末尾加上 `确认`，否则不会执行');
-                    } else q('此指令为清除此群内 '.$num.' 名 30 天内未发言的所有用户，如确认执行请在末尾加上 `确认`，否则不会执行');
+                            if (!isset($args[4]) || $args[4] != '确认') q('此指令为清除此群内 '.$num.' 名 '.$time.' 天内未发言的用户，如确认执行请在末尾加上 `确认`，否则不会执行');
+                        } elseif ($args[3] != '确认') q('此指令为清除此群内 '.$num.' 名 30 天内未发言的用户，如确认执行请在末尾加上 `确认`，否则不会执行');
+                    } else q('此指令为清除此群内 '.$num.' 名 30 天内未发言的用户，如确认执行请在末尾加上 `确认`，否则不会执行');
                 } elseif ($args[2] != '确认')  q('此指令为清除此群内 30 天内未发言的所有用户，如确认执行请在末尾加上 `确认`，否则不会执行');
             } else q('此指令为清除此群内 30 天内未发言的所有用户，如确认执行请在末尾加上 `确认`，否则不会执行');
 
@@ -37,11 +37,14 @@ class Kick extends Module {
             $time = $time ?? 30;
             $checkTime = $checkTime ?? time()-24*60*60*$time;
             $userList = $cq->getGroupMemberList($event->groupId);
-            $num = min($num,count($num));
+            $num = min($num,count($userList));
+            $k = 0;
             for ($i=0; $i < count($userList); $i++) {
                 $memberInfo = $userList[$i];
                 if ($memberInfo->user_id == Config('master')) continue;
                 if ($memberInfo->last_sent_time < $checkTime) {
+                    $k++;
+                    if ($k >= $num) break;
                     $cq->setGroupKick($event->groupId,$memberInfo->user_id);
                 }
             }

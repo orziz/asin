@@ -37,16 +37,10 @@ do {
         echo "socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n";
     	Log::Debug("socket_accept() failed: reason: " . socket_strerror($msgsock));
     } else {
-         
-        Log::Debug('收到消息');
         //发到客户端
         $msg ="测试成功！\n";
-        socket_write($msgsock, $msg, strlen($msg));
-         
-        echo "测试成功了啊\n";
+        // socket_write($msgsock, $msg, strlen($msg));
         $buf = socket_read($msgsock,8192);
-         
-         
         $talkback = "收到的信息:$buf\n";
         echo $talkback;
     }

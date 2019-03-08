@@ -37,17 +37,18 @@ if(($ret = socket_listen($sock,4)) < 0) {
 // 	echo '收到消息';
 // 	usleep(100);
 // }
-if (($msgsock = socket_accept($sock)) < 0) {
-    echo "socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n";
-	Log::Debug("socket_accept() failed: reason: " . socket_strerror($msgsock));
-}
 do {
-    //发到客户端
-    $msg ="测试成功！\n";
-    // socket_write($msgsock, $msg, strlen($msg));
-    $buf = socket_read($msgsock,8192);
-    $talkback = "收到的信息:$buf\n";
-    echo $talkback;
+    if (($msgsock = socket_accept($sock)) < 0) {
+        echo "socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n";
+    	Log::Debug("socket_accept() failed: reason: " . socket_strerror($msgsock));
+    } else {
+        //发到客户端
+        $msg ="测试成功！\n";
+        // socket_write($msgsock, $msg, strlen($msg));
+        $buf = socket_read($msgsock,8192);
+        $talkback = "收到的信息:$buf\n";
+        echo $talkback;
+    }
     // if ($msg = socket_read($sock,8192)) {
     // 	echo '收到消息';
     // 	// echo "收到的信息:$msg\n";

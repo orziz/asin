@@ -33,25 +33,29 @@ if ($ref < 0) {
 } else {
 	echo '连接成功';
 }
-do {
-    // if (($msgsock = socket_accept($sock)) < 0) {
-    //     echo "socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n";
-    // 	Log::Debug("socket_accept() failed: reason: " . socket_strerror($msgsock));
-    // } else {
-    //     //发到客户端
-    //     $msg ="测试成功！\n";
-    //     // socket_write($msgsock, $msg, strlen($msg));
-    //     $buf = socket_read($msgsock,8192);
-    //     $talkback = "收到的信息:$buf\n";
-    //     echo $talkback;
-    // }
-    if ($msg = socket_read($sock,8192)) {
-    	echo '收到消息';
-    	// echo "收到的信息:$msg\n";
-    }
-    //echo $buf;
-    // socket_close($msgsock);
-    // 
-    usleep(5000);
-} while (true);
+while ($msg = socket_read($sock,8192)) {
+	echo '收到消息';
+	usleep(100);
+}
+// do {
+//     // if (($msgsock = socket_accept($sock)) < 0) {
+//     //     echo "socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n";
+//     // 	Log::Debug("socket_accept() failed: reason: " . socket_strerror($msgsock));
+//     // } else {
+//     //     //发到客户端
+//     //     $msg ="测试成功！\n";
+//     //     // socket_write($msgsock, $msg, strlen($msg));
+//     //     $buf = socket_read($msgsock,8192);
+//     //     $talkback = "收到的信息:$buf\n";
+//     //     echo $talkback;
+//     // }
+//     if ($msg = socket_read($sock,8192)) {
+//     	echo '收到消息';
+//     	// echo "收到的信息:$msg\n";
+//     }
+//     //echo $buf;
+//     // socket_close($msgsock);
+//     // 
+//     usleep(5000);
+// } while (true);
 // socket_close($sock);

@@ -20,6 +20,7 @@ class _Message extends Plugin {
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
                     return $event->sendBack(CQCode::At($event->getId()).' 如需加入刺客组织，请输入 `加入刺客组织`');
                 }
+                $Modules['帮助'] = \kjBotModule\Asin\Help::class;
                 $Modules['信息'] = \kjBotModule\Asin\Home\Info::class;
                 $Modules['排名'] = \kjBotModule\Asin\Rank\GetMyScoreRank::class;
                 $Modules['设置信息'] = \kjBotModule\Asin\Home\SetUserInfo::class;

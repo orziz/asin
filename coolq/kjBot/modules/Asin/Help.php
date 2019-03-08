@@ -15,10 +15,9 @@ class Help extends Module
 {
 	
 	public function process(array $args, $event) {
-		Log::Debug('？？？');
 		$msg = '';
 		if(($event instanceof GroupMessageEvent)) $msg .= CQCode::At($event->getId())."\n";
-		
+
 $msg .= <<<EOF
 当前可用的指令为：
 ----- 你好
@@ -40,7 +39,6 @@ $msg .= <<<EOF
 
 EOF;
 	
-		Log::Debug($msg);
-		$event->sendBack($msg); 
+		return $event->sendBack($msg); 
 	}
 }

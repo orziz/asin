@@ -18,7 +18,6 @@ socket_close   //关闭套接字资源
 echo '启动socket';
 if(($sock = socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) < 0) {
     echo "socket_create() 失败的原因是:".socket_strerror($sock)."\n";
-    Log::Debug("socket_create() 失败的原因是:".socket_strerror($sock));
 }
 // if(($ret = socket_bind($sock,$ip,$port)) < 0) {
 //     echo "socket_bind() 失败的原因是:".socket_strerror($ret)."\n";
@@ -30,7 +29,9 @@ if(($sock = socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) < 0) {
 // }
 $ref = socket_connect($sock, $ip, $port);
 if ($ref < 0) {
-	echo '链接失败';
+	echo '连接失败';
+} else {
+	echo '连接成功';
 }
 do {
     // if (($msgsock = socket_accept($sock)) < 0) {

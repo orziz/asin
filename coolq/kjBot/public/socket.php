@@ -12,6 +12,8 @@ socket_read //接收客户端 发送的数据
 socket_write //将数据写到 socket 缓存 向客户端发送
 socket_close   //关闭套接字资源
 */
+
+system('echo 11111');
 if(($sock = socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) < 0) {
     echo "socket_create() 失败的原因是:".socket_strerror($sock)."\n";
 }

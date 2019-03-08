@@ -44,7 +44,7 @@ do {
     } else {
         //发到客户端
         $msg ="测试成功！\n";
-        // socket_write($msgsock, $msg, strlen($msg));
+        socket_write($msgsock, $msg, strlen($msg));
         $buf = socket_read($msgsock,8192);
         $talkback = "收到的信息:$buf\n";
         echo $talkback;

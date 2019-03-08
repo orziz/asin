@@ -46,7 +46,8 @@ do {
     //     echo $talkback;
     // }
     if ($msg = socket_read($sock,8192)) {
-    	echo "收到的信息:$msg\n";
+    	echo '收到消息';
+    	// echo "收到的信息:$msg\n";
     }
     //echo $buf;
     // socket_close($msgsock);

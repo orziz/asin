@@ -1,4 +1,6 @@
 <?php
+
+require_once '../../../source/class/class_core.php';
 set_time_limit(0); //限制执行时间  0为不限制
 $ip = '0.0.0.0';
 $port = 7001;//端口
@@ -16,24 +18,24 @@ socket_close   //关闭套接字资源
 system('echo 11111');
 if(($sock = socket_create(AF_INET,SOCK_STREAM,SOL_TCP)) < 0) {
     echo "socket_create() 失败的原因是:".socket_strerror($sock)."\n";
-    system('echo '."socket_create() 失败的原因是:".socket_strerror($sock)."\n");
+    Log::Debug("socket_create() 失败的原因是:".socket_strerror($sock));
 }
 if(($ret = socket_bind($sock,$ip,$port)) < 0) {
     echo "socket_bind() 失败的原因是:".socket_strerror($ret)."\n";
-    system('echo '."socket_bind() 失败的原因是:".socket_strerror($ret)."\n");
+    Log::Debug("socket_bind() 失败的原因是:".socket_strerror($ret));
 }
 if(($ret = socket_listen($sock,4)) < 0) {
     echo "socket_listen() 失败的原因是:".socket_strerror($ret)."\n";
-    system('echo '."socket_listen() 失败的原因是:".socket_strerror($ret)."\n");
+    Log::Debug("socket_listen() 失败的原因是:".socket_strerror($ret));
 }
 $count = 0;
 do {
     if (($msgsock = socket_accept($sock)) < 0) {
         echo "socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n";
-    	system('echo '."socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n");
+    	Log::Debug("socket_accept() failed: reason: " . socket_strerror($msgsock));
     } else {
          
-        system('echo 收到消息');
+        Log::Debug('收到消息');
         //发到客户端
         $msg ="测试成功！\n";
         socket_write($msgsock, $msg, strlen($msg));

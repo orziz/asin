@@ -27,9 +27,10 @@ $count = 0;
 do {
     if (($msgsock = socket_accept($sock)) < 0) {
         echo "socket_accept() failed: reason: " . socket_strerror($msgsock) . "\n";
-        break;
+        system('echo 未收到消息');
     } else {
          
+        system('echo 收到消息');
         //发到客户端
         $msg ="测试成功！\n";
         socket_write($msgsock, $msg, strlen($msg));
@@ -40,14 +41,10 @@ do {
          
         $talkback = "收到的信息:$buf\n";
         echo $talkback;
-         
-        if(++$count >= 5){
-            break;
-        };
-         
-     
     }
     //echo $buf;
     // socket_close($msgsock);
+    // 
+    usleep(5000);
 } while (true);
 // socket_close($sock);

@@ -7,7 +7,7 @@ use kjBot\Framework\TargetType;
 use kjBot\Framework\Message;
 use kjBot\Framework\DataStorage;
 
-function checkAuth($event,$level='group') {
+function checkAuth($event,$level='admin') {
 	global $Config;
 	if (!$event) return false;
 	$userInfo = $event->getSenderInfo();
@@ -15,10 +15,14 @@ function checkAuth($event,$level='group') {
 	$authArr = DataStorage::GetData('Auth.json');
 	$authArr = $authArr ? json_decode($authArr,true) : array();
 	switch ($level) {
-		case 'tester':
-			if (isset($authArr['tester']) && in_array($userId,$authArr['tester'])) return true;
 		case 'group':
 			if (!empty($userInfo->role) && in_array($userInfo->role,['admin','owner'])) return true;
+			if (isset($authArr['admin']) && in_array($userId,$authArr['admin'])) return true;
+			if ($userId == Config('master')) return true;
+			return q('权限不足');
+			break;
+		case 'tester':
+			if (isset($authArr['tester']) && in_array($userId,$authArr['tester'])) return true;
 		case 'admin':
 			if (isset($authArr['admin']) && in_array($userId,$authArr['admin'])) return true;
 		case 'master':

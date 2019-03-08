@@ -22,10 +22,10 @@ class Kick extends Module {
         if (!isset($args[1])) q('未选择目标');
         if ($args[1] == '死鱼') {
             if (isset($args[2])) {
-                if (is_integer((int)$args[2])) {
+                if (is_numeric($args[2])) {
                     $num = (int)$args[2];
                     if (isset($args[3])) {
-                        if (is_integer((int)$args[3])) {
+                        if (is_numeric($args[3])) {
                             $time = (int)$args[3];
                             if (!isset($args[4]) || $args[4] != '确认') q('此指令为清除此群内 '.$num.' 名 '.$time.' 天内未发言的所有用户，如确认执行请在末尾加上 `确认`，否则不会执行');
                         } elseif ($args[3] != '确认') q('此指令为清除此群内 '.$num.' 名 30 天内未发言的所有用户，如确认执行请在末尾加上 `确认`，否则不会执行');

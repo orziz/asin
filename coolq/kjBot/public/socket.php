@@ -2,7 +2,7 @@
 
 require_once '../../../source/class/class_core.php';
 set_time_limit(0); //限制执行时间  0为不限制
-$ip = '127.0.0.1';
+$ip = '0.0.0.0';
 $port = 7001;//端口
 /**
 socket通信整个过程 

@@ -48,6 +48,6 @@ do {
      
     }
     //echo $buf;
-    socket_close($msgsock);
+    // socket_close($msgsock);
 } while (true);
-socket_close($sock);
+// socket_close($sock);

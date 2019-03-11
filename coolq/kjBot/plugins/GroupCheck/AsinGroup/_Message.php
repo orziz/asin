@@ -31,7 +31,7 @@ class _Message extends Plugin {
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
-                $arr[] = $this->randomEvent($event);
+                return $this->randomEvent($event);
                 Log::Debug('不是数组吗？'.gettype($arr));
                 return $arr;
             }

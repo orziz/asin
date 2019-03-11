@@ -29,7 +29,8 @@ class KjBot{
         if($msg instanceof Message){
             $this->messageQueue[]= $msg;
         }else if(is_array($msg)){
-            array_merge($this->messageQueue, $msg);
+            $this->messageQueue = array_merge($this->messageQueue, $msg);
+            // Log::Debug('看一下数组'.)
         }else if($msg === NULL){
             return;
         }else{

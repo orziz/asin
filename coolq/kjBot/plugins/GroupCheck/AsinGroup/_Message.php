@@ -13,7 +13,7 @@ class _Message extends Plugin {
 
     public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
     //此处以正常群聊消息举例
-    public function message_group_normal($event): ?Message{
+    public function message_group_normal($event) {
         if($event instanceof GroupMessageEvent) {
             $asinGroup = ['719994813','758507034'];
             if (in_array($event->groupId,$asinGroup)) {
@@ -31,9 +31,9 @@ class _Message extends Plugin {
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
-                return $this->randomEvent($event);
-                Log::Debug('不是数组吗？'.gettype($arr));
-                return $arr;
+                $Queue[] = $this->randomEvent($event);
+                Log::Debug('不是数组吗？'.gettype($Queue));
+                return $Queue;
             }
         }
         return NULL;

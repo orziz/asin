@@ -40,8 +40,8 @@ class _Message extends Plugin {
 
     private function randomEvent($event) {
         if (in_array($event->groupId,['719994813'])) {
-            $rand = mt_rand(0,100);
-            if ($rand > 0) {
+            $rand = mt_rand(0,10000);
+            if ($rand >= 9500) {
                 $score = mt_rand(0,2);
                 $credit = mt_rand(1,100);
                 $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));

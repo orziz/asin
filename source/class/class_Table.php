@@ -11,6 +11,7 @@ class Table
 
 	function __construct()
 	{
+		Log::Debug('我被请求了');
 	}
 
 	/**

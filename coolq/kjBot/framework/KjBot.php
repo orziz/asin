@@ -26,12 +26,9 @@ class KjBot{
      * @return void
      */
     public function addMessage($msg){
-        Log::Debug('？？？');
-        Log::Debug('让我看看这是什么类型：：：'.gettype($msg));
         if($msg instanceof Message){
             $this->messageQueue[]= $msg;
         }else if(is_array($msg)){
-            Log::Debug('是数组哦～');
             array_merge($this->messageQueue, $msg);
         }else if($msg === NULL){
             return;
@@ -41,6 +38,7 @@ class KjBot{
     }
 
     public function postMessage(){
+        Log::Debug('看看有几条消息？'.count($this->messageQueue));
         foreach($this->messageQueue as $message){
             if($message instanceof Message){
                 $message->send($this->cq);

@@ -65,11 +65,13 @@ class table_userscore extends Table
 	 * @return [type]        [description]
 	 */
 	public function getRankList($limit=0) {
-		if ($limit) $scoreArr = $this->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq','','*','scorerank DESC',0,$limit);
-		else $scoreArr = $this->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq');
+		if ($limit) $scoreArr = $this->fetch('','*','scorerank DESC',0,$limit);
+		else $scoreArr = $this->fetch();
 		$rankList = [];
 		for ($i = 0; $i < count($scoreArr); $i++) {
 			$data = $scoreArr[$i];
+			$userInfo = C::t('userinfo')->getData($data['qq']);
+			$data['nickname'] = $userInfo['nickname'];
 			$data['rank'] = $this->getRank($data['qq'],$this);
 			array_push($rankList, $data);
 		}

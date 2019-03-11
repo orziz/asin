@@ -44,7 +44,7 @@ class _Message extends Plugin {
             if ($rand > 0) {
                 $score = mt_rand(0,2);
                 $credit = mt_rand(1,100);
-                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$qq, 'score'=>$score,'credit'=>$credit));
+                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
                 if ($data && $data['errCode'] === 200) {
                     return $event->sendBack('恭喜你获得 '.$score.'积分 '.$credit.' 暗币');
                 }

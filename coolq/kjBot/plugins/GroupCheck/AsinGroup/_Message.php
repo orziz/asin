@@ -5,6 +5,7 @@ use kjBot\Framework\Plugin;
 use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
+use \Log;
 
 class _Message extends Plugin {
     public $handleDepth = 3; //捕获到最底层的事件
@@ -46,6 +47,7 @@ class _Message extends Plugin {
                 $credit = mt_rand(1,100);
                 $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
                 if ($data && $data['errCode'] === 200) {
+                    Log::Debug('恭喜你获得 '.$score.'积分 '.$credit.' 暗币');
                     return $event->sendBack('恭喜你获得 '.$score.'积分 '.$credit.' 暗币');
                 }
             }

@@ -26,6 +26,7 @@ class KjBot{
      * @return void
      */
     public function addMessage($msg){
+        Log::Debug('让我看看这是什么类型：：：'.gettype($msg));
         if($msg instanceof Message){
             $this->messageQueue[]= $msg;
         }else if(is_array($msg)){

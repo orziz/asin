@@ -42,7 +42,7 @@ class _Message extends Plugin {
         $rand = mt_rand(0,10000);
         if ($rand >= 9500) {
             $score = mt_rand(0,2);
-            $credit = mt_rand(1,100);
+            $credit = mt_rand(1,200);
             $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
             if ($data && $data['errCode'] === 200) {
                 $eventArr = array(
@@ -50,7 +50,18 @@ class _Message extends Plugin {
                     '帮伍六七卖牛杂，',
                     '帮梅花十三捡飞镖，',
                     '帮鸡大保系领带，',
-                    '帮忙照看小飞，'
+                    '帮忙照看小飞，',
+                    '帮梅花十三梳辫子,'
+                    '帮柒修理千刃，',
+                    '帮子不语找BUG，',
+                    '帮小岛主任整治不文明现象，',
+                    '帮可乐完成心愿，',
+                    '帮阿婆接小龙放学，',
+                    '帮可乐完成心愿，',
+                    '帮猫小咪送信给汪疯，',
+                    '帮海军部长巡逻，',
+                    '帮居委会大妈巡逻，',
+                    '帮内裤男找漂亮内裤，'
                 );
                 $msg = CQCode::At($event->getId());
                 $msg .= ' '.$eventArr[mt_rand(0,count($eventArr)-1)];

@@ -2,6 +2,7 @@
 namespace kjBot\Framework;
 
 use kjBot\SDK\CoolQ;
+use \Log;
 
 class KjBot{
 
@@ -28,6 +29,7 @@ class KjBot{
         if($msg instanceof Message){
             $this->messageQueue[]= $msg;
         }else if(is_array($msg)){
+            Log::Debug('是数组哦～');
             array_merge($this->messageQueue, $msg);
         }else if($msg === NULL){
             return;

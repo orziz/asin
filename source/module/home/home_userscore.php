@@ -12,21 +12,21 @@ if ($action == 'add') {
 		$_score = max(0,intval($userScore['score'])+$score);
 		$_credit = max(0,intval($userScore['credit'])+$credit);
 		if ($userScore['rank'] > 0) {
-			$isSuccess = C::t('userscore')->setData(array(
+			$isSuccess = C::t('userscore')->setData($qq,array(
 				'credit'=>$_credit
 			));
 		} else {
 			if ($score !== 0 && $credit !== 0) {
-				$isSuccess = C::t('userscore')->setData(array(
+				$isSuccess = C::t('userscore')->setData($qq,array(
 					'score'=>$_score,
 					'credit'=>$_credit
 				));
 			} elseif ($score !== 0) {
-				$isSuccess = C::t('userscore')->setData(array(
+				$isSuccess = C::t('userscore')->setData($qq,array(
 					'score'=>$_score
 				));
 			} elseif ($credit !== 0) {
-				$isSuccess = C::t('userscore')->setData(array(
+				$isSuccess = C::t('userscore')->setData($qq,array(
 					'credit'=>$_credit
 				));
 			}

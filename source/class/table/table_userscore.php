@@ -15,18 +15,42 @@ class table_userscore extends Table
 	}
 
 	/**
+	 * 新增数据
+	 * @param  [type] $pk    [description]
+	 * @param  array  $datas [description]
+	 * @return [type]        [description]
+	 */
+	protected function newData($pk,array $datas) {
+		$score = (int)$datas['score'];
+		$datas['scorerank'] = $score*10000000000+(10000000000-time());
+		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (100000000-intval($datas['rank']))*10000000000+(10000000000-time());
+		return parent::newData($pk,$datas);
+	}
+
+	/**
+	 * 更新数据
+	 * @param  [type] $pk    [description]
+	 * @param  array  $datas [description]
+	 * @return [type]        [description]
+	 */
+	protected function updateData($pk,array $datas) {
+		$score = (int)$datas['score'];
+		$datas['scorerank'] = $score*10000000000+(10000000000-time());
+		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (100000000-intval($datas['rank']))*10000000000+(10000000000-time());
+		return parent::updateData($pk,$datas);
+	}
+
+	/**
 	 * 根据 qq 获取排名
-	 * @param  [type] $db [description]
 	 * @param  [type] $qq [description]
 	 * @return [type]     [description]
 	 */
-	public function getRank($qq,$db=null) {
-		if (!$db) global $db;
+	public function getRank($qq) {
 		if (!$qq) return false;
-		$data = $this->getData($qq,$db);
+		$data = $this->getData($qq);
 		if (!$data) return false;
 		if ($data['rank']) return $data['rank'];
-		$rank = $db->fetch($this->_table,'scorerank > '.$data['scorerank'],'count(qq) AS count');
+		$rank = $this->fetch('scorerank > '.$data['scorerank'],'count(qq) AS count');
 		$rank = $rank[0]['count'];
 		$rank = (int)$rank + 1;
 		$rank = $rank + 17365;
@@ -36,72 +60,19 @@ class table_userscore extends Table
 	/**
 	 * 获取排行榜列表
 	 * @param  [type] $limit 查询的数量
-	 * @param  [type] $db    [description]
 	 * @return [type]        [description]
 	 */
-	public function getRankList($limit=0,$db=null) {
-		if (!$db) global $db;
-		if ($limit) $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq','','*','scorerank DESC',0,$limit);
-		else $scoreArr = $db->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq');
+	public function getRankList($limit=0) {
+		if ($limit) $scoreArr = $this->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq','','*','scorerank DESC',0,$limit);
+		else $scoreArr = $this->fetch('asin_userinfo a JOIN '.$this->_table.' b ON a.qq = b.qq');
 		$rankList = [];
 		for ($i = 0; $i < count($scoreArr); $i++) {
 			$data = $scoreArr[$i];
-			$data['rank'] = $this->getRank($data['qq'],$db);
+			$data['rank'] = $this->getRank($data['qq'],$this);
 			array_push($rankList, $data);
 		}
 		array_multisort(array_column($rankList,'rank'),SORT_ASC,$rankList);
 		return $rankList;
-	}
-
-	protected function newData($pk,array $datas,$db) {
-		$score = (int)$datas['score'];
-		$datas['scorerank'] = $score*10000000000+(10000000000-time());
-		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (100000000-intval($datas['rank']))*10000000000+(10000000000-time());
-		return parent::newData($pk,$datas,$db);
-	}
-
-	protected function updateData($pk,array $datas,$db) {
-		$score = (int)$datas['score'];
-		$datas['scorerank'] = $score*10000000000+(10000000000-time());
-		if (isset($datas['rank']) && $datas['rank']) $datas['scorerank'] = (100000000-intval($datas['rank']))*10000000000+(10000000000-time());
-		return parent::updateData($pk,$datas,$db);
-	}
-
-	public function add($db,$qq,$type,$num) {
-		if (!$qq) return false;
-		$data = $this->getUserScore($db,$qq);
-		if (!$data) return false;
-		date_default_timezone_set('Asia/Shanghai');
-		$time = date('Y-m-d H:i:s', time());
-		$num = max(intval($data["$type"] ? $data["$type"] : 0) + intval($num),0);
-		if ($type == 'score') {
-			return $db->execute(sprintf("UPDATE %s SET score=%d, utime='%s' WHERE qq=%d",$this->_table,intval($num),$time,$qq));
-		} else {
-			return $db->execute(sprintf("UPDATE %s SET credit=%d WHERE qq=%d",$this->_table,intval($num),$qq));
-		}
-	}
-
-	public function sub($db,$qq,$type,$num) {
-		if (!$qq) return false;
-		$data = $this->getUserScore($db,$qq);
-		if (!$data) return false;
-		if (intval($data["$type"] ? $data["$type"] : 0) < intval($num)) return false;
-		date_default_timezone_set('Asia/Shanghai');
-		$time = date('Y-m-d H:i:s', time());
-		$num = max(intval($data["$type"] ? $data["$type"] : 0) - intval($num),0);
-		if ($type == 'score') {
-			return $db->execute(sprintf("UPDATE %s SET score=%d, utime='%s' WHERE qq=%d",$this->_table,intval($num),$time,$qq));
-		} else {
-			return $db->execute(sprintf("UPDATE %s SET credit=%d WHERE qq=%d",$this->_table,intval($num),$qq));
-		}
-	}
-
-	public function updateCheckDay($db,$qq,$day) {
-		return $db->execute(sprintf("UPDATE %s SET checkday=%d WHERE qq=%d",$this->_table,intval($day),$qq));
-	}
-
-	public function getCheckDayRank($db,$num) {
-		return $db->execute(sprintf("SELECT * FROM %s ORDER BY checkday DESC LIMIT 0, %d",$this->_table,$num));
 	}
 
 }

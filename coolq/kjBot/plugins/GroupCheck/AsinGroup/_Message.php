@@ -38,10 +38,10 @@ class _Message extends Plugin {
 
     private function randomEvent($event) {
         if (in_array($event->groupId,['719994813'])) {
-            return $event->sendBack('这是测试');
+            // return $event->sendBack('这是测试');
             $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
             if (!$data && $data['errCode'] === 301) {
-
+                
             }
             else {
                 if ($data['errCode'] !== 200) {

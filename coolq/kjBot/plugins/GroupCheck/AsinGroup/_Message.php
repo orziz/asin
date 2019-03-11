@@ -30,7 +30,8 @@ class _Message extends Plugin {
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
-                return $this->randomEvent($event);
+                $arr[] = $this->randomEvent($event);
+                return $arr;
             }
         }
         return NULL;
@@ -39,25 +40,17 @@ class _Message extends Plugin {
     private function randomEvent($event) {
         if (in_array($event->groupId,['719994813'])) {
             // return $event->sendBack('这是测试');
-            $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
-            if (!$data && $data['errCode'] === 301) {
-                
-            }
-            else {
-                if ($data['errCode'] !== 200) {
-                    $msg .= $data['errMsg'];
-                }
-                else {
-                    $userInfo = $data['data'];
-                    if ($userInfo['score'] > 0) {
-                        $rand = mt_rand(0,100);
-                        if ($rand >= 0) {
-
-                        }
-                    }
+            $rand = mt_rand(0,100);
+            if ($rand > 0) {
+                $score = mt_rand(0,2);
+                $credit = mt_rand(1,100);
+                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$qq, 'score'=>$score,'credit'=>$credit));
+                if ($data && $data['errCode'] === 200) {
+                    return $event->sendBack('恭喜你获得 '.$score.'积分 '.$credit.' 暗币');
                 }
             }
         }
+        return NULL;
     }
 
 }

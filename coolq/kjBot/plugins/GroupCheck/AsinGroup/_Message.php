@@ -19,7 +19,7 @@ class _Message extends Plugin {
             if (in_array($event->groupId,$asinGroup)) {
                 global $Modules;
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
-                    return $event->sendBack(CQCode::At($event->getId()).' 如需加入刺客组织，请输入 `加入刺客组织`');
+                    $Queue[] = $event->sendBack(CQCode::At($event->getId()).' 如需加入刺客组织，请输入 `加入刺客组织`');
                 }
                 $Modules['帮助'] = \kjBotModule\Asin\Help::class;
                 $Modules['信息'] = \kjBotModule\Asin\Home\Info::class;
@@ -40,7 +40,6 @@ class _Message extends Plugin {
 
     private function randomEvent($event) {
         if (in_array($event->groupId,['719994813'])) {
-            return $event->sendBack('这是测试');
             $rand = mt_rand(0,100);
             if ($rand > 0) {
                 $score = mt_rand(0,2);

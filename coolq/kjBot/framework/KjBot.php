@@ -30,7 +30,6 @@ class KjBot{
             $this->messageQueue[]= $msg;
         }else if(is_array($msg)){
             $this->messageQueue = array_merge($this->messageQueue, $msg);
-            // Log::Debug('看一下数组'.)
         }else if($msg === NULL){
             return;
         }else{
@@ -39,7 +38,6 @@ class KjBot{
     }
 
     public function postMessage(){
-        Log::Debug('看看有几条消息？'.count($this->messageQueue));
         foreach($this->messageQueue as $message){
             if($message instanceof Message){
                 $message->send($this->cq);

@@ -46,8 +46,16 @@ class _Message extends Plugin {
                 $credit = mt_rand(1,100);
                 $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
                 if ($data && $data['errCode'] === 200) {
-                    Log::Debug('恭喜你获得 '.$score.'积分 '.$credit.' 暗币');
-                    return $event->sendBack('恭喜你获得 '.$score.'积分 '.$credit.' 暗币');
+                    $eventArr = array(
+                        '扶老奶奶过马路，',
+                        '帮伍六七卖牛杂，',
+                        '帮梅花十三捡飞镖，',
+                        '帮鸡大保系领带，',
+                        '帮忙照看小飞，'
+                    );
+                    $msg = CQCode::At($event->getId());
+                    $msg .= ' '.$eventArr[mt_rand(0,count($eventArr)-1)];
+                    return $event->sendBack($msg.'获得 '.$score.' 积分，'.$credit.' 暗币');
                 }
             }
         }

@@ -40,7 +40,7 @@ class _Message extends Plugin {
 
     private function randomEvent($event) {
         if (in_array($event->groupId,['719994813'])) {
-            // return $event->sendBack('这是测试');
+            return $event->sendBack('这是测试');
             $rand = mt_rand(0,100);
             if ($rand > 0) {
                 $score = mt_rand(0,2);

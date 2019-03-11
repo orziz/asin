@@ -29,6 +29,8 @@ class _Message extends Plugin {
                 $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
+
+                require_once 'modules/randomEvent.php';
             }
         }
         return NULL;

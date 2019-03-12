@@ -189,6 +189,7 @@ class DBConn extends mysqli
             $_k = count($check);
             foreach ($check as $key => $value) {
                 $_k--;
+                Log::Debug('？？？：：：'.$this->quote($value));
                 $where .= '(' . trim($key,"`'\"") . '=' . $this->quote($value) .')';
                 if ($_k != 0) $where .= ' AND ';
             }

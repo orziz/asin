@@ -173,7 +173,7 @@ class DBConn extends mysqli
      */
     public function quote($v) {
         if (is_int($v) || is_float($v)) return '\'' . $v . '\'';
-        if (is_string($v)) return '\'' . $this->real_escape_string($v) . '\'';
+        if (is_string($v)) return '\'' . mysqli_real_escape_string($this,$v) . '\'';
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 $username = getgpc('username','PARAM');
-$password = getgpc('username','PARAM');
+$password = getgpc('password','PARAM');
 $token = getgpc('token','PARAM');
 
 session_set_cookie_params(24*3600); 

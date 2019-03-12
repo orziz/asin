@@ -41,7 +41,7 @@ class _Message extends Plugin {
 
     private function randomEvent($event) {
         $rand = mt_rand(0,10000);
-        if ($rand >= 9500) {
+        if ($rand >= 9500 || (false !== strpos($event->getMsg(), '子不语牛逼') && $rand >= 7000)) {
             $score = mt_rand(0,2);
             $credit = mt_rand(1,200);
             $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));

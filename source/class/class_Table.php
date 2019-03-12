@@ -22,7 +22,6 @@ class Table extends DBConn
 			$data = $this->fetch($this->_pk.' IN ('.implode(',',$pk).')');
 			return $data;
 		}
-		Log::Debug('username==>'.$pk);
 		$data = $this->fetch(array($this->_pk=>$pk));
 		return $data ? $data[0] : false;
 	}

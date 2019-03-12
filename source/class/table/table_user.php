@@ -10,6 +10,7 @@ class table_user extends Table
 	{
 		$this->_table = 'asin_user';
 		$this->_pk = 'username';
+		parent::__construct();
 	}
 
 }

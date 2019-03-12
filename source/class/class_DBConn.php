@@ -173,8 +173,8 @@ class DBConn extends mysqli
      */
     public function quote($v) {
         if (is_int($v) || is_float($v)) return '\'' . $v . '\'';
-        // if (is_string($v)) return '\'' . $this->real_escape_string($v) . '\'';
-        if (is_string($v)) return '\'' . $v . '\'';
+        if (is_string($v)) return '\'' . $this->real_escape_string($v) . '\'';
+        // if (is_string($v)) return '\'' . $v . '\'';
     }
 
     /**
@@ -190,7 +190,6 @@ class DBConn extends mysqli
             $_k = count($check);
             foreach ($check as $key => $value) {
                 $_k--;
-                Log::Debug('？？？：：：'.$this->quote($value));
                 $where .= '(' . trim($key,"`'\"") . '=' . $this->quote($value) .')';
                 if ($_k != 0) $where .= ' AND ';
             }

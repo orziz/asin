@@ -1,16 +1,15 @@
-/composer.json
-/composer.lock
+composer.json
+composer.lock
 
-/manifest/
-/modules/
-/plugins/
-/storage/
-/vendor/
-/.repo/
-/config.ini
-/plugins.php
-/modules.php
-/test.http
-/test.php
+framework/functions.php
 
-/framework/functions.php
+manifest/
+plugins/
+storage/
+vendor/
+.repo/
+config.ini
+plugins.php
+modules.php
+test.http
+test.php

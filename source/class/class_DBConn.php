@@ -15,6 +15,7 @@ class DBConn extends mysqli
     protected $_table;
     protected $_pk;
     protected $conn = array();
+    protected $fields;
 
     function __construct()
     {
@@ -205,6 +206,21 @@ class DBConn extends mysqli
         global $gConfig;
         if (substr($table, 0, strlen($gConfig['dbhost']['tablepre'])) == $gConfig['dbhost']['tablepre']) return $table;
         return $gConfig['dbhost']['tablepre'].$table;
+    }
+
+    /**
+     * 获取数据表的字段信息（但是好像没啥用）
+     * @return array        字段信息
+     */
+    public function getFields() {
+        if ($this->fields) return $this->fields;
+        $result = $this->query(sprintf("DESC %s",$this->_table));
+        $resArr = array();
+        while($row = $result->fetch_assoc()){
+            $resArr[$row['Field']] = $row['Type'];
+        }
+        $this->fields = $resArr;
+        return $this->fields;
     }
 
 }

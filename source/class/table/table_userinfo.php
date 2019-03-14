@@ -14,6 +14,12 @@ class table_userinfo extends Table
 		parent::__construct();
 	}
 
+	/**
+	 * 重置新增数据
+	 * @param [type] $pk
+	 * @param array $datas
+	 * @return void
+	 */
 	protected function newData($pk,array $datas) {
 		$time = getTime();
 		$datas['ctime'] = $time;

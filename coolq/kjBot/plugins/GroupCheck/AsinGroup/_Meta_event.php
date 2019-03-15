@@ -82,8 +82,8 @@ class _Meta_event extends Plugin {
             if ($hurt >= $asinFightData['data'][$hurtUser]['bld']) {
                 $msg .= "\n".CQCode::At($hurtUser)." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 unset($asinFightData['data'][$hurtUser]);
-                DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             }
+            DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             return $event->sendTo(TargetType::Group,'719994813',$msg);
         }
         return NULL;

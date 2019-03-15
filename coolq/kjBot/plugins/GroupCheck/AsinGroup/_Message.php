@@ -32,7 +32,6 @@ class _Message extends Plugin {
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
                 $Queue[] = $this->randomEvent($event);
-                $Queue[] = $this->checkLifeQestion($event);
                 return $Queue;
             }
         }
@@ -52,7 +51,7 @@ class _Message extends Plugin {
                     '帮梅花十三捡飞镖，',
                     '帮鸡大保系领带，',
                     '帮忙照看小飞，',
-                    '帮梅花十三梳辫子,',
+                    '帮梅花十三梳辫子，',
                     '帮柒修理千刃，',
                     '帮子不语找BUG，',
                     '帮小岛主任整治不文明现象，',
@@ -66,18 +65,11 @@ class _Message extends Plugin {
                 );
                 $msg = CQCode::At($event->getId());
                 $msg .= ' '.$eventArr[mt_rand(0,count($eventArr)-1)];
-                return $event->sendBack($msg.'获得 '.$score.' 积分，'.$credit.' 暗币');
+                $msg .= '获得';
+                if ($score > 0) $msg .= ' ' . $score . '积分，';
+                $msg .= ' ' . $credit . '暗币';
+                return $event->sendBack($msg);
             }
-        }
-        return NULL;
-    }
-
-    private function checkLifeQestion($event) {
-        if ((false !== strpos($event->getMsg(), '生命') && false !== strpos($event->getMsg(), '意义')) && false !== strpos($event->getMsg(), '什么')) {
-            return $event->sendBack('是42！');
-        }
-        if ((false !== strpos($event->getMsg(), "what's the meaning of life?"))) {
-            return $event->sendBack('是42！');
         }
         return NULL;
     }

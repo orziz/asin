@@ -34,7 +34,8 @@ class _Meta_event extends Plugin {
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             return $event->sendTo(TargetType::Group,'719994813','{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客模拟赛`');
         } elseif (isset($asinFightData['status']) && $asinFightData['status'] === 2) {
-            $asinFightData['readyTime'] = isset($asinFightData['readyTime']) ? $asinFightData['readyTime']++ : 1;
+            $asinFightData['readyTime'] = isset($asinFightData['readyTime']) ? $asinFightData['readyTime'] : 0;
+            $asinFightData['readyTime'] = $asinFightData['readyTime'] + 1;
             if ($asinFightData['readyTime'] >= ($readyTime*6-1)) {
                 $asinFightData['status'] = 3;
                 DataStorage::SetData('asinFightData.json',json_encode($asinFightData));

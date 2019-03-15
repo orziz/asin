@@ -15,7 +15,7 @@ class _Message extends Plugin {
     //此处以正常群聊消息举例
     public function message($event) {
         $Queue[] = $this->checkLifeQestion($event);
-        return NULL;
+        return $Queue;
     }
 
     /**
@@ -24,7 +24,6 @@ class _Message extends Plugin {
      * @return void
      */
     private function checkLifeQestion($event) {
-        Log::Debug('？？？？');
         if ((false !== strpos($event->getMsg(), '生命') && false !== strpos($event->getMsg(), '意义')) && false !== strpos($event->getMsg(), '什么')) {
             return $event->sendBack('是42！');
         }

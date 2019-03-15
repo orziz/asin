@@ -61,6 +61,7 @@ class _Meta_event extends Plugin {
             // 从参赛人员中随机获取两名成员
             $fightData = array_rand($asinFightData['data'],2);
             // 获取参赛人员的id
+            Log::Debug('--->'.json_encode($fightData));
             $fightMember = array_keys($fightData);
             Log::Debug('===>'.json_encode($fightMember));
             // 指定user1的id

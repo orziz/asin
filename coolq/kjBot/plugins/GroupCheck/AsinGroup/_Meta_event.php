@@ -74,12 +74,12 @@ class _Meta_event extends Plugin {
                 $atkUser = $user2;
                 $hurtUser = $user1;
             }
-            $hurt = min($fightData[$hurtUser]['bld'],mt_rand(1,50));
+            $hurt = min($asinFightData['data'][$hurtUser]['bld'],mt_rand(1,50));
             $eventList = [
                 "%s（%d）绕到 %s（%d）身后，给予沉重一击，造成 %d 点伤害",
             ];
             $msg = sprintf($eventList[mt_rand(0,count($eventList)-1)], CQCode::At($atkUser),$asinFightData['data'][$atkUser]['bld'],CQCode::At($hurtUser),$asinFightData['data'][$hurtUser]['bld'],$hurt);
-            if ($hurt >= $fightData[$hurtUser]['bld']) {
+            if ($hurt >= $asinFightData['data'][$hurtUser]['bld']) {
                 $msg .= "\n".CQCode::At($hurtUser)." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 unset($asinFightData['data'][$hurtUser]);
                 DataStorage::SetData('asinFightData.json',json_encode($asinFightData));

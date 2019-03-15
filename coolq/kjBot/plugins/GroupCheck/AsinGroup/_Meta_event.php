@@ -74,6 +74,7 @@ class _Meta_event extends Plugin {
                 $hurtUser = $user1;
             }
             $hurt = min($asinFightData['data'][$hurtUser]['bld'],mt_rand(1,50));
+            $asinFightData['data'][$hurtUser]['bld'] = $asinFightData['data'][$hurtUser]['bld'] - $hurt;
             $eventList = [
                 "%s（%d）绕到 %s（%d）身后，给予沉重一击，造成 %d 点伤害",
             ];

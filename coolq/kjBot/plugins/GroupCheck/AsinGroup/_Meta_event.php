@@ -5,6 +5,7 @@ use kjBot\Framework\Plugin;
 use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
+use kjBot\Framework\TargetType;
 use \Log;
 
 class _Meta_event extends Plugin {

@@ -18,7 +18,7 @@ class BeginAsinFight extends Module
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
         if (isset($asinFightData['status']) && $asinFightData['status'] !== 0) return NULL;
-        $asinFightData['status'] = 0;
+        $asinFightData['status'] = 1;
         DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
         return NULL;
 	}

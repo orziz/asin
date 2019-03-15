@@ -1,5 +1,5 @@
 <?php
-namespace kjBotPlugin\GroupCheck\AsinGroup;
+namespace kjBotPlugin\GroupCheck\Common;
 
 use kjBot\Framework\Plugin;
 use kjBot\Framework\Message;

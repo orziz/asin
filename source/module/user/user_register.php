@@ -1,7 +1,7 @@
 <?php
 
 $username = getgpc('username','PARAM');
-$password = getgpc('username','PARAM');
+$password = getgpc('password','PARAM');
 
 $code = getgpc('code','PARAM');
 

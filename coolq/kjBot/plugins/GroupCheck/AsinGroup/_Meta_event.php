@@ -60,7 +60,6 @@ class _Meta_event extends Plugin {
             }
             // 从参赛人员中随机获取两名成员
             $fightMember = array_rand($asinFightData['data'],2);
-            Log::Debug('===>'.json_encode($fightMember));
             // 指定user1的id
             $user1 = $fightMember[0];
             // 指定user2的id

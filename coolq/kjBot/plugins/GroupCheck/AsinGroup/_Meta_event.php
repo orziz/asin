@@ -59,10 +59,7 @@ class _Meta_event extends Plugin {
                 return $event->sendTo(TargetType::Group,'719994813',"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)); 
             }
             // 从参赛人员中随机获取两名成员
-            $fightData = array_rand($asinFightData['data'],2);
-            // 获取参赛人员的id
-            Log::Debug('--->'.json_encode($fightData));
-            $fightMember = array_keys($fightData);
+            $fightMember = array_rand($asinFightData['data'],2);
             Log::Debug('===>'.json_encode($fightMember));
             // 指定user1的id
             $user1 = $fightMember[0];

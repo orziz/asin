@@ -14,7 +14,6 @@ class JoinAsinFight extends Module
 {
 	
 	public function process(array $args, $event){
-        checkAuth($event,'master');
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
         if (!isset($asinFightData['status']) || $asinFightData['status'] !== 2) return $event->sendBack('活动未开始');

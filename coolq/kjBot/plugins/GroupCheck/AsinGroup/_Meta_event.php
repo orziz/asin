@@ -32,7 +32,7 @@ class _Meta_event extends Plugin {
             $asinFightData['readyTime'] = 0;
             $asinFightData['data'] = array();
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
-            return $event->sendTo(TargetType::Group,'719994813','{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客模拟赛`');
+            return $event->sendTo(TargetType::Group,'719994813',"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客模拟赛`");
         } elseif (isset($asinFightData['status']) && $asinFightData['status'] === 2) {
             $asinFightData['readyTime'] = isset($asinFightData['readyTime']) ? $asinFightData['readyTime'] : 0;
             $asinFightData['readyTime'] = $asinFightData['readyTime'] + 1;
@@ -45,7 +45,7 @@ class _Meta_event extends Plugin {
             if (!isset($asinFightData['data']) || count($asinFightData['data']) < 2) {
                 $asinFightData['status'] = 0;
                 DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
-                return $event->sendTo(TargetType::Group,'719994813','本次{$actName}参赛人数不足，活动取消`');
+                return $event->sendTo(TargetType::Group,'719994813',"本次{$actName}参赛人数不足，活动取消");
             }
             $asinFightData['status'] = 4;
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
@@ -56,7 +56,7 @@ class _Meta_event extends Plugin {
                 DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
                 $member = array_keys($asinFightData['data']);
                 $user = $member[0];
-                return $event->sendTo(TargetType::Group,'719994813','本次{$actName}活动结束`，胜利者为 '.CQCode::At($user)); 
+                return $event->sendTo(TargetType::Group,'719994813',"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)); 
             }
             // 从参赛人员中随机获取两名成员
             $fightData = array_rand($asinFightData['data'],2);
@@ -81,7 +81,7 @@ class _Meta_event extends Plugin {
             ];
             $msg = sprintf($eventList[mt_rand(0,count($eventList)-1)], CQCode::At($atkUser),$asinFightData['data'][$atkUser]['bld'],CQCode::At($hurtUser),$asinFightData['data'][$hurtUser]['bld'],$hurt);
             if ($hurt >= $fightData[$hurtUser]['bld']) {
-                $msg .= "\n".CQCode::At($hurtUser).' 重伤淘汰，本次{$actName}排名为：'.count($asinFightData['data']);
+                $msg .= "\n".CQCode::At($hurtUser)." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 unset($asinFightData['data'][$hurtUser]);
                 DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             }

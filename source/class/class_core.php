@@ -49,7 +49,23 @@ class core
 		}
 		$cname = $type.'_'.$name;
 		if(!isset(self::$_tables[$cname])) {
-			self::$_tables[$cname] = new $cname();
+			if(!class_exists($cname, false)) {
+				self::import(($pluginid ? 'plugin/'.$pluginid : 'class').'/'.$type.'/'.$name);
+			}
+			if($extendable) {
+				self::$_tables[$cname] = new discuz_container();
+				switch (count($p)) {
+					case 0:	self::$_tables[$cname]->obj = new $cname();break;
+					case 1:	self::$_tables[$cname]->obj = new $cname($p[1]);break;
+					case 2:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2]);break;
+					case 3:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2], $p[3]);break;
+					case 4:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2], $p[3], $p[4]);break;
+					case 5:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2], $p[3], $p[4], $p[5]);break;
+					default: $ref = new ReflectionClass($cname);self::$_tables[$cname]->obj = $ref->newInstanceArgs($p);unset($ref);break;
+				}
+			} else {
+				self::$_tables[$cname] = new $cname();
+			}
 		}
 		return self::$_tables[$cname];
 	}

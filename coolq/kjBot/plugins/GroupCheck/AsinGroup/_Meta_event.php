@@ -38,9 +38,9 @@ class _Meta_event extends Plugin {
             $asinFightData['readyTime'] = $asinFightData['readyTime'] + 1;
             if ($asinFightData['readyTime'] >= ($readyTime*6-1)) {
                 $asinFightData['status'] = 3;
-                DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
-                return NULL;
-            } 
+            }
+            DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
+            return NULL;
         } elseif (isset($asinFightData['status']) && $asinFightData['status'] === 3) {
             if (!isset($asinFightData['data']) || count($asinFightData['data']) < 2) {
                 $asinFightData['status'] = 0;

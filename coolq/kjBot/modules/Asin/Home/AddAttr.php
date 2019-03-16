@@ -15,7 +15,7 @@ class AddAttr extends Module
 	
 	public function process(array $args, $event){
         $msg = '';
-        if (!isset($args[1])) q('加点失败：未知属性名');
+        if (!isset($args[1])) q('加点失败：未知属性名（可用属性名为 力量/敏捷/体质/智力/感知/魅力）');
         if ($args[1] == '自由属性点') checkAuth($event);
         if (!isset($args[2])) q('加点失败：未指定点数');
         $args[2] = intval($args[2]);
@@ -51,7 +51,7 @@ class AddAttr extends Module
                 $obj['free'] = $args[2];
                 break;
             default:
-                q('加点失败：未知属性名');
+                q('加点失败：未知属性名（可用属性名为 力量/敏捷/体质/智力/感知/魅力）');
                 break;
         }
         $data = param_post('http://asin.ygame.cc/api.php',$obj);

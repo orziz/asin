@@ -79,7 +79,6 @@ class _Meta_event extends Plugin {
                 $hurtUser = $user1;
             }
             $hurt = min($asinFightData['data'][$hurtUser]['bld'],mt_rand(1,50));
-            $asinFightData['data'][$hurtUser]['bld'] = $asinFightData['data'][$hurtUser]['bld'] - $hurt;
             // at攻击者
             $callAtkUser = CQCode::At($atkUser);
             // at受击者
@@ -99,6 +98,9 @@ class _Meta_event extends Plugin {
                 "{$callHurtUserWithBld} 看到一队情侣秀恩爱，受到 {$hurt} 点伤害"
             ];
             $msg = $asinFightData['msgId'].'. '.$eventList[mt_rand(0,count($eventList)-1)];
+            // 修改受击者血量
+            $asinFightData['data'][$hurtUser]['bld'] = $asinFightData['data'][$hurtUser]['bld'] - $hurt;
+            // 判断是否死亡
             if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
                 $msg .= "\n".CQCode::At($hurtUser)." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 unset($asinFightData['data'][$hurtUser]);

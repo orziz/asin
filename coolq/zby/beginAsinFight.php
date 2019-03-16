@@ -21,7 +21,7 @@ function request_post($url = '', $param = '') {
 
 $url = 'http://asin.ygame.cc/coolq/kjBot/public/index.php';
 
-$data = array('post_type' => "message",'message_type'=>'group','sub_type'=>'normal','message'=>'开始刺客大乱斗','group_id'=>758507034,'user_id'=>1352219126);
+$data = array('post_type' => "message",'message_type'=>'group','sub_type'=>'normal','message'=>'开始刺客大乱斗','group_id'=>758507034,'user_id'=>1063614727);
 $data = json_encode($data);
 
 // curl_post_https($url,$data);

@@ -93,8 +93,8 @@ class DBConn extends mysqli
                 array_push($v, $this->quote($value));
             }
         }
-        $k = '('.implode($k, ',').')';
-        $v = '('.implode($v, ',').')';
+        $k = '('.implode(',',$k).')';
+        $v = '('.implode(',',$v).')';
         $sql = sprintf("INSERT INTO %s %s VALUES %s",self::table($this->_table),$k,$v);
         return $this->query($sql);
     }

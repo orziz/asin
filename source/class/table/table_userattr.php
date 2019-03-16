@@ -14,4 +14,17 @@ class table_userattr extends Table
 		parent::__construct();
 	}
 
+	public function addAttr($pk,array $datas) {
+		$userAttr = $this->getData($pk);
+		if (!$userAttr) return;
+		$free = $userAttr['free'];
+		foreach ($datas as $key => $value) {
+			if ($key != 'free') $free -= $value;
+			if ($free < 0) return 301;
+			$datas[$key] = max(0,$userAttr[$key]+$value);
+			$datas['free'] = ($key == 'free') ? $datas[$key] : $free;
+		}
+		return $this->setData($pk,$datas);
+	}
+
 }

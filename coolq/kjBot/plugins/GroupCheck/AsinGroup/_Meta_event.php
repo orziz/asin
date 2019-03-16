@@ -53,7 +53,7 @@ class _Meta_event extends Plugin {
             }
             $asinFightData['status'] = 4;
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
-            return NULL;
+            return $event->sendTo(TargetType::Group,$groupId,"{$actName}开始，本次参与人数为 ".$asinFightData['memberNum'].' ，祝你好运');
         } elseif (isset($asinFightData['status']) && $asinFightData['status'] === 4) {
             $asinFightData['msgId'] = isset($asinFightData['msgId']) ? $asinFightData['msgId'] : 0;
             $asinFightData['msgId'] = $asinFightData['msgId'] + 1;
@@ -101,6 +101,7 @@ class _Meta_event extends Plugin {
                 "{$callHurtUserWithBld} 试图偷袭 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现，受到 {$hurt} 点伤害",
                 "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
                 "{$callHurtUserWithBld} 偷看妇女主任洗澡，被妇女主任发现并叫人围殴，受到 {$hurt} 点伤害",
+                "{$callAtkUserWithBld} 对 {$callHurtUserWithBld} 使用【千年杀】，造成 {$hurt} 点伤害"
             ];
             $msg = $asinFightData['msgId'].'. '.$eventList[mt_rand(0,count($eventList)-1)];
             // 修改受击者血量

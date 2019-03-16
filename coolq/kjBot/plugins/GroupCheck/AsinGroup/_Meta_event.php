@@ -23,8 +23,9 @@ class _Meta_event extends Plugin {
     private function asinFight($event) {
         $actName = '【刺客大乱斗】';
         // $groupId = '719994813';
-        $groupId = '758507034';
-        $readyTime = 10;
+        // $groupId = '758507034';
+        $groupId = '805348195';
+        $readyTime = 1;
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
         // status==》0：关闭；1：开启；2：准备；3：开始；4：过程中
@@ -64,7 +65,7 @@ class _Meta_event extends Plugin {
                 $user = $member[0];
                 $score = $asinFightData['memberNum'] * 2;
                 $credit = $asinFightData['memberNum'] * 500;
-                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
+                // $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
                 return $event->sendTo(TargetType::Group,$groupId,"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币'); 
             }
             // 从参赛人员中随机获取两名成员

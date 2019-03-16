@@ -67,8 +67,10 @@ class _Meta_event extends Plugin {
                 $user = $member[0];
                 $score = $asinFightData['memberNum'] * 2;
                 $credit = $asinFightData['memberNum'] * 500;
-                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
-                return $event->sendTo(TargetType::Group,$groupId,"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币'); 
+                $free = 2;
+                param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
+                param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));
+                return $event->sendTo(TargetType::Group,$groupId,"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点'); 
             }
             // 从参赛人员中随机获取两名成员
             $fightMember = array_rand($asinFightData['data'],2);

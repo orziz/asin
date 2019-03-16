@@ -77,7 +77,7 @@ class _Meta_event extends Plugin {
             // 指定user2的id
             $user2 = $fightMember[1];
             // 随机谁触发事件
-            if (mt_rand(0,1) === 0) {
+            if (mt_rand(1,10000) <= 5000) {
                 // 用户2触发事件
                 $atkUser = $user1;
                 $hurtUser = $user2;
@@ -109,9 +109,9 @@ class _Meta_event extends Plugin {
             // 初始化消息
             $msg = $actName.$asinFightData['msgId'].'. ';
             // 随机触发双人事件或者单人事件
-            if (mt_rand(0,1) === 0) {
+            if (mt_rand(1,10000) <= 5000) {
                 // 触发单人事件
-                if (mt_rand(0,$atkUserData['ine']) > 60) {
+                if (mt_rand(0,$hurtUserData['ine']) > 60) {
                     // 触发加血事件
                     $addBld = min(50,mt_rand(0,$hurtUserData['maxBld']-$hurtUserBld));
                     $eventList = [

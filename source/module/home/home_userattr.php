@@ -15,12 +15,12 @@ if ($action == 'getUserAttr') {
         $res['data'] = $userAttr;
     }
 } elseif ($action == 'addUserAttr') {
-    $userAttr = C::t('userAttr')->getData($qq);
+    $userAttr = C::t('userattr')->getData($qq);
     if (!$userAttr) {
         $res['errCode'] = 301;
         $res['errMsg'] = '没有该用户';
     } else {
-        $userAttrFields = C::t('userAttr')->getFields();
+        $userAttrFields = C::t('userattr')->getFields();
         $data = array();
         foreach ($param as $key => $value) {
             if (isset($userAttr[$key])) $data[$key] = $value;
@@ -35,7 +35,7 @@ if ($action == 'getUserAttr') {
                 $res['errMsg'] = '自由属性点不足';
             } else {
                 $res['errCode'] = 200;
-                $res['errMsg'] = C::t('userAttr')->getData($qq);
+                $res['errMsg'] = C::t('userattr')->getData($qq);
             }
         }
     }

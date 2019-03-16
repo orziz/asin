@@ -10,7 +10,7 @@ if ($action == 'getUserAttr') {
         $res['errMsg'] = '没有该用户';
     } else {
         $userInfo = C::t('userinfo')->getData($qq);
-        $userAttr = $userInfo['nickname'];
+        $userAttr['nickname'] = $userInfo['nickname'];
         $res['errCode'] = 200;
         $res['data'] = $userAttr;
     }

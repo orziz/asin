@@ -14,6 +14,7 @@ class JoinAsinFight extends Module
 {
 	
 	public function process(array $args, $event){
+        $msg = '';
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
         if (!isset($asinFightData['status']) || $asinFightData['status'] === 0 || $asinFightData['status'] === 1) return $event->sendBack('活动未开始');
@@ -21,12 +22,43 @@ class JoinAsinFight extends Module
         $User_id = $event->getId();
         if (!isset($asinFightData['data'])) $asinFightData['data'] = array();
         if (isset($asinFightData['data'][$User_id])) return $event->sendBack(CQCode::At($User_id).' 您已参加本次活动，无需重复参加');
-        $asinFightData['data'][$User_id] = array('bld'=>100);
-        $asinFightData['memberNum'] = isset($asinFightData['memberNum']) ? $asinFightData['memberNum'] +1 : 1;
-        DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
-        $msgList = [
-            "%s 参加了本次活动，好运光环笼罩着TA"
-        ];
-        return $event->sendBack(sprintf($msgList[mt_rand(0,count($msgList)-1)],CQCode::At($User_id)));
-	}
+        
+        $msg .= CQCode::At($User_id);
+        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'getUserAttr', 'qq'=>$qq));
+        if ($data['errCode'] !== 200) {
+            $msg .= ' 参加失败：您没有加入刺客组织';
+        } else {
+            $msg .= ' 参加了本次活动，';
+            $userAttr = $data['data'];
+            // $msg .= '姓名：'.$userAttr['nickname']."\n";
+            // $msg .= '力量：'.$userAttr['str']."\n";
+            // $msg .= '敏捷：'.$userAttr['dex']."\n";
+            // $msg .= '体质：'.$userAttr['con']."\n";
+            // $msg .= '智力：'.$userAttr['ine']."\n";
+            // $msg .= '感知：'.$userAttr['wis']."\n";
+            // $msg .= '魅力：'.$userAttr['cha']."\n";
+            // $msg .= '自由属性点：'.$userAttr['free'];
+
+            $asinFightData['data'][$User_id] = array(
+                'maxBld'=>min(200,100+intval($userAttr['con'/5])),
+                'bld'=>min(200,100+intval($userAttr['con'/5])),
+                'atk'=>min(100,30+intval($userAttr['str'/6])),
+                'ine'=>min(100,50+intval($userAttr['ine']/2))
+            );
+            $asinFightData['memberNum'] = isset($asinFightData['memberNum']) ? $asinFightData['memberNum'] +1 : 1;
+            DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
+            $msgList = [
+                "好运光环笼罩着TA",
+                "经过系统评定，本次胜利概率为 ".mt_rand(0,100).'%',
+                "有望获得胜利",
+                "不出意外的话，应该是获胜不了的",
+                "听说TA又想去看情侣秀恩爱了",
+                "还没开始就失败了（骗你的啦）",
+                "获得了强大的BUFF",
+                "获得了“子不语牛逼”的BUFF加成"
+            ];
+            $msg .= $msgList[mt_rand(0,count($msgList)-1)];
+        }
+        return $event->sendBack($msg);
+    }
 }

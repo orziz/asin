@@ -64,7 +64,7 @@ class _Meta_event extends Plugin {
                 $user = $member[0];
                 $score = $asinFightData['memberNum'] * 2;
                 $credit = $asinFightData['memberNum'] * 500;
-                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
+                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
                 return $event->sendTo(TargetType::Group,$groupId,"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币'); 
             }
             // 从参赛人员中随机获取两名成员
@@ -99,7 +99,8 @@ class _Meta_event extends Plugin {
                 "{$callAtkUserWithBld} 绕到 {$callHurtUserWithBld} 身后，给予沉重一击，造成 {$hurt} 点伤害",
                 "{$callHurtUserWithBld} 误入汪星人基地，受到 {$hurt} 点伤害",
                 "{$callHurtUserWithBld} 试图偷袭 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现，受到 {$hurt} 点伤害",
-                "{$callHurtUserWithBld} 看到一队情侣秀恩爱，受到 {$hurt} 点伤害"
+                "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
+                "{$callHurtUserWithBld} 偷看妇女主任洗澡，被妇女主任发现并叫人围殴，受到 {$hurt} 点伤害",
             ];
             $msg = $asinFightData['msgId'].'. '.$eventList[mt_rand(0,count($eventList)-1)];
             // 修改受击者血量

@@ -23,6 +23,7 @@ class _Message extends Plugin {
                 }
                 $Modules['帮助'] = \kjBotModule\Asin\Help::class;
                 $Modules['信息'] = \kjBotModule\Asin\Home\Info::class;
+                $Modules['属性'] = \kjBotModule\Asin\Home\Attr::class;
                 $Modules['排名'] = \kjBotModule\Asin\Rank\GetMyScoreRank::class;
                 $Modules['设置信息'] = \kjBotModule\Asin\Home\SetUserInfo::class;
                 $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;

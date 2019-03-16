@@ -22,11 +22,12 @@ class _Meta_event extends Plugin {
 
     private function asinFight($event) {
         $actName = '【刺客模拟赛】';
-        $groupId = '719994813';
-        $readyTime = 1;
+        // $groupId = '719994813';
+        $groupId = '758507034';
+        $readyTime = 10;
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
-        // 0：关闭；1：开启；2：准备；3：开始；4：过程中
+        // status==》0：关闭；1：开启；2：准备；3：开始；4：过程中
         if (!isset($asinFightData['status']) || $asinFightData['status'] === 0) return NULL;
         if (isset($asinFightData['status']) && $asinFightData['status'] === 1) {
             $asinFightData['status'] = 2;
@@ -98,7 +99,7 @@ class _Meta_event extends Plugin {
                 "{$callHurtUserWithBld} 看到一队情侣秀恩爱，受到 {$hurt} 点伤害"
             ];
             $msg = $asinFightData['msgId'].'. '.$eventList[mt_rand(0,count($eventList)-1)];
-            if ($hurt >= $asinFightData['data'][$hurtUser]['bld']) {
+            if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
                 $msg .= "\n".CQCode::At($hurtUser)." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 unset($asinFightData['data'][$hurtUser]);
             }

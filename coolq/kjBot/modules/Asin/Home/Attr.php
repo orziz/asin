@@ -42,6 +42,7 @@ class Attr extends Module
             // // 自由属性点
             // $free = getgpc('free','param',0);
             $userAttr = $data['data'];
+            Log::Debug('===>'.json_encode($userAttr));
             $msg .= '姓名：'.$userAttr['nickname']."\n";
             $msg .= '力量：'.$userAttr['str']."\n";
             $msg .= '敏捷：'.$userAttr['dex']."\n";

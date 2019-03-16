@@ -21,7 +21,7 @@ class _Meta_event extends Plugin {
     }
 
     private function asinFight($event) {
-        $actName = '【刺客模拟赛】';
+        $actName = '【刺客大乱斗】';
         // $groupId = '719994813';
         $groupId = '758507034';
         $readyTime = 10;
@@ -33,9 +33,10 @@ class _Meta_event extends Plugin {
             $asinFightData['status'] = 2;
             $asinFightData['readyTime'] = 0;
             $asinFightData['msgId'] = 0;
+            $asinFightData['memberNum'] = 0;
             $asinFightData['data'] = array();
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
-            return $event->sendTo(TargetType::Group,$groupId,"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客模拟赛`");
+            return $event->sendTo(TargetType::Group,$groupId,"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客大乱斗`");
         } elseif (isset($asinFightData['status']) && $asinFightData['status'] === 2) {
             $asinFightData['readyTime'] = isset($asinFightData['readyTime']) ? $asinFightData['readyTime'] : 0;
             $asinFightData['readyTime'] = $asinFightData['readyTime'] + 1;
@@ -61,7 +62,10 @@ class _Meta_event extends Plugin {
                 DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
                 $member = array_keys($asinFightData['data']);
                 $user = $member[0];
-                return $event->sendTo(TargetType::Group,$groupId,"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)); 
+                $score = $asinFightData['memberNum'] * 2;
+                $credit = $asinFightData['memberNum'] * 500;
+                $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
+                return $event->sendTo(TargetType::Group,$groupId,"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币'); 
             }
             // 从参赛人员中随机获取两名成员
             $fightMember = array_rand($asinFightData['data'],2);

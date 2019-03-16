@@ -22,6 +22,7 @@ class JoinAsinFight extends Module
         if (!isset($asinFightData['data'])) $asinFightData['data'] = array();
         if (isset($asinFightData['data'][$User_id])) return $event->sendBack(CQCode::At($User_id).' 您已参加本次活动，无需重复参加');
         $asinFightData['data'][$User_id] = array('bld'=>100);
+        $asinFightData['memberNum'] = isset($asinFightData['memberNum']) ? $asinFightData['memberNum'] +1 : 1;
         DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
         $msgList = [
             "%s 参加了本次活动，好运光环笼罩着TA"

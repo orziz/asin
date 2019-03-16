@@ -30,8 +30,8 @@ class _Message extends Plugin {
                 $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
                 $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
                 $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
-                $Modules['开始刺客模拟赛'] = \kjBotModule\Asin\Act\BeginAsinFight::class;
-                $Modules['参加刺客模拟赛'] = \kjBotModule\Asin\Act\JoinAsinFight::class;
+                $Modules['开始刺客大乱斗'] = \kjBotModule\Asin\Act\BeginAsinFight::class;
+                $Modules['参加刺客大乱斗'] = \kjBotModule\Asin\Act\JoinAsinFight::class;
 
                 $Queue[] = $this->randomEvent($event);
                 return $Queue;
@@ -42,7 +42,7 @@ class _Message extends Plugin {
 
     private function randomEvent($event) {
         $rand = mt_rand(0,10000);
-        if ($rand >= 9500 || (false !== strpos($event->getMsg(), '子不语牛逼') && $rand >= 7000)) {
+        if ($rand >= 9900 || (false !== strpos($event->getMsg(), '子不语牛逼') && $rand >= 9000)) {
             $score = mt_rand(0,2);
             $credit = mt_rand(1,200);
             $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));

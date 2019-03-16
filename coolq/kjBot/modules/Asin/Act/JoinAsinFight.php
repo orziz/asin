@@ -24,7 +24,7 @@ class JoinAsinFight extends Module
         if (isset($asinFightData['data'][$User_id])) return $event->sendBack(CQCode::At($User_id).' 您已参加本次活动，无需重复参加');
         
         $msg .= CQCode::At($User_id);
-        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'getUserAttr', 'qq'=>$qq));
+        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'getUserAttr', 'qq'=>$User_id));
         if ($data['errCode'] !== 200) {
             $msg .= ' 参加失败：您没有加入刺客组织';
         } else {

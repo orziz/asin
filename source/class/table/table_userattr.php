@@ -20,6 +20,7 @@ class table_userattr extends Table
 		$free = $userAttr['free'];
 		foreach ($datas as $key => $value) {
 			if ($key != 'free') $free -= $value;
+			Log::Debug('===>key：'.$key.' value：'.$value.' free：'.$free);
 			if ($free < 0) return 301;
 			$datas[$key] = max(0,$userAttr[$key]+$value);
 			$datas['free'] = ($key == 'free') ? $datas[$key] : $free;

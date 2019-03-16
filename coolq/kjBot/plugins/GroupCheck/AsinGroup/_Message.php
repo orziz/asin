@@ -14,10 +14,10 @@ class _Message extends Plugin {
     public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
     //此处以正常群聊消息举例
     public function message_group_normal($event) {
+        global $Modules;
         if($event instanceof GroupMessageEvent) {
             $asinGroup = ['719994813','758507034'];
             if (in_array($event->groupId,$asinGroup)) {
-                global $Modules;
                 if ((false !== strpos($event->getMsg(), '怎么') || false !== strpos($event->getMsg(), '如何')) && false !== strpos($event->getMsg(), '加入')) {
                     $Queue[] = $event->sendBack(CQCode::At($event->getId()).' 如需加入刺客组织，请输入 `加入刺客组织`');
                 }

@@ -35,7 +35,7 @@ if ($action == 'getUserAttr') {
                 $res['errMsg'] = '自由属性点不足';
             } else {
                 $res['errCode'] = 200;
-                $res['errMsg'] = C::t('userattr')->getData($qq);
+                $res['data'] = C::t('userattr')->getData($qq);
             }
         }
     }

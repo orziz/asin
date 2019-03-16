@@ -18,6 +18,7 @@ class table_userattr extends Table
 		$userAttr = $this->getData($pk);
 		if (!$userAttr) return;
 		$free = $userAttr['free'];
+		if (isset($datas[$this->_pk])) unset($datas[$this->_pk]);
 		foreach ($datas as $key => $value) {
 			if ($key != 'free') $free -= $value;
 			Log::Debug('===>key：'.$key.' value：'.$value.' free：'.$free);

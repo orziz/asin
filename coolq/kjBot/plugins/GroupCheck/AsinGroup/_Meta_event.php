@@ -36,6 +36,7 @@ class _Meta_event extends Plugin {
             $asinFightData['msgId'] = 0;
             $asinFightData['memberNum'] = 0;
             $asinFightData['data'] = array();
+            $asinFightData['deadMember'] = array();
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             return $event->sendTo(TargetType::Group,$groupId,"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客大乱斗`");
         } elseif (isset($asinFightData['status']) && $asinFightData['status'] === 2) {
@@ -70,7 +71,12 @@ class _Meta_event extends Plugin {
                 $free = 2;
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));
-                return $event->sendTo(TargetType::Group,$groupId,"本次{$actName}活动结束，胜利者为 ".CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点'); 
+                $msg = "本次{$actName}活动结束，胜利者为 ".CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
+                $msg .= "\n\n本次活动排名：\n1.\t\t". CQCode::At($user);
+                for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
+                    $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);
+                }
+                return $event->sendTo(TargetType::Group,$groupId,$msg); 
             }
             // 从参赛人员中随机获取两名成员
             $fightMember = array_rand($asinFightData['data'],2);
@@ -150,6 +156,8 @@ class _Meta_event extends Plugin {
             if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
                 $msg .= "\n".CQCode::At($hurtUser)." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 unset($asinFightData['data'][$hurtUser]);
+                if (!isset($asinFightData['deadMember'])) $asinFightData['deadMember'] = array();
+                array_unshift($asinFightData['deadMember'],$hurtUser);
             }
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             return $event->sendTo(TargetType::Group,$groupId,$msg);

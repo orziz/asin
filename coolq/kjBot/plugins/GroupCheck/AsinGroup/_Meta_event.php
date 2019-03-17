@@ -65,8 +65,8 @@ class _Meta_event extends Plugin {
                 DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
                 $member = array_keys($asinFightData['data']);
                 $user = $member[0];
-                $score = $asinFightData['memberNum'] * 2;
-                $credit = $asinFightData['memberNum'] * 500;
+                $score = $asinFightData['memberNum'] * 1;
+                $credit = $asinFightData['memberNum'] * 200;
                 $free = 2;
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));

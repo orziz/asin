@@ -114,6 +114,7 @@ class _Meta_event extends Plugin {
             $hurt = 0;
             // 初始化回复值
             $addBld = 0;
+            $isCrit = false;
             // 初始化消息
             $msg = $actName.$asinFightData['msgId'].'. ';
             // 随机触发双人事件或者单人事件
@@ -121,7 +122,7 @@ class _Meta_event extends Plugin {
                 // 触发单人事件
                 if (mt_rand(0,$hurtUserData['ine']) > 60) {
                     // 触发加血事件
-                    $addBld = min(50,mt_rand(0,$hurtUserData['maxBld']-$hurtUserBld));
+                    $addBld = mt_rand(0,$hurtUserData['maxBld']-$hurtUserBld);
                     $eventList = [
                         "{$callHurtUserWithBld} 感知到一股洪荒之力，回复了 {$addBld} 点血量",
                         "{$callHurtUserWithBld} 觉得自己应该回复一下血量了，所以回复了 {$addBld} 点血量",
@@ -132,6 +133,8 @@ class _Meta_event extends Plugin {
                 } else  {
                     // $hurt = min($hurtUserData['bld'],mt_rand(1,40));
                     $hurt = min($hurtUserData['bld'],mt_rand(1,$hurtUserData['bld']));
+                    $isCrit = mt_rand(1,10000) > 9500;
+                    if ($isCrit) $hurt = $hurt*2;
                     $eventList = [
                         "{$callHurtUserWithBld} 误入汪星人基地，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
@@ -142,6 +145,8 @@ class _Meta_event extends Plugin {
             } else {
                 // 触发双人事件
                 $hurt = min($hurtUserData['bld'],mt_rand(0,$atkUserData['atk']));
+                $isCrit = mt_rand(0,$atkUserData['crit']) > 50;
+                if ($isCrit) $hurt = $hurt*2;
                 $eventList = [
                     "{$callAtkUserWithBld} 绕到 {$callHurtUserWithBld} 身后，给予沉重一击，造成 {$hurt} 点伤害",
                     "{$callHurtUserWithBld} 试图偷袭 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现，受到 {$hurt} 点伤害",
@@ -151,6 +156,7 @@ class _Meta_event extends Plugin {
                 ];
             }
             $msg .= $eventList[mt_rand(0,count($eventList)-1)];
+            if ($isCrit) $msg .= "（暴击！！！）";
             // 修改受击者血量
             $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld;
             // 判断是否死亡

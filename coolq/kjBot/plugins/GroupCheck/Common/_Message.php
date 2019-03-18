@@ -16,6 +16,7 @@ class _Message extends Plugin {
     public function message($event) {
         $Queue[] = $this->checkLifeQestion($event);
         $Queue[] = $this->checkLovely($event);
+        $Queue[] = $this->checkSupport($event);
         return $Queue;
     }
 

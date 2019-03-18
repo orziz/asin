@@ -18,7 +18,7 @@ class View extends Module
 		$msg = '';
 		if($event->fromGroup()) $msg .= CQCode::At($event->getId())."\n";
         $msg .= "感谢以下人员的赞助";
-        $msg .= "\n". CQCode::At(1845896706)."\t\t100 元";
+        $msg .= "\n". CQCode::At(1845896706)."\t\t200 元";
 		return $event->sendBack($msg); 
 	}
 }

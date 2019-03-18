@@ -130,7 +130,8 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 大喊了一声“子不语牛逼”，突然一道圣光从天而降，{$callHurtUserWithBld} 回复了 {$addBld} 点血量"
                     ];
                 } else  {
-                    $hurt = min($hurtUserData['bld'],mt_rand(1,40));
+                    // $hurt = min($hurtUserData['bld'],mt_rand(1,40));
+                    $hurt = min($hurtUserData['bld'],mt_rand(1,$hurtUserData['bld']));
                     $eventList = [
                         "{$callHurtUserWithBld} 误入汪星人基地，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",

@@ -61,6 +61,7 @@ class _Message extends Plugin {
             if ($event->fromGroup()) $msg .= CQCode::At($event->getId())."\n";
             $msg .= '如想赞助请联系 '. CQCode::At(Config('master')) . "\n";
             $msg .= '如想查看赞助人员，请输入 `查看赞助`';
+            $msg .= "\n（备注：所谓赞助为无偿赞助，除标注您的赞助金额之外，不会有任何其他好处，如想赞助，请仔细考虑)";
             return $event->sendBack($msg);
         }
         return NULL;

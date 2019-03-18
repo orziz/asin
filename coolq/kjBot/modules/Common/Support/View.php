@@ -6,6 +6,7 @@ use kjBot\Framework\Module;
 use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
+use kjBot\Framework\DataStorage;
 use \Log;
 
 /**

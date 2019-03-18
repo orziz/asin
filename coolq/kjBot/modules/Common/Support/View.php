@@ -11,7 +11,7 @@ use \Log;
 /**
  * 查看赞助
  */
-class Support extends Module
+class View extends Module
 {
 	
 	public function process(array $args, $event) {

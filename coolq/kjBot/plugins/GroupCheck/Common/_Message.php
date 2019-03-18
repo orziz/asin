@@ -56,7 +56,7 @@ class _Message extends Plugin {
      * @return void
      */
     private function checkSupport($event) {
-        if ($this->hasMsg($event,'赞助') && !($this->hasMsg($event,'查看'))) {
+        if ($this->hasMsg($event,'赞助') && !($this->hasMsg($event,'查看')) && !($this->hasMsg($event,'添加'))) {
             $msg = '';
             if ($event->fromGroup()) $msg .= CQCode::At($event->getId())."\n";
             $msg .= '如想赞助请联系 '. CQCode::At(Config('master')) . "\n";

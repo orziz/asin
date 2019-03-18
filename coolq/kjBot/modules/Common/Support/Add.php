@@ -21,7 +21,7 @@ class Add extends Module
         $data = $data ? json_decode($data,true) : array();
         if (!isset($args[1])) q('没有指定用户');
         if (!isset($args[2])) q('没有指定金额');
-        $user = $args[1];
+        $user = parseQQ($args[1]);
         $credit = $args[2];
         if (!isset($data[$user])) $data[$user] = 0;
         $data[$user] += $credit;

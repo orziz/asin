@@ -15,10 +15,14 @@ class View extends Module
 {
 	
 	public function process(array $args, $event) {
+        $data = DataStorage::GetData('support.json');
+        $data = $data ? json_decode($data,true) : array();
 		$msg = '';
 		if($event->fromGroup()) $msg .= CQCode::At($event->getId())."\n";
         $msg .= "感谢以下人员的赞助";
-        $msg .= "\n". CQCode::At(1845896706)."\t\t200 元";
+        foreach ($data as $key => $value) {
+			$msg .= "\n". CQCode::At($key)."\t\t".$value." 元";
+		}
 		return $event->sendBack($msg); 
 	}
 }

@@ -25,7 +25,7 @@ class _Meta_event extends Plugin {
         // $groupId = '719994813';
         $groupId = '758507034';
         // $groupId = '805348195';
-        $readyTime = 1;
+        $readyTime = 10;
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
         // status==》0：关闭；1：开启；2：准备；3：开始；4：过程中

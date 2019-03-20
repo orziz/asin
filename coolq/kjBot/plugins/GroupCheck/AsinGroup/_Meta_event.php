@@ -29,7 +29,7 @@ class _Meta_event extends Plugin {
             '758507034', // 刺客四群
             '666427165' // 刺客一群
         ];
-        $groupId = ['1063614727'];
+        // $groupId = ['1063614727'];
         // $groupId = '805348195';
         $readyTime = 10;
         $asinFightData = DataStorage::GetData('asinFightData.json');
@@ -44,8 +44,8 @@ class _Meta_event extends Plugin {
             $asinFightData['data'] = array();
             $asinFightData['deadMember'] = array();
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
-            // return $event->sendTo(TargetType::Group,$groupId,"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客大乱斗`");
-            return $event->sendTo(TargetType::Private,$groupId,"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客大乱斗`");
+            return $event->sendTo(TargetType::Group,$groupId,"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客大乱斗`");
+            // return $event->sendTo(TargetType::Private,$groupId,"{$actName}将在 {$readyTime} 分钟后开启，请参加的刺客回复`参加刺客大乱斗`");
         } elseif (isset($asinFightData['status']) && $asinFightData['status'] === 2) {
             $asinFightData['readyTime'] = isset($asinFightData['readyTime']) ? $asinFightData['readyTime'] : 0;
             $asinFightData['readyTime'] = $asinFightData['readyTime'] + 1;

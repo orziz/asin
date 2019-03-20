@@ -3,7 +3,6 @@ namespace kjBot\Framework\Event;
 
 use kjBot\Framework\Message;
 use kjBot\Framework\TargetType;
-use \Log;
 
 class BaseEvent{
 
@@ -60,8 +59,10 @@ class BaseEvent{
 
     public function sendTo(int $targetType, $target, $msg){
         if (is_array($target)) {
-            for ($i = 0; $i < count($target); $i++) $Queue[] = new Message($msg, $target[$i], $targetType);
-            Log::Debug('====>'.count($Queue));
+            for ($i = 0; $i < count($target); $i++) {
+                if ($targetType === TargetType::Private) throw new kjBot\Framework\KjBotException('群发消息仅可用发送至群');
+                $Queue[] = new Message($msg, $target[$i], $targetType);
+            }
             return $Queue;
         }
         return new Message($msg, $target, $targetType);

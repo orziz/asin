@@ -40,7 +40,8 @@ class KjBot{
         foreach($this->messageQueue as $message){
             if($message instanceof Message){
                 $message->send($this->cq);
-                usleep(100000);
+                // 随机200 - 5000 毫秒间隔
+                usleep(mt_rand(200000,5000000));
             }
         }
     }

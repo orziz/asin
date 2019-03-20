@@ -25,7 +25,11 @@ class _Meta_event extends Plugin {
     private function asinFight($event) {
         $actName = '【刺客大乱斗】';
         // $groupId = '719994813';
-        $groupId = ['758507034','719994813'];
+        $groupId = [
+            '719994813', // 刺客重构群
+            '758507034', // 刺客四群
+            '666427165' // 刺客一群
+        ];
         // $groupId = '805348195';
         $readyTime = 10;
         $asinFightData = DataStorage::GetData('asinFightData.json');

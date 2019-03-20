@@ -3,7 +3,6 @@ namespace kjBot\Framework\Event;
 
 use kjBot\Framework\Message;
 use kjBot\Framework\TargetType;
-use kjBot\Framework\miscClass;
 
 class BaseEvent{
 
@@ -61,7 +60,10 @@ class BaseEvent{
     public function sendTo(int $targetType, $target, $msg){
         if (is_array($target)) {
             for ($i = 0; $i < count($target); $i++) {
-                if ($targetType === TargetType::Private) throw new KjBotException('群发消息仅可用发送至群');
+                if ($targetType === TargetType::Private) {
+                    require_once('miscClass.php');
+                    throw new kjBot\Framework\KjBotException('群发消息仅可用发送至群');
+                }
                 $Queue[] = new Message($msg, $target[$i], $targetType);
             }
             return $Queue;

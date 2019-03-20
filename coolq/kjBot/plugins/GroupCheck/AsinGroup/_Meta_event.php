@@ -18,6 +18,7 @@ class _Meta_event extends Plugin {
     public function meta_event_heartbeat($event) {
         $Queue = array();
         $Queue = array_merge($Queue,$this->asinFight($event));
+        Log::Debug('????'.count($Queue));
         return $Queue;
     }
 

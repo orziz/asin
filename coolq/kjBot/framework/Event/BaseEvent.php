@@ -3,6 +3,7 @@ namespace kjBot\Framework\Event;
 
 use kjBot\Framework\Message;
 use kjBot\Framework\TargetType;
+use \Log;
 
 class BaseEvent{
 
@@ -60,6 +61,7 @@ class BaseEvent{
     public function sendTo(int $targetType, $target, $msg){
         if (is_array($target)) {
             for ($i = 0; $i < count($target); $i++) $Queue[] = new Message($msg, $target[$i], $targetType);
+            Log::Debug('====>'.count($Queue));
             return $Queue;
         }
         return new Message($msg, $target, $targetType);

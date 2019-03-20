@@ -58,6 +58,10 @@ class BaseEvent{
     }
 
     public function sendTo(int $targetType, $target, $msg){
+        if (is_array($target)) {
+            for ($i = 0; $i < count($target); $i++) $Queue[] = new Message($msg, $target[$i], $targetType);
+            return $Queue;
+        }
         return new Message($msg, $target, $targetType);
     }
 }

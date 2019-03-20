@@ -16,7 +16,8 @@ class _Meta_event extends Plugin {
     public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
     //此处以正常群聊消息举例
     public function meta_event_heartbeat($event) {
-        $Queue[] = $this->asinFight($event);
+        $Queue = array();
+        $Queue = array_merge($Queue,$this->asinFight($event));
         return $Queue;
     }
 

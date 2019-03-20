@@ -13,13 +13,13 @@ class Table extends DBConn
 
 	/**
 	 * 根据主键获取信息
-	 * @param  [type] $pk 主键
+	 * @param  string||array $pk 主键
 	 * @return [type]     [description]
 	 */
 	public function getData($pk) {
 		if (!$pk) return false;
 		if (is_array($pk)) {
-			$data = $this->fetch($this->_pk.' IN ('.implode(',',$pk).')');
+			$data = $this->fetch($this->_pk.' IN ('.implode(',', $pk).')');
 			return $data;
 		}
 		$data = $this->fetch(array($this->_pk=>$pk));
@@ -56,13 +56,13 @@ class Table extends DBConn
 	 * @return [type]        [description]
 	 */
 	protected function updateData($pk,array $datas) {
-		if (isset($datas[$this->_pk])) unset($datas[$this->pk]);
+		if (isset($datas[$this->_pk])) unset($datas[$this->_pk]);
 		return $this->update($datas,array($this->_pk=>$pk));
 	}
 
 	/**
 	 * 根据主键删除信息
-	 * @param  [type] $pk 主键
+	 * @param  string||array $pk 主键
 	 * @return [type]     [description]
 	 */
 	public function deleteData($pk) {

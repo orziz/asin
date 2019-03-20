@@ -33,3 +33,12 @@ function checkAuth($event,$level='admin') {
 	}
 	
 }
+
+function checkGroup($event,$group) {
+	if (!$event->fromGroup()) return false;
+	if (!$group) return false;
+	$groupData = DataStorage::GetData('GroupAuth.json');
+	$groupData = $groupData ? json_decode($groupData,true) : array();
+	if (!isset($groupData[$group])) return false;
+	return in_array($event->groupId,$groupData[$group]);
+}

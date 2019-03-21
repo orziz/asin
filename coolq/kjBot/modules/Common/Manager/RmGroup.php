@@ -23,7 +23,7 @@ class RmGroup extends Module
 		$group = $args[1];
 		if (!isset($groupData[$group])) $groupData[$group] = array();
 		if (!in_array($groupId,$groupData[$group])) q('该群不在此群组');
-		array_diff($groupData[$group],array($groupId));
+		$groupData[$group] = array_diff($groupData[$group],array($groupId));
 		$groupData[$group] = array_values($groupData[$group]);
 		$isSuccess = DataStorage::SetData('GroupAuth.json',json_encode($groupData));
 		if ($isSuccess) return $event->sendBack('将此群移出进 '.$group.' 群组成功');

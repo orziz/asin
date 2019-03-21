@@ -74,12 +74,12 @@ class _Meta_event extends Plugin {
                 $free = 2;
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));
-                $msg = "本次{$actName}活动结束，胜利者为 ". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
+                $msg = "本次{$actName}活动结束，胜利者为 ". $asinFightData['data'][$user]['groupId'] . '-' .$asinFightData['data'][$user]['nickName']."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
                 // $msg .= "\n\n本次活动排名：\n1.\t\t". CQCode::At($user);
                 $deadObj = array_reverse($asinFightData['deadMember']);
                 $deadMember = array_keys($asinFightData['deadMember']);
                 $deadMember = array_reverse($deadMember);
-                $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user);
+                $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['groupId'] . '-' .$asinFightData['data'][$user]['nickName'];
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
                 //     $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);
                 // }
@@ -113,8 +113,10 @@ class _Meta_event extends Plugin {
             $hurtUserData = $asinFightData['data'][$hurtUser];
             // at攻击者
             $callAtkUser = CQCode::At($atkUser);
+            $callAtkUser = $atkUserData['nickName'];
             // at受击者
             $callHurtUser = CQCode::At($hurtUser);
+            $callAtkUser = $hurtUserData['nickName'];
             // 攻击者当前血量
             $atkUserBld = $atkUserData['bld'];
             // 受击者当前血量

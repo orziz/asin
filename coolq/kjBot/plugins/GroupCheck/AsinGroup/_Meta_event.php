@@ -74,15 +74,17 @@ class _Meta_event extends Plugin {
                 $free = 2;
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));
-                $msg = "本次{$actName}活动结束，胜利者为 ". $asinFightData['data'][$user]['nickName'].'['.$asinFightData['data'][$user].']'."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
+                $msg = "本次{$actName}活动结束，胜利者为 ". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
                 // $msg .= "\n\n本次活动排名：\n1.\t\t". CQCode::At($user);
                 $deadObj = array_reverse($asinFightData['deadMember']);
-                $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['nickName'].'['.$asinFightData['data'][$user].']';
+                $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user);
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
                 //     $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);
                 // }
+                $i = 0;
                 foreach ($deadObj as $key => $value) {
-                    $msg .= "\n".($i+2).".\t\t".$value['nickName'].'['.$key.']';
+                    $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($key);
+                    $i++;
                 }
                 return $event->sendTo(TargetType::Group,$groupId,$msg); 
             }
@@ -116,10 +118,10 @@ class _Meta_event extends Plugin {
             $hurtUserBld = $hurtUserData['bld'];
             // at攻击者（携带当前血量）
             // $callAtkUserWithBld = $callAtkUser.'（'.$atkUserBld.'）';
-            $callAtkUserWithBld = $atkUserData['nickName'].'['.$atkUser.']'.'（'.$atkUserBld.'）';
+            $callAtkUserWithBld = $hurtUserData['groupId'].'-'.$callAtkUser.'（'.$atkUserBld.'）';
             // at受击者（携带当前血量）
             // $callHurtUserWithBld = $callHurtUser.'（'.$hurtUserBld.'）';
-            $callHurtUserWithBld = $hurtUserData['nickName'].'['.$hurtUser.']'.'（'.$hurtUserBld.'）';
+            $callHurtUserWithBld = $hurtUserData['groupId'].'-'.$callHurtUser.'（'.$hurtUserBld.'）';
             // 初始化伤害值
             $hurt = 0;
             // 初始化回复值

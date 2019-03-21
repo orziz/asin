@@ -40,6 +40,7 @@ class JoinAsinFight extends Module
             // $msg .= '自由属性点：'.$userAttr['free'];
 
             $asinFightData['data'][$User_id] = array(
+                'groupId'=>$this->getGroupId($event),
                 'nickName'=>$userAttr['nickname'],
                 'maxBld'=>100+intval($userAttr['con']/5),
                 'bld'=>100+intval($userAttr['con']/5),
@@ -62,5 +63,17 @@ class JoinAsinFight extends Module
             $msg .= $msgList[mt_rand(0,count($msgList)-1)];
         }
         return $event->sendBack($msg);
+    }
+
+    private function getGroupId($event) {
+        $arr = array(
+            '719994813'=>'重构',
+            '666427165'=>'1',
+            '758507034'=>'4',
+            '371975682'=>'5'
+        );
+        $groupId = $event->groupId;
+        $id = isset($arr[$groupId]) ? $arr[$groupId] : 0;
+        return ($id);
     }
 }

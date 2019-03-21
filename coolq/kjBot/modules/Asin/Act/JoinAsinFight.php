@@ -40,6 +40,7 @@ class JoinAsinFight extends Module
             // $msg .= '自由属性点：'.$userAttr['free'];
 
             $asinFightData['data'][$User_id] = array(
+                'nickName'=>$userAttr['nickname'],
                 'maxBld'=>100+intval($userAttr['con']/5),
                 'bld'=>100+intval($userAttr['con']/5),
                 'atk'=>30+intval($userAttr['str']/6),

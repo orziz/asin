@@ -110,9 +110,11 @@ class _Meta_event extends Plugin {
             // 受击者当前血量
             $hurtUserBld = $hurtUserData['bld'];
             // at攻击者（携带当前血量）
-            $callAtkUserWithBld = $callAtkUser.'（'.$atkUserBld.'）';
+            // $callAtkUserWithBld = $callAtkUser.'（'.$atkUserBld.'）';
+            $callAtkUserWithBld = $atkUserData['nickname'].'（'.$atkUserBld.'）';
             // at受击者（携带当前血量）
-            $callHurtUserWithBld = $callHurtUser.'（'.$hurtUserBld.'）';
+            // $callHurtUserWithBld = $callHurtUser.'（'.$hurtUserBld.'）';
+            $callHurtUserWithBld = $hurtUserData['nickname'].'（'.$hurtUserBld.'）';
             // 初始化伤害值
             $hurt = 0;
             // 初始化回复值

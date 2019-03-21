@@ -123,7 +123,7 @@ class _Meta_event extends Plugin {
             $hurtUserBld = $hurtUserData['bld'];
             // at攻击者（携带当前血量）
             // $callAtkUserWithBld = $callAtkUser.'（'.$atkUserBld.'）';
-            $callAtkUserWithBld = $hurtUserData['groupId'].'-'.$callAtkUser.'（'.$atkUserBld.'）';
+            $callAtkUserWithBld = $atkUserData['groupId'].'-'.$callAtkUser.'（'.$atkUserBld.'）';
             // at受击者（携带当前血量）
             // $callHurtUserWithBld = $callHurtUser.'（'.$hurtUserBld.'）';
             $callHurtUserWithBld = $hurtUserData['groupId'].'-'.$callHurtUser.'（'.$hurtUserBld.'）';

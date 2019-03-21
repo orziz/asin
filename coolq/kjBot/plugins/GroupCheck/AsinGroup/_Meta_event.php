@@ -79,14 +79,14 @@ class _Meta_event extends Plugin {
                 $deadObj = array_reverse($asinFightData['deadMember']);
                 $deadMember = array_keys($asinFightData['deadMember']);
                 $deadMember = array_reverse($deadMember);
-                Log::Debug('====>'.json_encode($deadObj));
                 $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user);
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
                 //     $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);
                 // }
                 $i = 0;
                 foreach ($deadObj as $key => $value) {
-                    $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($deadMember[$key]);
+                    // $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($deadMember[$key]);
+                    $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.$value['nickName'];
                     $i++;
                 }
                 return $event->sendTo(TargetType::Group,$groupId,$msg); 

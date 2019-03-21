@@ -77,6 +77,8 @@ class _Meta_event extends Plugin {
                 $msg = "本次{$actName}活动结束，胜利者为 ". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
                 // $msg .= "\n\n本次活动排名：\n1.\t\t". CQCode::At($user);
                 $deadObj = array_reverse($asinFightData['deadMember']);
+                $deadMember = array_keys($asinFightData['deadMember']);
+                $deadMember = array_reverse($deadMember);
                 Log::Debug('====>'.json_encode($deadObj));
                 $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user);
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
@@ -84,7 +86,7 @@ class _Meta_event extends Plugin {
                 // }
                 $i = 0;
                 foreach ($deadObj as $key => $value) {
-                    $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($key);
+                    $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($deadMember[$key]);
                     $i++;
                 }
                 return $event->sendTo(TargetType::Group,$groupId,$msg); 
@@ -176,7 +178,7 @@ class _Meta_event extends Plugin {
             $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld;
             // 判断是否死亡
             if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
-                $msg .= "\n".CQCode::At($hurtUser)." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
+                $msg .= "\n".$hurtUserData['groupId'].'-'.$callHurtUser." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 if (!isset($asinFightData['deadMember'])) $asinFightData['deadMember'] = array();
                 $asinFightData['deadMember'][$hurtUser] = $asinFightData['data'][$hurtUser];
                 unset($asinFightData['data'][$hurtUser]);

@@ -77,6 +77,7 @@ class _Meta_event extends Plugin {
                 $msg = "本次{$actName}活动结束，胜利者为 ". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user)."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
                 // $msg .= "\n\n本次活动排名：\n1.\t\t". CQCode::At($user);
                 $deadObj = array_reverse($asinFightData['deadMember']);
+                Log::Debug('====>'.json_encode($deadObj));
                 $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['groupId'] . '-' .CQCode::At($user);
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
                 //     $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);

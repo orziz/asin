@@ -116,7 +116,7 @@ class _Meta_event extends Plugin {
             $callAtkUser = $atkUserData['nickName'];
             // at受击者
             $callHurtUser = CQCode::At($hurtUser);
-            $callAtkUser = $hurtUserData['nickName'];
+            $callHurtUser = $hurtUserData['nickName'];
             // 攻击者当前血量
             $atkUserBld = $atkUserData['bld'];
             // 受击者当前血量

@@ -74,19 +74,19 @@ class _Meta_event extends Plugin {
                 $free = 2;
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
                 param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));
-                $msg = "本次{$actName}活动结束，胜利者为 ". $asinFightData['data'][$user]['groupId'] . '-' .$asinFightData['data'][$user]['nickName']."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
+                $msg = "本次{$actName}活动结束，胜利者为 [". $asinFightData['data'][$user]['groupId'] . ']' .$asinFightData['data'][$user]['nickName']."\n获得奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
                 // $msg .= "\n\n本次活动排名：\n1.\t\t". CQCode::At($user);
                 $deadObj = array_reverse($asinFightData['deadMember']);
                 $deadMember = array_keys($asinFightData['deadMember']);
                 $deadMember = array_reverse($deadMember);
-                $msg .= "\n\n本次活动排名：\n1.\t\t". $asinFightData['data'][$user]['groupId'] . '-' .$asinFightData['data'][$user]['nickName'];
+                $msg .= "\n\n本次活动排名：\n1.\t\t[". $asinFightData['data'][$user]['groupId'] . ']' .$asinFightData['data'][$user]['nickName'];
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
                 //     $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);
                 // }
                 $i = 0;
                 foreach ($deadObj as $key => $value) {
                     // $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($deadMember[$key]);
-                    $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.$value['nickName'];
+                    $msg .= "\n".($i+2).".\t\t[".$value['groupId'].']'.$value['nickName'];
                     $i++;
                 }
                 return $event->sendTo(TargetType::Group,$groupId,$msg); 
@@ -112,21 +112,21 @@ class _Meta_event extends Plugin {
             // 获取受击者数据
             $hurtUserData = $asinFightData['data'][$hurtUser];
             // at攻击者
-            $callAtkUser = CQCode::At($atkUser);
-            $callAtkUser = $atkUserData['nickName'];
+            // $callAtkUser = CQCode::At($atkUser);
+            $callAtkUser = '['.$atkUserData['groupId'].']'.$atkUserData['nickName'];
             // at受击者
-            $callHurtUser = CQCode::At($hurtUser);
-            $callHurtUser = $hurtUserData['nickName'];
+            // $callHurtUser = CQCode::At($hurtUser);
+            $callHurtUser = '['.$hurtUserData['groupId'].']'.$hurtUserData['nickName'];
             // 攻击者当前血量
             $atkUserBld = $atkUserData['bld'];
             // 受击者当前血量
             $hurtUserBld = $hurtUserData['bld'];
             // at攻击者（携带当前血量）
             // $callAtkUserWithBld = $callAtkUser.'（'.$atkUserBld.'）';
-            $callAtkUserWithBld = $atkUserData['groupId'].'-'.$callAtkUser.'（'.$atkUserBld.'）';
+            $callAtkUserWithBld = $callAtkUser.'（'.$atkUserBld.'）';
             // at受击者（携带当前血量）
             // $callHurtUserWithBld = $callHurtUser.'（'.$hurtUserBld.'）';
-            $callHurtUserWithBld = $hurtUserData['groupId'].'-'.$callHurtUser.'（'.$hurtUserBld.'）';
+            $callHurtUserWithBld = $callHurtUser.'（'.$hurtUserBld.'）';
             // 初始化伤害值
             $hurt = 0;
             // 初始化回复值
@@ -180,7 +180,7 @@ class _Meta_event extends Plugin {
             $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld;
             // 判断是否死亡
             if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
-                $msg .= "\n".$hurtUserData['groupId'].'-'.$callHurtUser." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
+                $msg .= "\n".$callHurtUser." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);
                 if (!isset($asinFightData['deadMember'])) $asinFightData['deadMember'] = array();
                 $asinFightData['deadMember'][$hurtUser] = $asinFightData['data'][$hurtUser];
                 unset($asinFightData['data'][$hurtUser]);

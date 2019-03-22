@@ -225,7 +225,4 @@ if(PHP_VERSION >= '7.0.0'){
     function mysql_fetch_fields($query) {
         return mysqli_fetch_fields($query);
     }
-    function mysql_ping() {
-        return mysqli_ping();
-    }
 }

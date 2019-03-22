@@ -13,7 +13,7 @@ for ($i=0; $i < count($checkinData); $i++) {
 }
 
 for ($k=0; $k < count($userScoreData); $k++) {
-    if (!in_array($userScoreData[$k]['qq'],array(1,37,1063614727,2201565219))) continue;
+    if (in_array($userScoreData[$k]['qq'],array(1,37,1063614727,2201565219))) continue;
     array_push($userScoreMember,$userScoreData[$k]['qq']);
 }
 

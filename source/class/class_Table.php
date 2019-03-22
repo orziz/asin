@@ -12,6 +12,14 @@ class Table extends DBConn
 	}
 
 	/**
+	 * 获取全部的数据
+	 * @return void
+	 */
+	public function getAllData() {
+		return $this->fetch();
+	}
+
+	/**
 	 * 根据主键获取信息
 	 * @param  string||array $pk 主键
 	 * @return [type]     [description]

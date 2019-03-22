@@ -19,11 +19,6 @@ for ($k=0; $k < count($userScoreData); $k++) {
 
 $outMember = array_diff($userScoreMember,$checkinMember);
 
-Log::Debug('userScoreMember==>'.json_encode($outMember));
-Log::Debug('checkinMember==>'.json_encode($checkinMember));
-Log::Debug('outMember==>'.json_encode($outMember));
-
 for ($j=0; $j < count($outMember); $j++) {
-    Log::Debug(json_encode($outMember));
     C::t('userscore')->setData($outMember[$j],array('score'=>0,'credit'=>0));
 }

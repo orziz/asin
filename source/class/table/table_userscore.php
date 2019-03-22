@@ -34,7 +34,7 @@ class table_userscore extends Table
 	 * @return [type]        [description]
 	 */
 	protected function updateData($pk,array $datas) {
-		if (isset($datas['score']) && $datas['score']) {
+		if (isset($datas['score'])) {
 			$score = (int)$datas['score'];
 			$datas['scorerank'] = $score*10000000000+(10000000000-time());
 		}

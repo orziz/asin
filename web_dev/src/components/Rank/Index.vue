@@ -6,7 +6,7 @@
 				<span class="nickname">姓名</span>
 				<span class="score">积分</span>
 			</li>
-			<li v-for="item in rankList">
+			<li v-for="(item,index) in rankList" :key="index">
 				<span class="rank">{{ item.rank }}</span>
 				<!-- <span class="nickname"><router-link :to="'/info/'+item.qq">{{ item.nickname }}</router-link></span> -->
 				<span class="nickname">{{ item.nickname }}</span>

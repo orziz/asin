@@ -56,5 +56,10 @@ export default new Router({
 		name: 'Admin/List',
 		// component: require('@/components/Admin/List').default
 		component: () => import('@/components/Admin/List')
+	},{
+		path: '/protocol/admin',
+		name: 'Protocol/Admin',
+		// component: require('@/components/Admin/List').default
+		component: () => import('@/components/Protocol/Admin')
 	}]
 })

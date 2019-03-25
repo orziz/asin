@@ -19,7 +19,6 @@ class _Notice extends Plugin {
 	//此处以正常群聊消息举例
 	public function coolq_notice_group_increase($event,$cq): ?Message{
         if (checkGroup($event,'asinGroup')) {
-            Log::Debug('？？？？');
 			$msg = CQCode::At($event->getId())."\n";
             $memberInfo = $cq->getGroupMemberInfo($event->groupId,$event->getId());
             $data = param_post('http://asin.ygame.cc/api.php',array(

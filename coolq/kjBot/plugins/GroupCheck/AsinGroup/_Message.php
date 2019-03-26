@@ -15,6 +15,7 @@ class _Message extends Plugin {
     //此处以正常群聊消息举例
     public function message_group_normal($event) {
         global $Modules;
+        $Queue = array();
         // $asinGroup = ['719994813','758507034'];
         // if (in_array($event->groupId,$asinGroup)) {
         if (checkGroup($event,'asinGroup')) {
@@ -34,13 +35,12 @@ class _Message extends Plugin {
             $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
             $Queue[] = $this->randomEvent($event);
-            return $Queue;
         }
         if (checkGroup($event,'asinFightGroup')) {
             $Modules['开始刺客大乱斗'] = \kjBotModule\Asin\Act\BeginAsinFight::class;
             $Modules['参加刺客大乱斗'] = \kjBotModule\Asin\Act\JoinAsinFight::class;
         }
-        return NULL;
+        return $Queue;
     }
 
     private function randomEvent($event) {

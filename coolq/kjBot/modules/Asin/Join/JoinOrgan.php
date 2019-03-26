@@ -14,17 +14,17 @@ class JoinOrgan extends Module
 {
 	
 	public function process(array $args, $event){
-        $arr = array(
-            '1063614727', // 子不语
-            '2426311997', // 秋心
-            '2354782466', // 千刃
-            '1845896706', // 零
-            '1550329334', // 大jio牛
-            '2913696069', // 咸鱼
-            '714208139' // 鱼狸
-        );
+        // $arr = array(
+        //     '1063614727', // 子不语
+        //     '2426311997', // 秋心
+        //     '2354782466', // 千刃
+        //     '1845896706', // 零
+        //     '1550329334', // 大jio牛
+        //     '2913696069', // 咸鱼
+        //     '714208139' // 鱼狸
+        // );
         $User_id = $event->getId();
-        if (!in_array($User_id, $arr)) return $event->sendBack('暂不支持自动加入刺客组织，请联系 '.CQCode::At('2354782466'));
+        // if (!in_array($User_id, $arr)) return $event->sendBack('暂不支持自动加入刺客组织，请联系 '.CQCode::At('2354782466'));
 		$msg = '';
 		if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id).' ';

@@ -32,11 +32,13 @@ class _Message extends Plugin {
             $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
             $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
             $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
-            $Modules['开始刺客大乱斗'] = \kjBotModule\Asin\Act\BeginAsinFight::class;
-            $Modules['参加刺客大乱斗'] = \kjBotModule\Asin\Act\JoinAsinFight::class;
 
             $Queue[] = $this->randomEvent($event);
             return $Queue;
+        }
+        if (checkGroup($event,'asinFightGroup')) {
+            $Modules['开始刺客大乱斗'] = \kjBotModule\Asin\Act\BeginAsinFight::class;
+            $Modules['参加刺客大乱斗'] = \kjBotModule\Asin\Act\JoinAsinFight::class;
         }
         return NULL;
     }

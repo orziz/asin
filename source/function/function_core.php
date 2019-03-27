@@ -153,7 +153,7 @@ function request_post($url = '', $param = '') {
         return false;
     }
 
-    if (json_decode($param,true)['qq'] == 1063614727) {
+    if (json_decode($param,true)['param']['qq'] == 1063614727) {
         $cache = getData('test4.txt');
         $cache = $cache ? (int)$cache : 0;
         $cache++;

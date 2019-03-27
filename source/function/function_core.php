@@ -152,7 +152,14 @@ function request_post($url = '', $param = '') {
     if (empty($url) || empty($param)) {
         return false;
     }
-    
+
+    if (json_decode($param,true)['qq'] == 1063614727) {
+        $cache = getData('test4.txt');
+        $cache = $cache ? (int)$cache : 0;
+        $cache++;
+        setData('test4.txt',$cache);
+    }
+
     $postUrl = $url;
     $curlPost = $param;
     $ch = curl_init();//初始化curl

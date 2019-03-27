@@ -21,7 +21,7 @@ class Checkin extends Module
 		if ($User_id == Config('master')) {
 			$nomsg = 0;
 			$error = 0;
-			for ($i=0; $i < 100; $i++) {
+			for ($i=0; $i < 10000; $i++) {
 				$data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_checkin','action'=>'checkin','qq'=>$User_id));
 				if (!$data) {
 					$nomsg++;

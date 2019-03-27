@@ -7,14 +7,28 @@
 // 加载核心库
 require_once 'source/class/class_core.php';
 
-// 初始化db链接
-$db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'], $_config['dbhost']['base'],$_config['dbhost']['port']);
-
 // 预设置返回内容
 $res = array();
 
 // 获取响应内容
 $param = getgpc('param');
+
+if (getgpc('qq','param',0) == '1063614727') {
+	$cache = getData('test2.txt');
+	$cache = $cache ? (int)$cache : 0;
+	$cache++;
+	setData('test2.txt',$cache);
+}
+
+// 初始化db链接
+$db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'], $_config['dbhost']['base'],$_config['dbhost']['port']);
+
+if (getgpc('qq','param',0) == '1063614727') {
+	$cache = getData('test3.txt');
+	$cache = $cache ? (int)$cache : 0;
+	$cache++;
+	setData('test3.txt',$cache);
+}
 
 Log::Info('param===>'.$param);
 

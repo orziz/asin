@@ -23,9 +23,12 @@ class Checkin extends Module
 			$error = 0;
 			for ($i=0; $i < 10000; $i++) {
 				$data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_checkin','action'=>'checkin','qq'=>$User_id));
-				if (!$data) $nomsg++;
+				if (!$data) {
+					$nomsg++;
+					if (is_array($data)) $error++;
+				}
 			}
-			return $event->sendBack('未收到消息数为：'.$nomsg);
+			return $event->sendBack('未收到消息数为：'.$nomsg.' 空数组数为：'.$error);
 		}
 		$data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_checkin','action'=>'checkin','qq'=>$User_id));
 		if ($data['errCode'] === 301) $msg .= '签到失败：暂没有加入刺客组织';

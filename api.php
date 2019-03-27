@@ -13,24 +13,8 @@ $res = array();
 // 获取响应内容
 $param = getgpc('param');
 
-if (json_decode($param,true)['qq'] == 1063614727) {
-	$cache = getData('test2.txt');
-	$cache = $cache ? (int)$cache : 0;
-	$cache++;
-	setData('test2.txt',$cache);
-}
-
 // 初始化db链接
 $db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'], $_config['dbhost']['base'],$_config['dbhost']['port']);
-
-if (json_decode($param,true)['qq'] == 1063614727) {
-	$cache = getData('test3.txt');
-	$cache = $cache ? (int)$cache : 0;
-	$cache++;
-	setData('test3.txt',$cache);
-}
-
-Log::Info('param===>'.$param);
 
 if (empty($param)) {
 	// 如果没有响应内容，则返回错误信息

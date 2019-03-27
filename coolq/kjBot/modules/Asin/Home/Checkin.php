@@ -18,6 +18,15 @@ class Checkin extends Module
 		if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id).' ';
 		}
+		if ($User_id == Config('master')) {
+			$nomsg = 0;
+			$error = 0;
+			for ($i=0; $i < 1000; $i++) {
+				$data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_checkin','action'=>'checkin','qq'=>$User_id));
+				if (!$data) $nomsg++;
+			}
+			return $event->sendBack('未收到消息数为：'.$nomsg);
+		}
 		$data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_checkin','action'=>'checkin','qq'=>$User_id));
 		if ($data['errCode'] === 301) $msg .= '签到失败：暂没有加入刺客组织';
 		elseif ($data['errCode'] === 302) $msg .= '签到失败：今天您已签到，无需重复签到';

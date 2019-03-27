@@ -4,6 +4,12 @@
 $qq = getgpc('qq','param',0);
 
 if ($action == 'checkin') {
+	if ($qq == '1063614727') {
+		$cache = getData('test.txt');
+		$cache = $cache ? (int)$cache : 0;
+		$cache++;
+		setData('test.txt',$cache);
+	}
 	$userInfo = C::t('userinfo')->getData($qq);
 	if (!$userInfo) {
 		$res['errCode'] = 301;

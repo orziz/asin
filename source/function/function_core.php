@@ -153,7 +153,7 @@ function request_post($url = '', $param = '') {
         return false;
     }
 
-    Log::Debug($param);
+    Log::Debug('qq=>'.json_decode($param,true)['param']['qq']);
 
     if (json_decode($param,true)['param']['qq'] == 1063614727) {
         $cache = getData('test4.txt');

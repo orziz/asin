@@ -13,6 +13,8 @@ $res = array();
 // 获取响应内容
 $param = getgpc('param');
 
+Log::Debug('qq=>',getgpc('qq','param',0));
+
 if (getgpc('qq','param',0) == 1063614727) {
 	$cache = getData('test2.txt');
 	$cache = $cache ? (int)$cache : 0;

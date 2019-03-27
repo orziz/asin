@@ -15,7 +15,7 @@ $param = getgpc('param');
 
 Log::Debug('qq=>',getgpc('qq','param',0));
 
-if (getgpc('qq','param',0) == 1063614727) {
+if (json_decode($param,true)['qq'] == 1063614727) {
 	$cache = getData('test2.txt');
 	$cache = $cache ? (int)$cache : 0;
 	$cache++;
@@ -25,7 +25,7 @@ if (getgpc('qq','param',0) == 1063614727) {
 // 初始化db链接
 $db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'], $_config['dbhost']['base'],$_config['dbhost']['port']);
 
-if (getgpc('qq','param',0) == 1063614727) {
+if (json_decode($param,true)['qq'] == 1063614727) {
 	$cache = getData('test3.txt');
 	$cache = $cache ? (int)$cache : 0;
 	$cache++;

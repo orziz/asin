@@ -52,7 +52,7 @@ class table_userscore extends Table
 		$data = $this->getData($qq);
 		if (!$data) return false;
 		if ($data['rank']) return $data['rank'];
-		$rank = $this->fetch('scorerank > '.$data['scorerank'],'count(qq) AS count');
+		$rank = $this->fetch('scorerank > '.$data['scorerank'] . " AND rank = ''",'count(qq) AS count');
 		$rank = $rank[0]['count'];
 		$rank = (int)$rank + 1;
 		$rank = $rank + 1001;

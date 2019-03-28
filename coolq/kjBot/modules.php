@@ -9,4 +9,5 @@ $Modules = [
 	'移出群组' => kjBotModule\Common\Manager\RmGroup::class,
 	'添加赞助' => kjBotModule\Common\Support\Add::class,
 	'查看赞助' => kjBotModule\Common\Support\View::class,
+	'roll' => kjBotModule\Common\Roll\Roll::class,
 ];

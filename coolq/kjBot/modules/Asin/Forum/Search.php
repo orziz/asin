@@ -23,7 +23,7 @@ class Search extends Module
         for ($i=0; $i < min(count($forumList),10); $i++) { 
             $_forum = strip_tags($forumList[$i]['subject']);
             $_forum .= "\nhttps://567.pohun.com/thread-".$forumList[$i]['tid'].'.htm';
-            array_push($_forum);
+            array_push($forumArr,$_forum);
         }
         $msg = implode("\n\n",$forumArr);
         return $event->sendBack($msg);

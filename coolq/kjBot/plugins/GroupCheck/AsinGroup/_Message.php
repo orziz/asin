@@ -36,6 +36,7 @@ class _Message extends Plugin {
 
             $Modules['搜索'] = \kjBotModule\Asin\Forum\Search::class;
             $Modules['发帖'] = \kjBotModule\Asin\Forum\Threadcreate::class;
+            $Modules['注册社区'] = \kjBotModule\Asin\Forum\RegWithQQ::class;
 
             $Queue[] = $this->randomEvent($event);
         }

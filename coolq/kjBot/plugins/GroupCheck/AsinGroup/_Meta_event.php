@@ -27,7 +27,7 @@ class _Meta_event extends Plugin {
 		$groupData = DataStorage::GetData('GroupAuth.json');
         $groupData = $groupData ? json_decode($groupData,true) : array();
         $groupId = isset($groupData['asinFightGroup']) ? $groupData['asinFightGroup'] : '719994813';
-        $readyTime = 1;
+        $readyTime = 10;
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
         // status==》0：关闭；1：开启；2：准备；3：开始；4：过程中
@@ -89,7 +89,7 @@ class _Meta_event extends Plugin {
                     $msg .= "\n".($i+2).".\t\t[".$value['groupId'].']'.$value['nickName'];
                     $i++;
                 }
-                $msgData = "ajax=1&fromBot=1&fid=3&subject=【刺客大乱斗】排名_".getTime()."&doctype=2&message=".implode("\n\n",explode('\n',$msg));
+                $msgData = "ajax=1&fromBot=1&fid=3&subject=【刺客大乱斗】排名_".getTime('Y-m-d_H:i:s')."&doctype=2&message=".implode("\n\n",explode('\n',$msg));
                 request_post('https://567.pohun.com/?thread-create.htm',$msgData);
                 return $event->sendTo(TargetType::Group,$groupId,$msg); 
             }

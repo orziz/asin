@@ -18,7 +18,6 @@ class Search extends Module
         $searchText = $args[1];
         $url = "https://567.pohun.com/?search-".$searchText.".htm?ajax=1";
         $forumCache = param_post($url,array('qq'=>$event->getId()));
-        return $event->sendBack(gettype($forumCache));
         $forumList = $forumCache['message'];
         $forumArr = array();
         for ($i=0; $i < min(count($forumList),10); $i++) { 

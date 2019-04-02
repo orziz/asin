@@ -35,6 +35,7 @@ class _Message extends Plugin {
             $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
             $Modules['搜索'] = \kjBotModule\Asin\Forum\Search::class;
+            $Modules['发帖'] = \kjBotModule\Asin\Forum\Threadcreate::class;
 
             $Queue[] = $this->randomEvent($event);
         }

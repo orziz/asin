@@ -17,7 +17,7 @@ class Search extends Module
         if (!isset($args[1])) q('请输入搜索值');
         $searchText = $args[1];
         $url = "https://567.pohun.com/?search-".$searchText.".htm?ajax=1";
-        $forumCache = param_post($url,array());
+        $forumCache = param_post($url,array('qq'=>$event->getId()));
         return $event->sendBack(gettype($forumCache));
         $forumList = $forumCache['message'];
         $forumArr = array();

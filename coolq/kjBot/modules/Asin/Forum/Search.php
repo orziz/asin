@@ -16,6 +16,8 @@ class Search extends Module
 	public function process(array $args, $event){
         if (!isset($args[1])) q('请输入搜索值');
         $searchText = $args[1];
+        $findPost = isset($args[2]) ? '0' : '1';
+        $searchText .= '-'.$findPost;
         $url = "https://567.pohun.com/?search-".$searchText.".htm?ajax=1";
         $forumCache = param_post($url,array('qq'=>$event->getId()));
         $forumList = $forumCache['message'];

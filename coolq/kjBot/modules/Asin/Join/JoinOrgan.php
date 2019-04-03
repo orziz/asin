@@ -30,7 +30,33 @@ class JoinOrgan extends Module
 			$msg .= CQCode::At($User_id).' ';
         }
         $userInfo = $event->getSenderInfo();
-        $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'newUserInfo', 'qq'=>$User_id,'nickname'=>$userInfo->nickname));
+        $data = param_post('http://asin.ygame.cc/api.php',array(
+            'mod' => 'home_userinfo',
+            'action'=>'newUserInfo',
+            'qq'=>$User_id,
+            'nickname'=>$userInfo->nickname,
+            'age'=>$userInfo->age,
+            'sex'=>0,
+            'height'=>170,
+            'weight'=>50,
+            'str'=>20,
+            'dex'=>20,
+            'con'=>20,
+            'ine'=>20,
+            'wis'=>20,
+            'cha'=>20,
+            'free'=>20,
+            'arms'=>'',
+            'introduce'=>'此人太过神秘，暂时没有相关信息',
+            'skill1'=>'',
+            'skill2'=>'',
+            'skill3'=>'',
+            'skill4'=>'',
+            'score'=>0,
+            'credit'=>0,
+            'rank'=>0
+        ));
+
         if ($data['errCode'] === 200) {
             $msg .= $data['data']['nickname'].'，刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank'].' ，请努力提高排名吧！';
             return $event->sendBack($msg);

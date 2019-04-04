@@ -143,7 +143,7 @@ class _Meta_event extends Plugin {
                     // 触发加血事件
                     $addBld = mt_rand(0,$hurtUserData['maxBld']-$hurtUserBld);
                     $isCrit = mt_rand(0,$hurtUserData['crit']) > 50;
-                    if ($isCrit) $addBld = min($hurtUserData['maxBld'],$addBld*2);
+                    if ($isCrit) $addBld = min($hurtUserData['maxBld']-$hurtUserBld,$addBld*2);
                     $eventList = [
                         "{$callHurtUserWithBld} 感知到一股洪荒之力，回复了 {$addBld} 点血量",
                         "{$callHurtUserWithBld} 觉得自己应该回复一下血量了，所以回复了 {$addBld} 点血量",

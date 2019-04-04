@@ -49,11 +49,11 @@ class Say extends Module
         }
 
         if ($toGroup) {
-            return $event->sendTo(TargetType::Group, $id, $args[3]);
+            return $event->sendTo(TargetType::Group, $id, implode("\n",explode('\n',$args[3])));
         } elseif ($toPerson) {
-            return $event->sendTo(TargetType::Private, $id, $args[3]);
+            return $event->sendTo(TargetType::Private, $id, implode("\n",explode('\n',$args[3])));
         } else {
-            return $event->sendBack($args[1]);
+            return $event->sendBack(implode("\n",explode('\n',$args[1])));
         }
 	}
 }

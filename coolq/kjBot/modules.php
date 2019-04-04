@@ -1,6 +1,7 @@
 <?php
 
 $Modules = [
+	'测试' => kjBotModule\Common\Home\Test::class,
 	'say' => kjBotModule\Common\Home\Say::class,
 	'你好' => kjBotModule\Hello\Main::class,
 	'踢出' => kjBotModule\Common\GroupManager\Kick::class,

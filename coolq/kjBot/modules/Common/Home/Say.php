@@ -7,6 +7,7 @@ use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
 use kjBot\Framework\DataStorage;
 use kjBot\Framework\TargetType;
+use \Log;
 
 /**
  * 
@@ -16,6 +17,10 @@ class Say extends Module
 	
 	public function process(array $args, $event){
         checkAuth($event);
+
+        $toGroup = false;
+        $toPerson = false;
+
         if (!isset($args[1])) q('没有参数');
         switch ($args[1]) {
             case '-escape':
@@ -44,6 +49,7 @@ class Say extends Module
         }
 
         if ($toGroup) {
+            Log::Debug('-->'.$id);
             return $event->sendTo(TargetType::Group, $id, $args[3]);
         } elseif ($toPerson) {
             return $event->sendTo(TargetType::Private, $id, $args[3]);

@@ -34,9 +34,9 @@ class Say extends Module
                 if (!isset($args[2])) q('没有指定接收对象');
                 if (!isset($args[3])) q('没有指定发送内容');
                 $id = $args[2];
-                $authArr = DataStorage::GetData('Auth.json');
-                $authArr = $authArr ? json_decode($authArr,true) : array();
-                $id = isset($authArr[$id]) ? $authArr[$id] : $id;
+                $groupData = DataStorage::GetData('GroupAuth.json');
+	            $groupData = $groupData ? json_decode($groupData,true) : array();
+                $id = isset($groupData[$id]) ? $groupData[$id] : $id;
                 break;
             case '-toPerson':
                 $toPerson = true;
@@ -49,7 +49,6 @@ class Say extends Module
         }
 
         if ($toGroup) {
-            Log::Debug('-->'.$id);
             return $event->sendTo(TargetType::Group, $id, $args[3]);
         } elseif ($toPerson) {
             return $event->sendTo(TargetType::Private, $id, $args[3]);

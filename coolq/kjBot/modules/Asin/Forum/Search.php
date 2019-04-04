@@ -23,7 +23,7 @@ class Search extends Module
         $forumList = $forumCache['message'];
         if (count($forumList) <= 0) return $event->sendBack('没有相关消息');
         $forumArr = array();
-        for ($i=0; $i < min(count($forumList),10); $i++) { 
+        for ($i=0; $i < min(count($forumList),5); $i++) { 
             $_forum = strip_tags($forumList[$i]['subject']);
             $_forum .= "\nhttps://567.pohun.com/?thread-".$forumList[$i]['tid'].'.htm';
             array_push($forumArr,$_forum);

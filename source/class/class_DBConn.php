@@ -25,6 +25,7 @@ class DBConn extends mysqli
         $passwd = $this->passwd ?? $_config['dbhost']['pwd'];
         $base = $this->base ?? $_config['dbhost']['base'];
         $port = $this->port ?? $_config['dbhost']['port'];
+        $charset = $this->charset ?? $_config['dbhost']['dbcharset']; 
 
         // $baseName = implode('_',array($host,$user,$passwd,$base,$port));
         // if (isset($conn[$baseName])) return $conn[$baseName];
@@ -38,8 +39,8 @@ class DBConn extends mysqli
         }
 
         // 别问，问就是 utf-8
-        $this->query('set names utf8');
-        $this->query('set character set utf8');
+        $this->query("set names $charset");
+        $this->query("set character set $charset");
     }
 
     /**
@@ -144,6 +145,7 @@ class DBConn extends mysqli
      */
     public function fetch($check='',$field='*',$order='',$limits=0,$limitn=0) {
         $where = $this->getWhere($check);
+        if (!$field || $field == '*') $field = implode(',',array_keys($this->getFields()));
         $sql = sprintf("SELECT %s FROM %s",$field,self::table($this->_table));
         if (!empty($where)) $sql .= sprintf(" WHERE %s",$where);
         if (!empty($order)) $sql .= sprintf(" ORDER BY %s",$order);

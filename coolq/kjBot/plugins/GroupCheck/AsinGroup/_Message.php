@@ -34,6 +34,8 @@ class _Message extends Plugin {
             $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
             $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
+            $Modules['增加积分'] = \kjBotModule\Asin\Home\AddScore::class;
+
             $Modules['搜索'] = \kjBotModule\Asin\Forum\Search::class;
             $Modules['发帖'] = \kjBotModule\Asin\Forum\Threadcreate::class;
             $Modules['注册社区'] = \kjBotModule\Asin\Forum\RegWithQQ::class;

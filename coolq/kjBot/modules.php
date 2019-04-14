@@ -7,6 +7,7 @@ $Modules = [
 	'踢出' => kjBotModule\Common\GroupManager\Kick::class,
 	'获取我的信息' => kjBotModule\Common\Home\SenderInfo::class,
 	'添加权限' => kjBotModule\Common\Manager\AddAuth::class,
+	'移出权限' => kjBotModule\Common\Manager\RmAuth::class,
 	'添加群组' => kjBotModule\Common\Manager\AddGroup::class,
 	'移出群组' => kjBotModule\Common\Manager\RmGroup::class,
 	'添加赞助' => kjBotModule\Common\Support\Add::class,

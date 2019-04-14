@@ -18,6 +18,7 @@ class _Notice extends Plugin {
 	public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
 	//此处以正常群聊消息举例
 	public function coolq_notice_group_increase($event,$cq): ?Message{
+        if (isBan($event)) return NULL;
         if (checkGroup($event,'asinGroup')) {
 			$msg = CQCode::At($event->getId())."\n";
             $memberInfo = $cq->getGroupMemberInfo($event->groupId,$event->getId());

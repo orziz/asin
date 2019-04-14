@@ -7,6 +7,15 @@ use kjBot\Framework\TargetType;
 use kjBot\Framework\Message;
 use kjBot\Framework\DataStorage;
 
+function isBan($event) {
+	if (!$event) return false;
+	$userId = $event->getId();
+	$authArr = DataStorage::GetData('Auth.json');
+	$authArr = $authArr ? json_decode($authArr,true) : array();
+	if (isset($authArr['baner']) && in_array($userId,$authArr['baner'])) return true;
+	return false;
+}
+
 function checkAuth($event,$level='admin') {
 	global $Config;
 	if (!$event) return false;

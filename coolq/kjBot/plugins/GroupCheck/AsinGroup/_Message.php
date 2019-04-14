@@ -15,6 +15,7 @@ class _Message extends Plugin {
     //此处以正常群聊消息举例
     public function message_group_normal($event) {
         global $Modules;
+        if (isBan($event)) return NULL;
         $Queue = array();
         // $asinGroup = ['719994813','758507034'];
         // if (in_array($event->groupId,$asinGroup)) {

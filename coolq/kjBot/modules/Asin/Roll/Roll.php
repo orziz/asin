@@ -17,12 +17,12 @@ class Roll extends Module
         $msg = '';
         $User_id = $event->getId();
         if ($event->fromGroup()) $msg .= CQCode::At($User_id)."\n";
-        $data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_userinfo','action'=>'getUserInfo','qq'=>$User_id));
+        $data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_userinfo','action'=>'getUserInfoByWeb','qq'=>$User_id));
         if ($data['errCode'] !== 200) {
             $msg .= $data['errMsg'];
         } else {
             $userInfo = $data['data'];
-            $msg .= json_encode($userInfo)."\n";
+            // $msg .= json_encode($userInfo)."\n";
             $msg .= "您目前魅力为 ".$userInfo['cha']."\n";
             $min = isset($args[2]) ? intval($args[1]) : 1;
             $max = isset($args[1]) ? isset($args[2]) ? intval($args[2]) : intval($args[1]) : 100;

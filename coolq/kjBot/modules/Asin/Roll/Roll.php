@@ -66,7 +66,11 @@ class Roll extends Module
                 $max = isset($args[2]) ? isset($args[3]) ? intval($args[3]) : intval($args[2]) : 100;
                 $max2 = floor($max/2+0.5);
                 if ($max2 === 0 || $max == $max2) $rand = 0;
-                else $rand = mt_rand($min, $max2).'+'.floor(mt_rand(1,$userInfo[$type]/2)/(50/($max-$max2))+0.5);
+                else {
+                    $rand1 = mt_rand($min, $max2);
+                    $rand2 = floor(mt_rand(1,$userInfo[$type]/2)/(50/($max-$max2))+0.5);
+                    $rand = $rand1+$rand2.'('.$rand1.'+'.$rand2.')';
+                }
             } else {
                 $min = isset($args[2]) ? intval($args[1]) : 1;
                 $max = isset($args[1]) ? isset($args[2]) ? intval($args[2]) : intval($args[1]) : 100;

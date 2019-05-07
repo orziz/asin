@@ -75,7 +75,7 @@ class _Message extends Plugin {
      * @return void
      */
     private function eatWhat($event) {
-        if ($this->hasMsg($event,'吃什么')) {
+        if ($this->hasMsg($event,'吃什么') || $this->hasMsg($event,'吃啥')) {
             $arr = array('炒菜','米线','干锅','金拱门','老娘舅','开封菜','鑫花溪','赛百味','重庆小面','冒菜','麻辣烫');
             $msg = '';
             $User_id = $event->getId();

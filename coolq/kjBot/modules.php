@@ -13,4 +13,5 @@ $Modules = [
 	'添加赞助' => kjBotModule\Common\Support\Add::class,
 	'查看赞助' => kjBotModule\Common\Support\View::class,
 	'roll' => kjBotModule\Common\Roll\Roll::class,
+	'吃什么' => kjBotModule\Common\Roll\Eat::class,
 ];

@@ -5,6 +5,7 @@ namespace kjBotModule\Asin\Home;
 use kjBot\Framework\Module;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
+use \Log;
 
 /**
  * 
@@ -19,6 +20,7 @@ class Checkin extends Module
 			$msg .= CQCode::At($User_id).' ';
 		}
 		$data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'home_checkin','action'=>'checkin','qq'=>$User_id));
+		if (!$data) Log::Error('没收到数据！！！');
 		if ($data['errCode'] === 301) $msg .= '签到失败：暂没有加入刺客组织';
 		elseif ($data['errCode'] === 302) $msg .= '签到失败：今天您已签到，无需重复签到';
 		elseif ($data['errCode'] === 303) $msg .= '签到失败';

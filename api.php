@@ -13,6 +13,9 @@ $res = array();
 // 获取响应内容
 $param = getgpc('param');
 
+Log::Debug('POST===>' . json_encode($_POST));
+Log::Debug('PARAM==>' . $param);
+
 // 初始化db链接
 $db = new DBConn($_config['dbhost']['ip'], $_config['dbhost']['user'], $_config['dbhost']['pwd'], $_config['dbhost']['base'],$_config['dbhost']['port']);
 

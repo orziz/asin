@@ -21,6 +21,7 @@ class Message{
     }
 
     function send($cq){
+        return;
         if($this->type === TargetType::Group){
             if($this->async){
                 $cq->sendGroupMsgAsync($this->id, $this->msg, $this->escape);

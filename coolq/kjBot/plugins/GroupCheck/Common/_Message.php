@@ -18,6 +18,7 @@ class _Message extends Plugin {
         $Queue[] = $this->checkLovely($event);
         $Queue[] = $this->checkSupport($event);
         $Queue[] = $this->eatWhat($event);
+        $Queue[] = $this->sscheck($event);
         return $Queue;
     }
 
@@ -95,6 +96,7 @@ class _Message extends Plugin {
                 break;
             }
         }
+        return NULL;
     }
 
     private function hasMsg($event,string $msg) {

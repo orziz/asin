@@ -91,7 +91,7 @@ class _Message extends Plugin {
         $ssArr = ['6.4','64','89','6月4号','光腚','广电','闭关锁国','文化局','焚化局','GCD','gcd','天朝','6/4'];
         for ($i = 0; $i < count($ssArr); $i++) {
             if ($this->hasMsg($event,$ssArr[$i])) {
-                Log::Debug('msg--->',$event->getMsg());
+                Log::Debug('msg--->'.$event->getMsg());
                 global $kjBot;
                 $kjBot->getCoolQ()->deleteMsg($event->msgId);
                 break;

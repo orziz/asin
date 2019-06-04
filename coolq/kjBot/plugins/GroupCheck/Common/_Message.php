@@ -86,6 +86,17 @@ class _Message extends Plugin {
         return NULL;
     }
 
+    private function sscheck($event) {
+        $ssArr = ['==='];
+        for ($i = 0; $i < conut($ssArr); $i++) {
+            if ($this->hasMsg($event,$ssArr[$i])) {
+                global $kjBot;
+                $kjBot->getCoolQ()->deleteMsg($event->message_id);
+                break;
+            }
+        }
+    }
+
     private function hasMsg($event,string $msg) {
         return (false !== strpos($event->getMsg(), $msg));
     }

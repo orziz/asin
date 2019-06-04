@@ -93,6 +93,7 @@ class _Message extends Plugin {
             if ($this->hasMsg($event,$ssArr[$i])) {
                 global $kjBot;
                 Log::Debug('message_id--->'.($event->message_id));
+                Log::Debug('event-->'.json_encode($event));
                 $kjBot->getCoolQ()->deleteMsg($event->message_id);
                 break;
             }

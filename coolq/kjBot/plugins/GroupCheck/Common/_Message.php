@@ -89,7 +89,7 @@ class _Message extends Plugin {
 
     private function sscheck($event) {
         $ssArr = ['==='];
-        for ($i = 0; $i < conut($ssArr); $i++) {
+        for ($i = 0; $i < count($ssArr); $i++) {
             if ($this->hasMsg($event,$ssArr[$i])) {
                 global $kjBot;
                 $kjBot->getCoolQ()->deleteMsg($event->message_id);

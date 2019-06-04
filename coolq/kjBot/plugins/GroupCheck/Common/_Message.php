@@ -88,7 +88,7 @@ class _Message extends Plugin {
     }
 
     private function sscheck($event) {
-        $ssArr = ['6.4','64','89','6月4号','光腚','广电','闭关锁国','文化局','焚化局','GCD','gcd','天朝','6/4'];
+        $ssArr = ['6.4','64','89','6月4号','光腚','广电','闭关锁国','文化局','焚化局','GCD','gcd','天朝','6/4','http','url.cn','t.cn'];
         for ($i = 0; $i < count($ssArr); $i++) {
             if ($this->hasMsg($event,$ssArr[$i]) && !$this->hasMsg($event,'[CQ:image')) {
                 global $kjBot;

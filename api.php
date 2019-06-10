@@ -4,6 +4,8 @@
  * 此文件为 api 唯一入口文件
  */
 
+require_once './source/class/class_Log.php';
+
 Log::Debug('POST===>' . json_encode($_POST));
 
 // 加载核心库

@@ -4,6 +4,8 @@
  * 此文件为 api 唯一入口文件
  */
 
+Log::Debug('POST===>' . json_encode($_POST));
+
 // 加载核心库
 require_once 'source/class/class_core.php';
 
@@ -13,7 +15,6 @@ $res = array();
 // 获取响应内容
 $param = getgpc('param');
 
-Log::Debug('POST===>' . json_encode($_POST));
 Log::Debug('PARAM==>' . $param);
 
 // 初始化db链接

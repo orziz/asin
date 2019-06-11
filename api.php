@@ -4,8 +4,8 @@
  * 此文件为 api 唯一入口文件
  */
 
-define('DIR_ROOT', dirname(__FILE__));
-require_once './source/class/class_Log.php';
+// define('DIR_ROOT', dirname(__FILE__));
+// require_once './source/class/class_Log.php';
 
 Log::Debug('POST===>' . json_encode($_POST));
 

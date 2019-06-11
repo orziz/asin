@@ -4,6 +4,7 @@
  * 此文件为 api 唯一入口文件
  */
 
+define('DIR_ROOT', substr(dirname(__FILE__), 0, -12));
 require_once './source/class/class_Log.php';
 
 Log::Debug('POST===>' . json_encode($_POST));

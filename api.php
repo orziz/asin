@@ -7,7 +7,7 @@
 // define('DIR_ROOT', dirname(__FILE__));
 // require_once './source/class/class_Log.php';
 
-Log::Debug('POST===>' . json_encode($_POST));
+// Log::Debug('POST===>' . json_encode($_POST));
 
 // 加载核心库
 require_once 'source/class/class_core.php';

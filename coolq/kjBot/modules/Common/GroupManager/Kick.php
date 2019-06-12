@@ -35,7 +35,7 @@ class Kick extends Module {
 
             $num = $num ?? 2000;
             $time = $time ?? 30;
-            $checkTime = $checkTime ?? time()-24*60*60*$time;
+            $checkTime = time()-24*60*60*$time;
             $userList = $cq->getGroupMemberList($event->groupId);
             $num = min($num,count($userList));
             $k = 0;

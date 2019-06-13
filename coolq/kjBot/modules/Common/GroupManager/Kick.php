@@ -45,6 +45,7 @@ class Kick extends Module {
                 if ($memberInfo->last_sent_time < $checkTime) {
                     $k++;
                     if ($k >= $num) break;
+                    Log::Debug('kick->'.$memberInfo->user_id);
                     $cq->setGroupKick($event->groupId,$memberInfo->user_id);
                 }
             }

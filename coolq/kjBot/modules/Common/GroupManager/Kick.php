@@ -41,12 +41,12 @@ class Kick extends Module {
             $k = 0;
             for ($i=0; $i < count($userList); $i++) {
                 $memberInfo = $userList[$i];
-                if ($memberInfo->user_id == Config('master')) continue;
-                if ($memberInfo->last_sent_time < $checkTime) {
+                if ($memberInfo->last_sent_time < $checkTime && $memberInfo->user_id != Config('master')) {
                     $k++;
                     if ($k >= $num) break;
-                    Log::Debug('kick->'.$memberInfo->user_id);
                     $cq->setGroupKick($event->groupId,$memberInfo->user_id);
+                } else {
+                    if ($num < count($userList)) $num++;
                 }
             }
         } else {

@@ -39,13 +39,17 @@ class Kick extends Module {
             $userList = $cq->getGroupMemberList($event->groupId);
             $num = min($num,count($userList));
             $k = 0;
-            for ($i=0; $i < count($userList); $i++) {
+            // 开始循环踢人
+            for ($i=0; $i < $num; $i++) {
                 $memberInfo = $userList[$i];
-                if ($memberInfo->last_sent_time < $checkTime && $memberInfo->user_id != Config('master')) {
-                    $k++;
-                    if ($k >= $num) break;
+                // 判断是否满足踢出条件
+                if ($memberInfo->last_sent_time < $checkTime
+                    && $memberInfo->user_id != Config('master')
+                    && $memberInfo->role != 'owner'
+                    && $memberInfo->role != 'admin') {
                     $cq->setGroupKick($event->groupId,$memberInfo->user_id);
                 } else {
+                    // 如果不满足踢出条件，就增加最大计数值
                     if ($num < count($userList)) $num++;
                 }
             }

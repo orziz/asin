@@ -21,7 +21,7 @@ class OpenMod extends Module
         for ($i = 1; $i < count($args); $i++) {
             if ($args[$i] == '开启功能' || $args[$i] == '关闭功能') continue;
             if (in_array($args[$i], $closeMods)) {
-                array_diff($closeMods, array($args[$i]));
+                $closeMods = array_diff($closeMods, array($args[$i]));
                 array_push($temp, $args[$i]);
             }
         }

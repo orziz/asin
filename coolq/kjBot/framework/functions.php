@@ -7,6 +7,12 @@ use kjBot\Framework\TargetType;
 use kjBot\Framework\Message;
 use kjBot\Framework\DataStorage;
 
+/**
+ * 是否在黑名单内
+ *
+ * @param [type] $event
+ * @return boolean
+ */
 function isBan($event) {
 	if (!$event) return false;
 	$userId = $event->getId();
@@ -16,6 +22,13 @@ function isBan($event) {
 	return false;
 }
 
+/**
+ * 检查权限
+ *
+ * @param [type] $event
+ * @param string $level 最低等级
+ * @return void
+ */
 function checkAuth($event,$level='admin') {
 	global $Config;
 	if (!$event) return false;
@@ -43,6 +56,13 @@ function checkAuth($event,$level='admin') {
 	
 }
 
+/**
+ * 检查群权限
+ *
+ * @param [type] $event
+ * @param [type] $group
+ * @return void
+ */
 function checkGroup($event,$group) {
 	if (!$event->groupId) return false;
 	if (!$group) return false;

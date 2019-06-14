@@ -5,6 +5,7 @@ use kjBot\Framework\Plugin;
 use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
+use kjBot\Framework\DataStorage;
 use \Log;
 
 class _Message extends Plugin {
@@ -49,6 +50,13 @@ class _Message extends Plugin {
             $Modules['开始刺客大乱斗'] = \kjBotModule\Asin\Act\BeginAsinFight::class;
             $Modules['参加刺客大乱斗'] = \kjBotModule\Asin\Act\JoinAsinFight::class;
         }
+
+        $closeMods = DataStorage::GetData('CloseMods.json');
+        $closeMods = $closeMods ? json_decode($closeMods, true) : array();
+        foreach ($Modules as $key => $value) {
+            if (in_array($key, $closeMods)) $Modules[$key] = \kjBotModule\Common\Manager\CloseModMsg::class;
+        }
+
         return $Queue;
     }
 

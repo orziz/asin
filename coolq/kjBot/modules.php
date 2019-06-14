@@ -13,4 +13,7 @@ $Modules = [
 	'添加赞助' => kjBotModule\Common\Support\Add::class,
 	'查看赞助' => kjBotModule\Common\Support\View::class,
 	'roll' => kjBotModule\Common\Roll\Roll::class,
+
+	'关闭功能' => kjBotModule\Common\Manager\CloseMod::class,
+	'开启功能' => kjBotModule\Common\Manager\OpenMod::class,
 ];

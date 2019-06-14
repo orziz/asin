@@ -27,7 +27,7 @@ class CloseMod extends Module
         }
 		$isSuccess = DataStorage::SetData('CloseMods.json',json_encode($closeMods));
 		if ($isSuccess) {
-            if (count($temp) > 0) return $event->sendBack('将 '. implode('，',$temp) .' 关闭成功');
+            if (count($temp) > 0) return $event->sendBack('将 '. implode('、',$temp) .' 关闭成功');
             return $event->sendBack('已关闭');
         }
         return $event->sendBack('关闭失败');

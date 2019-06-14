@@ -27,7 +27,7 @@ class OpenMod extends Module
         }
 		$isSuccess = DataStorage::SetData('CloseMods.json',json_encode($closeMods));
 		if ($isSuccess) {
-            if (count($temp) > 0) return $event->sendBack('将 '. implode('，',$temp) .' 开启成功');
+            if (count($temp) > 0) return $event->sendBack('将 '. implode('、',$temp) .' 开启成功');
             return $event->sendBack('已开启');
         }
         return $event->sendBack('开启失败');

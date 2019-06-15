@@ -1,4 +1,6 @@
 {
+    "name": "kjBot",
+    "description": "",
     "license": "MIT",
     "type": "project",
     "autoload": {

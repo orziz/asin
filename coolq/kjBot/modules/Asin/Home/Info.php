@@ -49,6 +49,7 @@ class Info extends Module
             $msg .= '请求数据失败';
         } else {
             if ($data['code'] === 200) {
+                Log::Debug('====>');
                 $userInfo = $data['data'];
                 $msg .= '姓名：'.$userInfo['username']."\n";
                 // $msg .= '排名：'.$userInfo['rank']."\n";

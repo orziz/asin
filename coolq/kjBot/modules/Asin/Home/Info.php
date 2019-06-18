@@ -68,7 +68,7 @@ class Info extends Module
                 $msg .= $data['errMsg'];
             }
         }
-        Log::Debug($data);
+        // Log::Debug($data);
         return $event->sendBack($msg);
     }
 }

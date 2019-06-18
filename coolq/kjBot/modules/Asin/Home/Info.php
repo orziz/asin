@@ -38,12 +38,13 @@ class Info extends Module
         //     $msg .= '加入组织时间：'.$userInfo['ctime'];
         // }
         // $msg .= "\n（该功能由 ".CQCode::At(1845896706).' 赞助）';
-        $data = request_post('http://localhost/13567_www/plugin.php?id=ph_dztojson:ph_dztojson',json_decode(array(
+        $data = request_get('http://13567.org/plugin.php',array(
+            'id' => 'ph_dztojson:ph_dztojson',
             'ccode' => '971109',
             'mod' => 'user_user',
             'action' => 'getUserInfo',
             'qq' => $qq
-        )));
+        ));
         Log::Debug($data);
         // return $event->sendBack($msg);
     }

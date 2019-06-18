@@ -143,6 +143,24 @@ function createtable($sql, $dbcharset) {
 }
 
 /**
+ * get请求
+ *
+ * @param string $url
+ * @param array $param
+ * @return void
+ */
+function request_get($url = '', $param = array()) {
+    if (empty($url)) return;
+    $_param = array();
+    foreach ($param as $key => $value) {
+        array_push($_param, $key.'='.$value);
+    }
+    $url = $url.'?'. implode('&', $_param);
+    echo $url."\n";
+    return file_get_contents($url);
+}
+
+/**
  * post提交
  * @param  string $url   提交到的url
  * @param  string $param 提交的参数

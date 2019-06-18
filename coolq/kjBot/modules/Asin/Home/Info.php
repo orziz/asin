@@ -48,6 +48,7 @@ class Info extends Module
         if (!$data) {
             $msg .= '请求数据失败';
         } else {
+            $data = json_decode($data, true);
             if ($data['code'] === 200) {
                 Log::Debug('====>');
                 $userInfo = $data['data'];

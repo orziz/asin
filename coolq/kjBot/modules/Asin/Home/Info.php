@@ -59,7 +59,7 @@ class Info extends Module
                 $msg .= '声望：'.$userInfo['userCount']['extcredits1']."\n";
                 $msg .= '暗币：'.$userInfo['userCount']['extcredits2']."\n";
                 // $msg .= '年龄：'.$userInfo['age']."\n";
-                $msg .= '性别：'.($userInfo['userProfile']['gender'] === 0 ? '未知' : ($userInfo['sex'] === 1 ? '男' : '女'))."\n";
+                $msg .= '性别：'.($userInfo['userProfile']['gender'] == '0' ? '未知' : ($userInfo['userProfile']['gender'] == '1' ? '男' : '女'))."\n";
                 // $msg .= '身高：'.$userInfo['height']." cm\n";
                 // $msg .= '体重：'.$userInfo['weight']." kg\n";
                 $msg .= '介绍：'.$userInfo['userFieldForum']['sightml']."\n";

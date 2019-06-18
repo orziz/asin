@@ -45,6 +45,7 @@ class Info extends Module
             'action' => 'getUserInfo',
             'qq' => $qq
         ));
+        Log::Debug($data);
         if (!$data) {
             $msg .= '请求数据失败';
         } else {
@@ -68,7 +69,6 @@ class Info extends Module
                 $msg .= $data['errMsg'];
             }
         }
-        // Log::Debug($data);
         return $event->sendBack($msg);
     }
 }

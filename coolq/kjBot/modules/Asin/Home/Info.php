@@ -44,7 +44,7 @@ class Info extends Module
             'action' => 'getUserInfo',
             'qq' => $qq
         )));
-        Log::Debug(json_encode($data));
+        Log::Debug($data);
         // return $event->sendBack($msg);
     }
 }

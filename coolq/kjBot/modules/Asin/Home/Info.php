@@ -45,7 +45,7 @@ class Info extends Module
             'action' => 'getUserInfo',
             'qq' => $qq
         ));
-        Log::Debug($data);
+        // Log::Debug($data);
         if (!$data) {
             $msg .= '请求数据失败';
         } else {

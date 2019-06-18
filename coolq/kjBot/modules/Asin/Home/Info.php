@@ -45,7 +45,27 @@ class Info extends Module
             'action' => 'getUserInfo',
             'qq' => $qq
         ));
-        Log::Debug($data);
-        // return $event->sendBack($msg);
+        if (!$data) {
+            $msg .= '请求数据失败';
+        } else {
+            if ($data === 200) {
+                $userInfo = $data['data'];
+                $msg .= '姓名：'.$userInfo['username']."\n";
+                // $msg .= '排名：'.$userInfo['rank']."\n";
+                $msg .= '积分：'.$userInfo['credits']."\n";
+                $msg .= '声望：'.$userInfo['userCount']['extcredits1']."\n";
+                $msg .= '暗币：'.$userInfo['userCount']['extcredits2']."\n";
+                // $msg .= '年龄：'.$userInfo['age']."\n";
+                // $msg .= '性别：'.($userInfo['sex'] === 0 ? '未知' : ($userInfo['sex'] === 1 ? '男' : '女'))."\n";
+                // $msg .= '身高：'.$userInfo['height']." cm\n";
+                // $msg .= '体重：'.$userInfo['weight']." kg\n";
+                // $msg .= '介绍：'.$userInfo['introduce']."\n";
+                $msg .= '加入组织时间：'. getTime('Y-m-d H:i:s', $userInfo['regdate']);
+            } else {
+                $msg .= $data['errMsg'];
+            }
+        }
+        // Log::Debug($data);
+        return $event->sendBack($msg);
     }
 }

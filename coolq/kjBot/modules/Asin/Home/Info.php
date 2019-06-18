@@ -48,7 +48,7 @@ class Info extends Module
         if (!$data) {
             $msg .= '请求数据失败';
         } else {
-            if ($data === 200) {
+            if ($data['code'] === 200) {
                 $userInfo = $data['data'];
                 $msg .= '姓名：'.$userInfo['username']."\n";
                 // $msg .= '排名：'.$userInfo['rank']."\n";
@@ -65,7 +65,6 @@ class Info extends Module
                 $msg .= $data['errMsg'];
             }
         }
-        Log::Debug($data);
         return $event->sendBack($msg);
     }
 }

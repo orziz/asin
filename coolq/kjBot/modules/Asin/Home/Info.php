@@ -53,7 +53,7 @@ class Info extends Module
             if ($data['code'] === 200) {
                 $userInfo = $data['data'];
                 $msg .= '姓名：'.$userInfo['username']."\n";
-                // $msg .= '排名：'.$userInfo['rank']."\n";
+                $msg .= '排名：'.$userInfo['rank']."\n";
                 $msg .= '称号：'.$userInfo['grouptitle']."\n";
                 $msg .= '积分：'.$userInfo['credits']."\n";
                 $msg .= '声望：'.$userInfo['userCount']['extcredits1']."\n";

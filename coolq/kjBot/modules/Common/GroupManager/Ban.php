@@ -32,7 +32,7 @@ class Ban extends Module {
         }
 
         try{
-            $cq-setGroupBan($event->groupId, $atqq, (strtotime($time)-time()));
+            $cq->setGroupBan($event->groupId, $atqq, (strtotime($time)-time()));
         }catch(\Exception $e){}
 
     }

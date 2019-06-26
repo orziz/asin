@@ -24,10 +24,10 @@ class Ban extends Module {
         $atqq = isset($args[1]) ? parseQQ($args[1]) : null;
         $time='';
         for ($i = 2; $i < count($args); $i++) {
-            if ($args[$i] == 'd') $args[$i] = 'days';
-            if ($args[$i] == 'h') $args[$i] = 'hours';
-            if ($args[$i] == 'm') $args[$i] = 'minutes';
-            if ($args[$i] == 's') $args[$i] = 'seconds';
+            if ($args[$i] == 'd' || $args[$i] == '天') $args[$i] = 'days';
+            if ($args[$i] == 'h' || $args[$i] == '时') $args[$i] = 'hours';
+            if ($args[$i] == 'm' || $args[$i] == '分') $args[$i] = 'minutes';
+            if ($args[$i] == 's' || $args[$i] == '秒') $args[$i] = 'seconds';
             $time .= $args[$i].' ';
         }
 

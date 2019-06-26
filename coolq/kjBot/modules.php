@@ -5,6 +5,7 @@ $Modules = [
 	'say' => kjBotModule\Common\Home\Say::class,
 	'你好' => kjBotModule\Hello\Main::class,
 	'踢出' => kjBotModule\Common\GroupManager\Kick::class,
+	'禁言' => kjBotModule\Common\GroupManager\Ban::class,
 	'获取我的信息' => kjBotModule\Common\Home\SenderInfo::class,
 	'添加权限' => kjBotModule\Common\Manager\AddAuth::class,
 	'移出权限' => kjBotModule\Common\Manager\RmAuth::class,

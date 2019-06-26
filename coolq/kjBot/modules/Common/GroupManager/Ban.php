@@ -22,6 +22,7 @@ class Ban extends Module {
 
         date_default_timezone_set('Asia/Shanghai');
         $atqq = isset($args[1]) ? parseQQ($args[1]) : null;
+        if ($atqq == Config('master')) q('该用户不可被禁言');
         $time='';
         for ($i = 2; $i < count($args); $i++) {
             if ($args[$i] == 'd' || $args[$i] == '天') $args[$i] = 'days';

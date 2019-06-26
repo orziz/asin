@@ -17,7 +17,7 @@ class Ban extends Module {
 
     // public function processWithCQ(array $args, $event,$cq){
     public function processWithCQ(array $args, $event, $cq = NULL) {
-        checkAuth($event);
+        checkAuth($event, 'group');
         if(!($event instanceof GroupMessageEvent)) q('只有群聊才能使用本命令');
 
         date_default_timezone_set('Asia/Shanghai');

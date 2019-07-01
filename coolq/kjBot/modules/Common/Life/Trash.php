@@ -32,7 +32,7 @@ class Trash extends Module
             $cache2 = explode('</span>', $cache1[1]);
             $msg .= $cache2[0];
         // }
-        return $event->sendBack($msg);
+        return $event->sendBack($a);
         // echo $cache2[0];
     }
 }

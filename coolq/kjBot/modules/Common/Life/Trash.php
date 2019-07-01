@@ -25,6 +25,8 @@ class Trash extends Module
         $kw = urlencode($args[1]);
         $a = file_get_contents("http://trash.lhsr.cn/sites/feiguan/trashTypes_2/TrashQuery.aspx?kw={$kw}");
 
+        $msg .= "http://trash.lhsr.cn/sites/feiguan/trashTypes_2/TrashQuery.aspx?kw={$kw}";
+
         $cache1 = explode('<span style="font-size:.6rem; color:#2A2925;">', $a);
         if (count($cache1) < 2) {
             $msg .= '你是什么垃圾？';

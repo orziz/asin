@@ -28,6 +28,8 @@ class Trash extends Module
         Log::Debug($a);
 
         $cache1 = explode('<span style="font-size:.6rem; color:#2A2925;">', $a);
+
+        Log::Debug('-->'.count($cache1));
         // if (count($cache1) < 2) {
         //     $msg .= '你是什么垃圾？';
         // } else {

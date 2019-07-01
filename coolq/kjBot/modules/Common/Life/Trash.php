@@ -22,7 +22,7 @@ class Trash extends Module
         if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id)." ";
         }
-        $kw = $args[1];
+        $kw = urlencode($args[1]);
         $a = file_get_contents("http://trash.lhsr.cn/sites/feiguan/trashTypes_2/TrashQuery.aspx?kw={$kw}");
 
         $cache1 = explode('<span style="font-size:.6rem; color:#2A2925;">', $a);

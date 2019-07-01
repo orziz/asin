@@ -16,4 +16,6 @@ $Modules = [
 
 	'关闭功能' => kjBotModule\Common\Manager\CloseMod::class,
 	'开启功能' => kjBotModule\Common\Manager\OpenMod::class,
+
+	'垃圾分类' => kjBotModule\Common\Life\Trash::class,
 ];

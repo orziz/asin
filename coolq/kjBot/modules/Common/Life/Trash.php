@@ -31,7 +31,7 @@ class Trash extends Module
             $msg .= '你是什么垃圾？';
         } else {
             $cache2 = explode('<b>', $cache1[0]);
-            $msg .= $cache2[count($cache2)-1];
+            $msg .= $args[1] . ' 是 ' . $cache2[count($cache2)-1];
         }
         return $event->sendBack($msg);
         // echo $cache2[0];

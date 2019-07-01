@@ -32,6 +32,7 @@ class Trash extends Module
         //     $msg .= '你是什么垃圾？';
         // } else {
             $cache2 = explode('</span>', $cache1[1]);
+            Log::Debug('==>'.count($cache2));
             $msg .= $cache2[0];
         // }
         return $event->sendBack($msg);

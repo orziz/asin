@@ -26,6 +26,7 @@ class Trash extends Module
         $kw = urlencode($args[1]);
         $a = file_get_contents("http://trash.lhsr.cn/sites/feiguan/trashTypes_2/TrashQuery.aspx?kw={$kw}");
 
+        Log::Debug($a);
 
         $cache1 = explode('是指：', $a);
         if (count($cache1) < 2) {

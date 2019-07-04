@@ -19,6 +19,7 @@ class Trash extends Module
         if (!isset($args[1])) q('请输入要查询的物品');
         $msg = "";
         $User_id = $event->getId();
+        Log::Debug('垃圾分类-->'.$User_id);
         if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id)."  ";
         }

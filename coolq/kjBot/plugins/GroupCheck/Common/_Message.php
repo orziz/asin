@@ -99,6 +99,16 @@ class _Message extends Plugin {
         return NULL;
     }
 
+    private function checkSeason2($event) {
+        if ($this->hasMsg($event, '第二季')) {
+            $msg = '';
+            if ($event->fromGroup()) $msg .= CQCode::At($event->getId());
+            $msg .= '别问，问就是不知道，再问就禁言';
+            return $event->sendMsg($msg);
+        }
+        return NULL;
+    }
+
     private function hasMsg($event,string $msg) {
         return (false !== strpos($event->getMsg(), $msg));
     }

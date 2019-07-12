@@ -18,6 +18,7 @@ class _Message extends Plugin {
         $Queue[] = $this->checkLovely($event);
         $Queue[] = $this->checkSupport($event);
         $Queue[] = $this->eatWhat($event);
+        $Queue[] = $this->checkSeason2($event);
         // $Queue[] = $this->sscheck($event);
         return $Queue;
     }

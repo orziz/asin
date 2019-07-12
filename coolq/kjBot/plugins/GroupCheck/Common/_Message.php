@@ -105,7 +105,7 @@ class _Message extends Plugin {
             $msg = '';
             if ($event->fromGroup()) $msg .= CQCode::At($event->getId());
             $msg .= '别问，问就是不知道，再问就禁言';
-            return $event->sendMsg($msg);
+            return $event->sendBack($msg);
         }
         return NULL;
     }

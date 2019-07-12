@@ -103,8 +103,13 @@ class _Message extends Plugin {
     private function checkSeason2($event) {
         if ($this->hasMsg($event, '第二季')) {
             $msg = '';
-            if ($event->fromGroup()) $msg .= CQCode::At($event->getId());
-            $msg .= '别问，问就是不知道，再问就禁言';
+            if ($event->fromGroup()) $msg .= CQCode::At($event->getId()) . ' ';
+            $msgList = [
+                "别问，问就是不知道，再问就禁言",
+                "不会百度吗？憨批",
+                "注册个微博要钱？"
+            ];
+            $msg .= $msgList[mt_rand(0,count($msgList)-1)];
             return $event->sendBack($msg);
         }
         return NULL;

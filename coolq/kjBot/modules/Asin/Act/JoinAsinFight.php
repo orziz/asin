@@ -52,7 +52,7 @@ class JoinAsinFight extends Module
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             $msgList = [
                 "好运光环笼罩着TA",
-                "经过系统评定，本次胜利概率为 ".mt_rand(0,100).'%',
+                "经过系统评定，本次胜利概率为 ".mt_rand(1,99).'%',
                 "有望获得胜利",
                 "不出意外的话，应该是获胜不了的",
                 "听说TA又想去看情侣秀恩爱了",

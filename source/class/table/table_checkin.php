@@ -80,4 +80,14 @@ class table_checkin extends Table
 		return $this->fetch(null,'*','countrank DESC');
 	}
 
+	/**
+	 * 清空某人签到信息
+	 *
+	 * @param [type] $qq
+	 * @return void
+	 */
+	public function cleanDataByQQ($qq) {
+		return $this->update(array('count'=>0,'countrank'=>0),array('qq'=>$qq));
+	}
+
 }

@@ -21,7 +21,7 @@ class _Message extends Plugin {
         $Queue[] = $this->eatWhat($event);
         $Queue[] = $this->checkSeason2($event);
         // $Queue[] = $this->sscheck($event);
-        $Queue[] = $this->forwardAsin($event);
+        // $Queue[] = $this->forwardAsin($event);
         return $Queue;
     }
 

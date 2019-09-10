@@ -20,6 +20,7 @@ class _Message extends Plugin {
         $Queue[] = $this->eatWhat($event);
         $Queue[] = $this->checkSeason2($event);
         // $Queue[] = $this->sscheck($event);
+        $Queue[] = $this->forwardAsin($event);
         return $Queue;
     }
 
@@ -111,6 +112,15 @@ class _Message extends Plugin {
             ];
             $msg .= $msgList[mt_rand(0,count($msgList)-1)];
             return $event->sendBack($msg);
+        }
+        return NULL;
+    }
+
+    private function forwardAsin($event) {
+        if ($event->fromGroup()) {
+            if ($event->groupId == '758507034' && $event->getId() == Config('master')) {
+                return $event->sendTo(TargetType::Group, '697329381', $event->getMsg());
+            }
         }
         return NULL;
     }

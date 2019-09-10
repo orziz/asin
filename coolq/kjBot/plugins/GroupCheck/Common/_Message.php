@@ -119,8 +119,8 @@ class _Message extends Plugin {
 
     private function forwardAsin($event) {
         if ($event->fromGroup()) {
-            if ($event->groupId == '758507034' && $event->getId() == Config('master')) {
-                return $event->sendTo(TargetType::Group, '697329381', $event->getMsg());
+            if ($event->groupId == '794476874' && $event->getId() == '3593266839') {
+                return $event->sendTo(TargetType::Group, '697329381', '鸡大保在管理群说：'.$event->getMsg());
             }
         }
         return NULL;

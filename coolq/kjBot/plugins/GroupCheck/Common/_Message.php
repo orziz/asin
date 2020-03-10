@@ -16,6 +16,7 @@ class _Message extends Plugin {
     //此处以正常群聊消息举例
     public function message($event) {
         global $Plugins;
+        \Log::Debug('??????');
         \Log::Debug(json_encode($Plugins));
         $Queue[] = $this->checkLifeQestion($event);
         $Queue[] = $this->checkLovely($event);

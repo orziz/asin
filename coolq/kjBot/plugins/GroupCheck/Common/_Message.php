@@ -15,6 +15,8 @@ class _Message extends Plugin {
     public function beforePostMessage(&$queue){} //若声明不需要捕获消息队列可不实现本方法
     //此处以正常群聊消息举例
     public function message($event) {
+        global $Plugins;
+        \Log::Debug(json_encode($Plugins));
         $Queue[] = $this->checkLifeQestion($event);
         $Queue[] = $this->checkLovely($event);
         $Queue[] = $this->checkSupport($event);

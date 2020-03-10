@@ -71,9 +71,9 @@ function checkGroup($event,$group) {
 	if (!$group) return false;
 	\Log::Debug('3---');
 	$groupData = DataStorage::GetData('GroupAuth.json');
-	\Log::Debug('4---'.$groupData);
+	\Log::Debug('4---'.$groupData.$event->groupId);
 	$groupData = $groupData ? json_decode($groupData,true) : array();
-	\Log::Debug('5---');
+	\Log::Debug('5---'.$group);
 	if (!isset($groupData[$group])) return false;
 	\Log::Debug('6---' . ' ' . $event->groupId . ' ' . $group);
 	return in_array($event->groupId,$groupData[$group]);

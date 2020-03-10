@@ -65,16 +65,10 @@ function checkAuth($event,$level='admin') {
  * @return void
  */
 function checkGroup($event,$group) {
-	\Log::Debug('1---');
 	if (!$event->groupId) return false;
-	\Log::Debug('2---');
 	if (!$group) return false;
-	\Log::Debug('3---');
 	$groupData = DataStorage::GetData('GroupAuth.json');
-	\Log::Debug('4---'.$groupData.$event->groupId);
 	$groupData = $groupData ? json_decode($groupData,true) : array();
-	\Log::Debug('5---'.$group);
 	if (!isset($groupData[$group])) return false;
-	\Log::Debug('6---' . ' ' . $event->groupId . ' ' . $group);
 	return in_array($event->groupId,$groupData[$group]);
 }

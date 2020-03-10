@@ -13,8 +13,7 @@ $event = kjBot\Framework\Event\EventFactory::createEventFrom($postData);
 $pluginMethods = event2pluginMethods($event);
 
 try{
-
-\Log::Debug(json_encode($Plugins));
+    
 foreach($Plugins as $pluginName){
     $plugin = (new ReflectionClass($pluginName))->newInstance();
     if($plugin instanceof kjBot\Framework\Plugin){

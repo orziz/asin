@@ -19,6 +19,7 @@ class _Message extends Plugin {
         if (isBan($event)) return NULL;
         $Queue = array();
         if (checkGroup($event,'trpg')) {
+            $Modules['你好'] = \kjBotModule\TRPG\Hello::class;
             $Modules['.ck'] = \kjBotModule\TRPG\CK::class;
         }
 

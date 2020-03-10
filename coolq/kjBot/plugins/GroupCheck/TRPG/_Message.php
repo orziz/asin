@@ -19,19 +19,17 @@ class _Message extends Plugin {
         \Log::Debug('-------in!!!');
         if (isBan($event)) return NULL;
         \Log::Debug('-------out!!!');
-        $Queue[] = json_encode($event);
         if (checkGroup($event,'trpg')) {
             $Modules['你好'] = \kjBotModule\TRPG\Hello::class;
             $Modules['.ck'] = \kjBotModule\TRPG\CK::class;
         }
-
+        \Log::Debug(json_encode($Modules));
         $closeMods = DataStorage::GetData('CloseMods.json');
         $closeMods = $closeMods ? json_decode($closeMods, true) : array();
         foreach ($Modules as $key => $value) {
             if (in_array($key, $closeMods)) $Modules[$key] = \kjBotModule\Common\Manager\CloseModMsg::class;
         }
 
-        return $Queue;
     }
 
 }

@@ -18,6 +18,7 @@ class _Message extends Plugin {
         global $Modules;
         \Log::Debug('-------in!!!');
         if (isBan($event)) return NULL;
+        \Log::Debug('-------out!!!');
         $Queue[] = json_encode($event);
         if (checkGroup($event,'trpg')) {
             $Modules['你好'] = \kjBotModule\TRPG\Hello::class;

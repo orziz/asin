@@ -17,7 +17,7 @@ class _Message extends Plugin {
     public function message_group_normal($event) {
         global $Modules;
         if (isBan($event)) return NULL;
-        $Queue = array();
+        $Queue[] = json_encode($event);
         if (checkGroup($event,'trpg')) {
             $Modules['你好'] = \kjBotModule\TRPG\Hello::class;
             $Modules['.ck'] = \kjBotModule\TRPG\CK::class;

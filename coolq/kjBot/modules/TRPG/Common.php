@@ -13,35 +13,15 @@ use \Log;
  */
 class Common extends Module
 {
-	
-	public function process(array $args, $event){
-        if(!($event instanceof GroupMessageEvent)) q('只有群聊才能使用本命令');
-        $User_id = $event->getId();
-        $msg = CQCode::At($User_id)."\n";
-        $text = DataStorage::GetData(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $User_id.'.json')));
-        if (!$text) q('没有您的信息，请导入');
-        $attrs = json_decode($text, true);
-        if (!isset($args[1])) q('请输入属性');
-        if (!isset($attrs[$args[1]])) q('属性不正确');
-        $num = mt_rand(1, 100);
-        $attr = $attrs[$args[1]];
-        $msg .= 'San Check：1d100：'. $num . '，检测 '.$args[1]. '('. $attr .') ';
-        if ($num <= 5) {
-            $msg .= '大成功！！！';
-        } else {
-            if ($num >= 96 && $num > $attr) {
-                $msg .= '大失败！！！';
-            } elseif ($num <= $attr) {
-                $msg .= '成功';
-            } else {
-                $msg .= '失败';
-            }
-        }
-		return $event->sendBack($msg);
-    }
 
     protected function setAttrs() {
 
+    }
+
+    protected function getAttrs($file) {
+        $text = DataStorage::GetData($file);
+        if (!$text) q('没有您的信息，请导入');
+        return json_decode($text, true);
     }
     
     /**
@@ -51,11 +31,47 @@ class Common extends Module
      */
     protected function getAttr($file, $name) {
         if (!$name) q('没有该属性');
-        $text = DataStorage::GetData($file);
-        if (!$text) q('没有您的信息，请导入');
-        $attrs = json_decode($text, true);
+        $attrs = $this->getAttrs($file);
         if (!isset($attrs[$name])) q('属性不正确');
         return $attrs[$name];
+    }
+
+    /**
+     * 属性检定
+     *
+     * @param [type] $num
+     * @param [type] $name
+     * @param string $type
+     * @param integer $min
+     * @param integer $max
+     * @return string
+     */
+    protected function rollCheck($num, $name, $type = 'o', $min = 1, $max = 100):string {
+        switch ($type) {
+            case 'd':
+                $text = '困难';
+                break;
+            case 'e':
+                $text = '极难';
+                break;
+            default:
+                $text = '普通';
+                break;
+        }
+        $n = mt_rand($min, $max);
+        $text .= "检定：{$min}d{$max}：{$num}，检定 {$name}({$num}) ";
+        if ($n <= 5) {
+            $text .= '大成功！！！';
+        } else {
+            if ($n >= 96 && $n > $num) {
+                $text .= '大失败！！！';
+            } elseif ($n <= $num) {
+                $text .= '成功';
+            } else {
+                $text .= '失败';
+            }
+        }
+        return $text;
     }
     
 }

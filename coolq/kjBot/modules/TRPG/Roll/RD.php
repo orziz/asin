@@ -2,41 +2,27 @@
 
 namespace kjBotModule\TRPG\Roll;
 
-use kjBot\Framework\Module;
+use kjBotModule\TRPG\Common;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
-use kjBot\Framework\DataStorage;
 use \Log;
 
 /**
  * 
  */
-class RD extends Module
+class RD extends Common
 {
 	
 	public function process(array $args, $event){
         if(!($event instanceof GroupMessageEvent)) q('只有群聊才能使用本命令');
+        if (!isset($args[1])) q('请输入属性');
         $User_id = $event->getId();
         $msg = CQCode::At($User_id)."\n";
-        $text = DataStorage::GetData(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $User_id.'.json')));
-        if (!$text) q('没有您的信息，请导入');
-        $attrs = json_decode($text, true);
-        if (!isset($args[1])) q('请输入属性');
-        if (!isset($attrs[$args[1]])) q('属性不正确');
-        $num = mt_rand(1, 100);
-        $attr = floor($attrs[$args[1]]/2);
-        $msg .= '困难检定：1d100：'. $num . '，检测 '.$args[1]. '('. $attr .') ';
-        if ($num <= 5) {
-            $msg .= '大成功！！！';
-        } else {
-            if ($num >= 96 && $num > $attr) {
-                $msg .= '大失败！！！';
-            } elseif ($num <= $attr) {
-                $msg .= '成功';
-            } else {
-                $msg .= '失败';
-            }
-        }
+        // 获取属性
+        $attr = $this->getAttr(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $User_id.'.json')), $args[1]);
+        $attr = floor($attr/2);
+        // 通用属性检定
+        $msg .= $this->rollCheck($attr, $args[1], 'd');
 		return $event->sendBack($msg);
 	}
 }

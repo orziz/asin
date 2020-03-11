@@ -18,21 +18,10 @@ class RO extends Common
         if (!isset($args[1])) q('请输入属性');
         $User_id = $event->getId();
         $msg = CQCode::At($User_id)."\n";
-        $num = mt_rand(1, 100);
         // 获取属性
         $attr = $this->getAttr(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $User_id.'.json')), $args[1]);
-        $msg .= '普通检定：1d100：'. $num . '，检测 '.$args[1]. '('. $attr .') ';
-        if ($num <= 5) {
-            $msg .= '大成功！！！';
-        } else {
-            if ($num >= 96 && $num > $attr) {
-                $msg .= '大失败！！！';
-            } elseif ($num <= $attr) {
-                $msg .= '成功';
-            } else {
-                $msg .= '失败';
-            }
-        }
+        // 通用属性检定
+        $msg .= $this->rollCheck($attr, $args[1]);
 		return $event->sendBack($msg);
 	}
 }

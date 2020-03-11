@@ -20,7 +20,7 @@ class ST extends Module
         $msg = CQCode::At($event->getId())." ";
         if (!isset($args[1])) q('参数不正确');
         $attrs = $this->marthText($args[1]);
-        $isSuccess = DataStorage::SetData(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $event->getId().'.json')), $attrs);
+        $isSuccess = DataStorage::SetData(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $event->getId().'.json')), json_encode($attrs));
         if ($isSuccess) {
             $msg .= '导入成功';
         } else {

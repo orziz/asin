@@ -20,6 +20,7 @@ class _Message extends Plugin {
         if (checkGroup($event,'trpg')) {
             $Modules['你好'] = \kjBotModule\TRPG\Hello::class;
             $Modules['.ck'] = \kjBotModule\TRPG\CK::class;
+            $Modules['.st'] = \kjBotModule\TRPG\ST::class;
         }
         $closeMods = DataStorage::GetData('CloseMods.json');
         $closeMods = $closeMods ? json_decode($closeMods, true) : array();

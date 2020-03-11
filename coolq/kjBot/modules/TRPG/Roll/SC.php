@@ -30,7 +30,7 @@ class SC extends Common
         $needCheck = isset($args[2]);
         if ($needCheck) {
             $isPass = mt_rand(1, 100) < $san;
-            $msg .= 'san值检定 ' . $isPass ? '成功' : '失败' . "\n";
+            $msg .= 'san值检定 ' . ($isPass ? '成功' : '失败') . "\n";
             if (!$isPass) $scArr = $this->parserCheck($args[2]);
         }
         $num = mt_rand($scArr[0], $scArr[1]);

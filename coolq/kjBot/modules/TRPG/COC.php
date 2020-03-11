@@ -11,7 +11,7 @@ use \Log;
 /**
  * 帮助文档
  */
-class CK extends Module
+class COC extends Module
 {
 	
 	public function process(array $args, $event) {
@@ -32,7 +32,7 @@ class CK extends Module
         $all = 0;
         $text = '';
         foreach ($attrs as $key => $value) {
-            $num = mt_rand(0, 99);
+            $num = mt_rand(3, 18)*5;
             $attrs[$key] = $num;
             $all += $num;
             $text .= $key . ':' . $num . '，';

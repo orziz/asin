@@ -21,6 +21,9 @@ class _Message extends Plugin {
             $Modules['你好'] = \kjBotModule\TRPG\Hello::class;
             $Modules['.ck'] = \kjBotModule\TRPG\CK::class;
             $Modules['.st'] = \kjBotModule\TRPG\ST::class;
+            $Modules['.ro'] = \kjBotModule\TRPG\Roll\RO::class;
+            $Modules['.rd'] = \kjBotModule\TRPG\Roll\RD::class;
+            $Modules['.re'] = \kjBotModule\TRPG\Roll\RE::class;
         }
         $closeMods = DataStorage::GetData('CloseMods.json');
         $closeMods = $closeMods ? json_decode($closeMods, true) : array();

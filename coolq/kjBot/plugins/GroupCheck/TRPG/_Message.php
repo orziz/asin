@@ -21,12 +21,14 @@ class _Message extends Plugin {
             $Modules['你好'] = \kjBotModule\TRPG\Hello::class;
             $Modules['.coc'] = \kjBotModule\TRPG\COC::class;
             $Modules['.st'] = \kjBotModule\TRPG\ST::class;
+            $Modules['.show'] = \kjBotModule\TRPG\Show::class;
+            $Modules['.help'] = \kjBotModule\TRPG\Help::class;
             $Modules['.ro'] = \kjBotModule\TRPG\Roll\RO::class;
             $Modules['.rd'] = \kjBotModule\TRPG\Roll\RD::class;
             $Modules['.re'] = \kjBotModule\TRPG\Roll\RE::class;
             $Modules['.sc'] = \kjBotModule\TRPG\Roll\SC::class;
-            $Modules['.show'] = \kjBotModule\TRPG\Show::class;
-            $Modules['.help'] = \kjBotModule\TRPG\Help::class;
+            $Modules['.ha'] = \kjBotModule\TRPG\Roll\HA::class;
+            $Modules['.hs'] = \kjBotModule\TRPG\Roll\HS::class;
         }
         $closeMods = DataStorage::GetData('CloseMods.json');
         $closeMods = $closeMods ? json_decode($closeMods, true) : array();

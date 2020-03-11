@@ -16,7 +16,7 @@ class SC extends Common
 	
 	public function process(array $args, $event){
         if(!($event instanceof GroupMessageEvent)) q('只有群聊才能使用本命令');
-        if (!isset($args[1])) q('检定最大值');
+        if (!isset($args[1])) q('缺少检定最大值');
         $User_id = $event->getId();
         $msg = CQCode::At($User_id)."\n";
         // 获取san值
@@ -44,7 +44,7 @@ class SC extends Common
         // 写入数据
         $isSuccess = DataStorage::SetData(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $User_id.'.json')), json_encode($attrs));
         if ($isSuccess) {
-            $msg .= "San Check：{$scArr[0]}d{$scArr[1]}：". $num;
+            $msg .= "San Check：{$scArr[0]}d{$scArr[1]}：{$num}，剩余 san值 {$attrs['san']}";
         } else {
             $msg .= '检定失败，请重试（如连续多次，联系子不语检查）';
         }

@@ -20,7 +20,7 @@ class Show extends Common
         $msg = CQCode::At($event->getId())." ";
         if (!isset($args[1])) q('参数不正确');
         $attr = $this->getAttr(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $event->getId().'.json')), $args[1]);
-        $msm .= "您当前的 {$args[1]} 为 {$attr}";
+        $msg .= "您当前的 {$args[1]} 为 {$attr}";
 		return $event->sendBack($msg); 
     }
 

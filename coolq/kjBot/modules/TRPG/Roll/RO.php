@@ -24,13 +24,14 @@ class RO extends Module
         if (!isset($args[1])) q('请输入属性');
         if (!isset($attrs[$args[1]])) q('属性不正确');
         $num = mt_rand(1, 100);
-        $msg .= '1d100：'. $num . '，检测 '.$args[1]. ' ';
+        $attr = $attrs[$args[1]];
+        $msg .= '普通检定：1d100：'. $num . '，检测 '.$args[1]. '('. $attr .') ';
         if ($num <= 5) {
             $msg .= '大成功！！！';
         } else {
-            if ($num >= 96 && $num > $attrs[$args[1]]) {
+            if ($num >= 96 && $num > $attr) {
                 $msg .= '大失败！！！';
-            } elseif ($num <= $attrs[$args[1]]) {
+            } elseif ($num <= $attr) {
                 $msg .= '成功';
             } else {
                 $msg .= '失败';

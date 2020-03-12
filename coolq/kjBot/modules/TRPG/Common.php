@@ -59,7 +59,7 @@ class Common extends Module
                 break;
         }
         $n = mt_rand($min, $max);
-        $text .= "检定：{$min}d{$max}：{$num}，检定 {$name}({$num}) ";
+        $text .= "检定：{$min}d{$max}：{$n}，检定 {$name}({$num}) ";
         if ($n <= 5) {
             $text .= '大成功！！！';
         } else {

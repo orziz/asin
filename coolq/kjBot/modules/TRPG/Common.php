@@ -25,7 +25,6 @@ class Common extends Module
     }
 
     protected function getAllAttrs($file) {
-        q('出bug了？');
         $attrs = $this->getAllAttrs($file);
         $text = '';
         foreach ($attrs as $key => $value) {

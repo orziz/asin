@@ -28,7 +28,7 @@ class Common extends Module
         $attrs = $this->getAllAttrs($file);
         $text = '';
         foreach ($attrs as $key => $value) {
-            $text .= "$key:$value,";
+            $text .= "$key$value";
         }
         return $text;
     }

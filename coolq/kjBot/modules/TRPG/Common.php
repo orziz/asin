@@ -25,10 +25,10 @@ class Common extends Module
     }
 
     protected function getAllAttrs($file) {
-        $attrs = $this->getAllAttrs($file);
+        $attrs = $this->getAttrs($file);
         $text = '';
         foreach ($attrs as $key => $value) {
-            $text .= "$key$value";
+            $text .= "$key:$value,";
         }
         return $text;
     }

@@ -22,7 +22,6 @@ class Show extends Common
         if (!isset($args[1])) q('参数不正确');
         if ($args[1] == '-all') {
             $msg .= $this->getAllAttrs(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $atqq.'.json')));
-            q('啥问题？？');
         } else {
             $attr = $this->getAttr(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $atqq.'.json')), $args[1]);
             $msg .= "您当前的 {$args[1]} 为 {$attr}";

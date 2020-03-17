@@ -21,6 +21,7 @@ class Show extends Common
         $msg = CQCode::At($event->getId())." ";
         if (!isset($args[1])) q('参数不正确');
         if ($args[1] == '-all') {
+            q('啥问题？');
             $msg .= $this->getAllAttrs(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $atqq.'.json')));
         } else {
             $attr = $this->getAttr(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $atqq.'.json')), $args[1]);

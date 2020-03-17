@@ -23,6 +23,15 @@ class Common extends Module
         if (!$text) q('没有您的信息，请导入');
         return json_decode($text, true);
     }
+
+    protected function getAllAttrs($file) {
+        $attrs = $this->getAllAttrs($file);
+        $text = '';
+        foreach ($attrs as $key => $value) {
+            $text .= "$key:$value,";
+        }
+        return $text;
+    }
     
     /**
      * 获取属性

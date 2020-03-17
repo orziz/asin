@@ -20,8 +20,12 @@ class Show extends Common
 		$atqq = isset($args[2]) ? parseQQ($args[2]) : $event->getId();
         $msg = CQCode::At($event->getId())." ";
         if (!isset($args[1])) q('参数不正确');
-        $attr = $this->getAttr(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $atqq.'.json')), $args[1]);
-        $msg .= "您当前的 {$args[1]} 为 {$attr}";
+        if ($args[1] == '-all') {
+            $msg .= $this->getAllAttrs(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $atqq.'.json')));
+        } else {
+            $attr = $this->getAttr(implode(DIRECTORY_SEPARATOR, array('trpg', $event->groupId, $atqq.'.json')), $args[1]);
+            $msg .= "您当前的 {$args[1]} 为 {$attr}";
+        }
 		return $event->sendBack($msg); 
     }
 

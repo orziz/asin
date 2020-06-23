@@ -26,7 +26,7 @@ class RmGroup extends Module
 		$groupData[$group] = array_diff($groupData[$group],array($groupId));
 		$groupData[$group] = array_values($groupData[$group]);
 		$isSuccess = DataStorage::SetData('GroupAuth.json',json_encode($groupData));
-		if ($isSuccess) return $event->sendBack('将此群移出进 '.$group.' 群组成功');
+		if ($isSuccess) return $event->sendBack('将此群移出 '.$group.' 群组成功');
 		return $event->sendBack('移出失败');
 	}
 }

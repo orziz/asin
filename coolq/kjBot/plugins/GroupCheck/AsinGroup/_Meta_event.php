@@ -149,7 +149,10 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 觉得自己应该回复一下血量了，所以回复了 {$addBld} 点血量",
                         "{$callHurtUserWithBld} 看四下没人，偷偷回复了 {$addBld} 点血量",
                         "{$callHurtUserWithBld} 回想起《刺客伍六七》，仿佛受到了什么感悟，回复了 {$addBld} 点血量",
-                        "{$callHurtUserWithBld} 大喊了一声“子不语牛逼”，突然一道圣光从天而降，{$callHurtUserWithBld} 回复了 {$addBld} 点血量"
+                        "{$callHurtUserWithBld} 大喊了一声“子不语牛逼”，突然一道圣光从天而降，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
+
+                        "{$callHurtUserWithBld} 绕到了 {$callAtkUserWithBld} 身后，温柔的摸了一下 {$callAtkUserWithBld} ，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
+                        "{$callHurtUserWithBld} 混进了婚礼现场骗吃骗喝，{$callHurtUserWithBld} 回复了 {$addBld} 点血量"
                     ];
                 } else  {
                     // $hurt = min($hurtUserData['bld'],mt_rand(1,40));
@@ -161,7 +164,18 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 偷看妇女主任洗澡，被妇女主任发现并叫人围殴，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 向伍六七坦白喜欢梅花十三，结果被伍六七胖揍了一顿，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 尝试撸梅尔的尾巴，被梅尔发现，直接被梅尔用尾巴扫飞，受到 {$hurt} 点伤害"
+
+                        "{$callHurtUserWithBld} 尝试撸梅尔的尾巴，被梅尔发现，直接被梅尔用尾巴扫飞，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 掉进下水道，遇到了承太郎，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 与赌神阿发撞上了，对方的赌技秀了 {$callHurtUserWithBld} 一脸，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 在想去吃饭的时候点了一碗手打牛丸，被守打刘丸暴打一顿，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 在路上碰到了春风一郎，在与他的对决中被他那看不到拔刀的“刀”击伤，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 在上厕所的时候遇到了一名普通打扮的刺客，在 {$callHurtUserWithBld} 一顿嘴炮后，{$callHurtUserWithBld} 和对方同时伤感起来，受到了 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 碰到准备召唤克总的屑教徒，被揍了一顿，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 在乱跑的过程中不小心踩到了愉悦犯安的地雷，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 使用了金疮药，导致痔疮爆裂，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 想扶老奶奶过马路，被误认为想要非礼，被路人见义勇为打了一顿，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 为了生存参加了抬棺，却因技术不熟练导致棺材翻了，被家属暴打一顿，收到 {$hurt} 点伤害"
                     ];
                 }
             } else {

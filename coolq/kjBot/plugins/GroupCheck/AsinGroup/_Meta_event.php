@@ -86,7 +86,7 @@ class _Meta_event extends Plugin {
                 $i = 0;
                 foreach ($deadObj as $key => $value) {
                     // $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($deadMember[$key]);
-                    $msg .= "\n".($i+2).".\t\t[".$value['groupId'].']'.$value['nickName'];
+                    $msg .= "\n".($i+2).".\t\t[".$value['groupId'].']'.$value['nickName'].'('.$value['bld'].')';
                     $i++;
                 }
                 $msgData = "ajax=1&fromBot=1&fid=3&subject=【刺客大乱斗】排名结算_".getTime('Y-m-d_H:i:s')."&doctype=2&message=".implode("\n\n",explode('\n',$msg));

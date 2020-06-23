@@ -152,7 +152,8 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 大喊了一声“子不语牛逼”，突然一道圣光从天而降，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
 
                         "{$callHurtUserWithBld} 绕到了 {$callAtkUserWithBld} 身后，温柔的摸了一下 {$callAtkUserWithBld} ，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
-                        "{$callHurtUserWithBld} 混进了婚礼现场骗吃骗喝，{$callHurtUserWithBld} 回复了 {$addBld} 点血量"
+                        "{$callHurtUserWithBld} 混进了婚礼现场骗吃骗喝，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
+                        "{$callHurtUserWithBld} 发现了一只蒜头王八，尝试捕捉，被蒜头爸爸用藤编抽打了一顿，抖M的 {$callHurtUserWithBld} 恢复了 {$addBld} 点血量"
                     ];
                 } else  {
                     // $hurt = min($hurtUserData['bld'],mt_rand(1,40));
@@ -175,7 +176,9 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 在乱跑的过程中不小心踩到了愉悦犯安的地雷，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 使用了金疮药，导致痔疮爆裂，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 想扶老奶奶过马路，被误认为想要非礼，被路人见义勇为打了一顿，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 为了生存参加了抬棺，却因技术不熟练导致棺材翻了，被家属暴打一顿，收到 {$hurt} 点伤害"
+                        "{$callHurtUserWithBld} 为了生存参加了抬棺，却因技术不熟练导致棺材翻了，被家属暴打一顿，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 在河边撒尿，惊扰了鱼人，被赏了一脚，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 避让过压路机之后，被一辆无人驾驶的轮椅疾驰而过，受到 {$hurt} 点伤害"
                     ];
                 }
             } else {
@@ -188,7 +191,10 @@ class _Meta_event extends Plugin {
                     "{$callHurtUserWithBld} 试图偷袭 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现，受到 {$hurt} 点伤害",
                     "{$callAtkUserWithBld} 对 {$callHurtUserWithBld} 使用【千年杀】，造成 {$hurt} 点伤害",
                     "{$callHurtUserWithBld} 在赶路的时候被 {$callAtkUserWithBld} 发现，{$callAtkUserWithBld} 使用飞镖将 {$callHurtUserWithBld} 击落，造成 {$hurt} 点伤害",
-                    "{$callAtkUserWithBld} 偷袭 {$callHurtUserWithBld} 成功，造成 {$hurt} 点伤害"
+                    "{$callAtkUserWithBld} 偷袭 {$callHurtUserWithBld} 成功，造成 {$hurt} 点伤害",
+
+                    "{$callHurtUserWithBld} 溜到了 {$callAtkUserWithBld} 背后，想要背刺，却被碾压而过的河蟹撞飞，受到 {$hurt} 点伤害",
+                    "{$callHurtUserWithBld} 尝试背刺 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现后用挺起的胸大肌反弹了伤害，受到了 {$hurt} 点伤害"
                 ];
             }
             $msg .= $eventList[mt_rand(0,count($eventList)-1)];

@@ -160,7 +160,8 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 误入汪星人基地，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 偷看妇女主任洗澡，被妇女主任发现并叫人围殴，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 向伍六七坦白喜欢梅花十三，结果被伍六七胖揍了一顿，受到 {$hurt} 点伤害"
+                        "{$callHurtUserWithBld} 向伍六七坦白喜欢梅花十三，结果被伍六七胖揍了一顿，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 尝试撸梅尔的尾巴，被梅尔发现，直接被梅尔用尾巴扫飞，受到 {$hurt} 点伤害"
                     ];
                 }
             } else {

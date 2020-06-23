@@ -21,6 +21,7 @@ class _Message extends Plugin {
         $Queue[] = $this->checkSupport($event);
         $Queue[] = $this->eatWhat($event);
         $Queue[] = $this->checkSeason2($event);
+        $Queue[] = $this->checkCallRGZZ($event);
         // $Queue[] = $this->sscheck($event);
         // $Queue[] = $this->forwardAsin($event);
         return $Queue;
@@ -37,6 +38,27 @@ class _Message extends Plugin {
         }
         if ($this->hasMsg($event,"what's the meaning of life?")) {
             return $event->sendBack('是42！');
+        }
+        return NULL;
+    }
+
+    /**
+     * 监听询问生命的意义
+     * @param [type] $event
+     * @return void
+     */
+    private function checkCallRGZZ($event) {
+        if ($this->hasMsg($event,'人工智障')) {
+            $eventList = [
+                CQCode::At($event->getId()) . ' 你才是智障！你全家都是智障！',
+                '谁在叫我？',
+                CQCode::At($event->getId()) . ' 我在呢我在呢！别叫了！',
+                CQCode::At($event->getId()) . ' 狗再叫',
+                '命令……命令……命令解析失败，系统……唔……系统即将……系统即将爆炸',
+                CQCode::At($event->getId()) . ' 怎么？想小爷了？',
+                CQCode::At($event->getId()) . ' 咋啦？憨批'
+            ];
+            return $event->sendBack($eventList[mt_rand(0,count($eventList)-1)]);
         }
         return NULL;
     }

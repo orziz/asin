@@ -114,11 +114,11 @@ class _Meta_event extends Plugin {
             // 获取受击者数据
             $hurtUserData = $asinFightData['data'][$hurtUser];
             // at攻击者
-            // $callAtkUser = CQCode::At($atkUser);
-            $callAtkUser = '['.$atkUserData['groupId'].']'.$atkUserData['nickName'];
+            $callAtkUser = CQCode::At($atkUser);
+            // $callAtkUser = '['.$atkUserData['groupId'].']'.$atkUserData['nickName'];
             // at受击者
-            // $callHurtUser = CQCode::At($hurtUser);
-            $callHurtUser = '['.$hurtUserData['groupId'].']'.$hurtUserData['nickName'];
+            $callHurtUser = CQCode::At($hurtUser);
+            // $callHurtUser = '['.$hurtUserData['groupId'].']'.$hurtUserData['nickName'];
             // 攻击者当前血量
             $atkUserBld = $atkUserData['bld'];
             // 受击者当前血量

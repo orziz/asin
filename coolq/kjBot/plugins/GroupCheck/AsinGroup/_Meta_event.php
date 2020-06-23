@@ -79,14 +79,14 @@ class _Meta_event extends Plugin {
                 $deadObj = array_reverse($asinFightData['deadMember']);
                 $deadMember = array_keys($asinFightData['deadMember']);
                 $deadMember = array_reverse($deadMember);
-                $msg .= "\n\n本次活动排名：\n1.\t\t[". $asinFightData['data'][$user]['groupId'] . ']' .$asinFightData['data'][$user]['nickName'];
+                $msg .= "\n\n本次活动排名：\n1.\t\t[". $asinFightData['data'][$user]['groupId'] . ']' .$asinFightData['data'][$user]['nickName'].'('.$asinFightData['data'][$user]['bld'].')';
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
                 //     $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);
                 // }
                 $i = 0;
                 foreach ($deadObj as $key => $value) {
                     // $msg .= "\n".($i+2).".\t\t".$value['groupId'].'-'.CQCode::At($deadMember[$key]);
-                    $msg .= "\n".($i+2).".\t\t[".$value['groupId'].']'.$value['nickName'].'('.$value['bld'].')';
+                    $msg .= "\n".($i+2).".\t\t[".$value['groupId'].']'.$value['nickName'];
                     $i++;
                 }
                 $msgData = "ajax=1&fromBot=1&fid=3&subject=【刺客大乱斗】排名结算_".getTime('Y-m-d_H:i:s')."&doctype=2&message=".implode("\n\n",explode('\n',$msg));

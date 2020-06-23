@@ -27,7 +27,7 @@ class _Meta_event extends Plugin {
 		$groupData = DataStorage::GetData('GroupAuth.json');
         $groupData = $groupData ? json_decode($groupData,true) : array();
         $groupId = isset($groupData['asinFightGroup']) ? $groupData['asinFightGroup'] : '719994813';
-        $readyTime = 10;
+        $readyTime = 5;
         $asinFightData = DataStorage::GetData('asinFightData.json');
         $asinFightData = $asinFightData ? json_decode($asinFightData,true) : array();
         // status==》0：关闭；1：开启；2：准备；3：开始；4：过程中

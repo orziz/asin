@@ -123,8 +123,8 @@ class _Meta_event extends Plugin {
             // 指定user2的id
             $user2 = $fightMember[1];
             // 随机两人感知，高的为攻击者
-            $wis1 = mt_rand(0, $asinFightData['data'][$user1]['wis']);
-            $wis2 = mt_rand(0, $asinFightData['data'][$user2]['wis']);
+            $wis1 = mt_rand(0, $asinFightData['data'][$user1]['rat']);
+            $wis2 = mt_rand(0, $asinFightData['data'][$user2]['rat']);
             if ($wis1 > $wis2) {
                 // 用户2触发事件
                 $atkUser = $user1;
@@ -237,7 +237,6 @@ class _Meta_event extends Plugin {
                 $asinFightData['deadMember'][$hurtUser] = $asinFightData['data'][$hurtUser];
                 unset($asinFightData['data'][$hurtUser]);
             }
-            $msg .= "\n，感知判定：[{$user1['wis']}:$wis1, {$user2['wis']}:$wis2]";
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             return $event->sendTo(TargetType::Group,$groupId,$msg);
         }

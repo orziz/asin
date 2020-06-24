@@ -42,11 +42,16 @@ class JoinAsinFight extends Module
             $asinFightData['data'][$User_id] = array(
                 'groupId'=>$this->getGroupId($event),
                 'nickName'=>$userAttr['nickname'],
-                'maxBld'=>100+intval($userAttr['con']/5),
-                'bld'=>100+intval($userAttr['con']/5),
-                'atk'=>30+intval($userAttr['str']/6),
-                'ine'=>50+intval($userAttr['ine']/2),
-                'crit'=>30+intval($userAttr['dex']/3)
+                // 'maxBld'=>100+intval($userAttr['con']/5),
+                // 'bld'=>100+intval($userAttr['con']/5),
+                // 'atk'=>30+intval($userAttr['str']/6),
+                // 'ine'=>50+intval($userAttr['ine']/2),
+                // 'crit'=>30+intval($userAttr['dex']/3)
+                'maxBld' => 50+floor(log($userAttr['con']+1)*50),
+                'bld' => 50+floor(log($userAttr['con']+1)*50),
+                'atk'=> 20+floor(log($userAttr['str']+1)*20),
+                'ine'=>$userAttr['ine']/2,
+                'crit'=>floor(log($userAttr['dex']+1)*35)
             );
             $asinFightData['memberNum'] = isset($asinFightData['memberNum']) ? $asinFightData['memberNum'] +1 : 1;
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));

@@ -133,6 +133,7 @@ class _Meta_event extends Plugin {
             $hurt = 0;
             // 初始化回复值
             $addBld = 0;
+            // 初始化暴击
             $isCrit = false;
             // 初始化消息
             $msg = $actName.$asinFightData['msgId'].'. ';
@@ -142,7 +143,8 @@ class _Meta_event extends Plugin {
                 if (mt_rand(0,$hurtUserData['ine']) > 60) {
                     // 触发加血事件
                     $addBld = mt_rand(0,$hurtUserData['maxBld']-$hurtUserBld);
-                    $isCrit = mt_rand(0,$hurtUserData['crit']) > 50;
+                    // $isCrit = mt_rand(0,$hurtUserData['crit']) > 50;
+                    $isCrit = mt_rand(0, 100) <= $hurtUserData['crit'];
                     if ($isCrit) $addBld = min($hurtUserData['maxBld']-$hurtUserBld,$addBld*2);
                     $eventList = [
                         "{$callHurtUserWithBld} 感知到一股洪荒之力，回复了 {$addBld} 点血量",
@@ -184,7 +186,8 @@ class _Meta_event extends Plugin {
             } else {
                 // 触发双人事件
                 $hurt = min($hurtUserData['bld'],mt_rand(0,$atkUserData['atk']));
-                $isCrit = mt_rand(0,$atkUserData['crit']) > 50;
+                // $isCrit = mt_rand(0,$atkUserData['crit']) > 50;
+                $isCrit = mt_rand(0, 100) <= $atkUserData['crit'];
                 if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
                 $eventList = [
                     "{$callAtkUserWithBld} 绕到 {$callHurtUserWithBld} 身后，给予沉重一击，造成 {$hurt} 点伤害",

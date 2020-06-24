@@ -237,6 +237,7 @@ class _Meta_event extends Plugin {
                 $asinFightData['deadMember'][$hurtUser] = $asinFightData['data'][$hurtUser];
                 unset($asinFightData['data'][$hurtUser]);
             }
+            $msg .= "\n，感知判定：[{$user1['wis']}:$wis1, {$user2['wis']}:$wis2]";
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             return $event->sendTo(TargetType::Group,$groupId,$msg);
         }

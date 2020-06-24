@@ -50,7 +50,7 @@ class JoinAsinFight extends Module
                 'maxBld' => 50+floor(log10($userAttr['con']+1)*50),
                 'bld' => 50+floor(log10($userAttr['con']+1)*50),
                 'atk'=> 20+floor(log10($userAttr['str']+1)*20),
-                'ine'=>$userAttr['ine']/2,
+                'ine'=> $userAttr['ine'],
                 'crit'=>floor(log10($userAttr['dex']+1)*35)
             );
             $asinFightData['memberNum'] = isset($asinFightData['memberNum']) ? $asinFightData['memberNum'] +1 : 1;

@@ -49,7 +49,10 @@ class Attr extends Module
             $msg .= '智力：'.$userAttr['ine']."\n";
             $msg .= '感知：'.$userAttr['wis']."\n";
             $msg .= '魅力：'.$userAttr['cha']."\n";
-            $msg .= '自由属性点：'.$userAttr['free'];
+            $msg .= '自由属性点：'.$userAttr['free']."\n\n";
+            $msg .= '血量上限（大乱斗）：'.(50+floor(log10($userAttr['con']+1)*50))."\n";
+            $msg .= '攻击力（大乱斗）：'.(20+floor(log10($userAttr['str']+1)*20))."\n";
+            $msg .= '暴击率（大乱斗）：'.(floor(log10($userAttr['dex']+1)*35))." %";
         }
         return $event->sendBack($msg);
     }

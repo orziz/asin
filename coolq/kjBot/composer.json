@@ -11,7 +11,7 @@
             "kjBotPlugin\\": "plugins/"
         },
         "files": [
-            "../../source/class/class_core.php",
+            "../../PHF/bootstap.php",
             "framework/helpers.php",
             "framework/functions.php"
         ]

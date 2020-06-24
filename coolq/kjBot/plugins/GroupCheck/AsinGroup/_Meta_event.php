@@ -159,7 +159,8 @@ class _Meta_event extends Plugin {
                     ];
                 } else  {
                     // $hurt = min($hurtUserData['bld'],mt_rand(1,40));
-                    $hurt = min($hurtUserData['bld'],mt_rand(1,$hurtUserData['bld']));
+                    // $hurt = min($hurtUserData['bld'],mt_rand(1,$hurtUserData['bld']));
+                    $hurt = min($hurtUserData['bld'],mt_rand(1,50));
                     $isCrit = mt_rand(1,10000) > 9500;
                     if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
                     $eventList = [

@@ -39,20 +39,27 @@ class JoinAsinFight extends Module
             // $msg .= '魅力：'.$userAttr['cha']."\n";
             // $msg .= '自由属性点：'.$userAttr['free'];
 
-            $asinFightData['data'][$User_id] = array(
-                'groupId'=>$this->getGroupId($event),
-                'nickName'=>$userAttr['nickname'],
-                // 'maxBld'=>100+intval($userAttr['con']/5),
-                // 'bld'=>100+intval($userAttr['con']/5),
-                // 'atk'=>30+intval($userAttr['str']/6),
-                // 'ine'=>50+intval($userAttr['ine']/2),
-                // 'crit'=>30+intval($userAttr['dex']/3)
-                'maxBld' => 50+floor(log10($userAttr['con']+1)*50),
-                'bld' => 50+floor(log10($userAttr['con']+1)*50),
-                'atk'=> 20+floor(log10($userAttr['str']+1)*20),
-                'ine'=> $userAttr['ine'],
-                'crit'=>floor(log10($userAttr['dex']+1)*35)
-            );
+            $userAttr['groupId'] = $this->getGroupId($event);
+            $userAttr['nickName'] = $userAttr['nickname'];
+            $userAttr['maxBld'] = $userAttr['bld'] = 50+floor(log10($userAttr['con']+1)*50);
+            $userAttr['atk'] = 20+floor(log10($userAttr['str']+1)*20);
+            $userAttr['crit'] = floor(log10($userAttr['dex']+1)*35);
+            $asinFightData['data'][$User_id] = $userAttr;
+
+            // $asinFightData['data'][$User_id] = array(
+            //     'groupId'=>$this->getGroupId($event),
+            //     'nickName'=>$userAttr['nickname'],
+            //     // 'maxBld'=>100+intval($userAttr['con']/5),
+            //     // 'bld'=>100+intval($userAttr['con']/5),
+            //     // 'atk'=>30+intval($userAttr['str']/6),
+            //     // 'ine'=>50+intval($userAttr['ine']/2),
+            //     // 'crit'=>30+intval($userAttr['dex']/3)
+            //     'maxBld' => 50+floor(log10($userAttr['con']+1)*50),
+            //     'bld' => 50+floor(log10($userAttr['con']+1)*50),
+            //     'atk'=> 20+floor(log10($userAttr['str']+1)*20),
+            //     'ine'=> $userAttr['ine'],
+            //     'crit'=>floor(log10($userAttr['dex']+1)*35)
+            // );
             $asinFightData['memberNum'] = isset($asinFightData['memberNum']) ? $asinFightData['memberNum'] +1 : 1;
             DataStorage::SetData('asinFightData.json',json_encode($asinFightData));
             $msgList = [

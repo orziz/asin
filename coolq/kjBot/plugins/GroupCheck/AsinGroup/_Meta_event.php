@@ -122,8 +122,10 @@ class _Meta_event extends Plugin {
             $user1 = $fightMember[0];
             // 指定user2的id
             $user2 = $fightMember[1];
-            // 随机谁触发事件
-            if (mt_rand(1,10000) <= 5000) {
+            // 随机两人感知，高的为攻击者
+            $wis1 = mt_rand(0, $user1['wis']);
+            $wis2 = mt_rand(0, $user2['wis']);
+            if ($wis1 > $wis2) {
                 // 用户2触发事件
                 $atkUser = $user1;
                 $hurtUser = $user2;

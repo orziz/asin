@@ -43,7 +43,7 @@ class JoinAsinFight extends Module
             $userAttr['nickName'] = $userAttr['nickname'];
             $userAttr['maxBld'] = $userAttr['bld'] = 50+floor(log10($userAttr['con']+1)*50);
             $userAttr['atk'] = 20+floor(log10($userAttr['str']+1)*20);
-            $userAttr['crit'] = floor(log10($userAttr['dex']+1)*30);
+            $userAttr['crit'] = floor(log10($userAttr['dex']+1)*15);
             $userAttr['rat'] = floor(log10($userAttr['wis']+1)*20);
             $asinFightData['data'][$User_id] = $userAttr;
 

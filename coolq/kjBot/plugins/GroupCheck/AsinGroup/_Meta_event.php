@@ -165,7 +165,7 @@ class _Meta_event extends Plugin {
             // 随机触发双人事件或者单人事件
             if (mt_rand(1,10000) <= 5000) {
                 // 触发单人事件
-                if (mt_rand(0,$hurtUserData['ine']) >= 20) {
+                if (mt_rand(0,$hurtUserData['ine']) > 35) {
                     // 触发加血事件
                     $addBld = mt_rand(0,$hurtUserData['maxBld']-$hurtUserBld);
                     // $isCrit = mt_rand(0,$hurtUserData['crit']) > 50;

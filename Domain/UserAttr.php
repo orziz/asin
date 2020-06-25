@@ -15,6 +15,44 @@ class UserAttr {
         return $this->model->getData($qq);
     }
 
+	/**
+	 * 增加角色属性
+	 *
+	 * @param mixed $pk
+	 * @param array $datas
+	 * @return void
+	 */
+	public function addAttr($pk,array $datas) {
+		$userAttr = $this->model->getData($pk);
+		if (!$userAttr) return;
+		$free = $userAttr['free'];
+		if (isset($datas[$this->_pk])) unset($datas[$this->_pk]);
+		foreach ($datas as $key => $value) {
+			if ($key != 'free') $free -= $value;
+			if ($free < 0) return -1;
+			$datas[$key] = max(0,$userAttr[$key]+$value);
+			$datas['free'] = ($key == 'free') ? $datas[$key] : $free;
+		}
+		return $this->model->setData($pk,$datas);
+    }
+    
+    /** 洗点 */
+    public function resetAttr($pk) {
+        $userAttr = $this->model->getData($pk);
+        if (!$userAttr) return -1;
+        $attr = 0;
+        foreach ($userAttr as $key => $value) {
+            if ($key === 'qq') continue;
+            if ($key === 'free') continue;
+            $attr += $value-20;
+            $userAttr[$key] = 20;
+        }
+        $userAttr['free'] += $attr;
+        $qq = $userAttr['qq'];
+        unset($userAttr['qq']);
+        return $this->model->update($userAttr, $qq);
+    }
+
     public function getUserAttrWithInfo($qq) {
         $dinfo = new \Domain\UserInfo();
         $user = $dinfo->getData($qq);

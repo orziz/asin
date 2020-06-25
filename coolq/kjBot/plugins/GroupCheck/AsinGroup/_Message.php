@@ -28,6 +28,7 @@ class _Message extends Plugin {
             $Modules['信息'] = \kjBotModule\Asin\Home\Info::class;
             $Modules['属性'] = \kjBotModule\Asin\Home\Attr::class;
             $Modules['属性加点'] = \kjBotModule\Asin\Home\AddAttr::class;
+            $Modules['洗点'] = \kjBotModule\Asin\Home\ResetAttr::class;
             $Modules['排名'] = \kjBotModule\Asin\Rank\GetMyScoreRank::class;
             $Modules['设置信息'] = \kjBotModule\Asin\Home\SetUserInfo::class;
             $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;

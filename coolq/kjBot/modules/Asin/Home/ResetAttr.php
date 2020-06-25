@@ -12,7 +12,6 @@ class ResetAttr extends Module
 	
 	public function process(array $args, $event){
         $msg = '';
-        return $event->sendBack('凭什么啊');
         if (isset($args[1])) checkAuth($event);
 		$atqq = isset($args[1]) ? parseQQ($args[1]) : null;
 		$User_id = $event->getId();

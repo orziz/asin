@@ -202,11 +202,12 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 在上厕所的时候遇到了一名普通打扮的刺客，在 {$callHurtUserWithBld} 一顿嘴炮后，{$callHurtUserWithBld} 和对方同时伤感起来，受到了 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 碰到准备召唤克总的屑教徒，被揍了一顿，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 在乱跑的过程中不小心踩到了愉悦犯安的地雷，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 使用了金疮药，导致痔疮爆裂，受到 {$hurt} 点伤害",
+                        // "{$callHurtUserWithBld} 使用了金疮药，导致痔疮爆裂，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 想扶老奶奶过马路，被误认为想要非礼，被路人见义勇为打了一顿，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 为了生存参加了抬棺，却因技术不熟练导致棺材翻了，被家属暴打一顿，受到 {$hurt} 点伤害",
+                        // "{$callHurtUserWithBld} 为了生存参加了抬棺，却因技术不熟练导致棺材翻了，被家属暴打一顿，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 在河边撒尿，惊扰了鱼人，被赏了一脚，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 避让过压路机之后，被一辆无人驾驶的轮椅疾驰而过，受到 {$hurt} 点伤害"
+                        "{$callHurtUserWithBld} 避让过压路机之后，被一辆无人驾驶的轮椅疾驰而过，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 跑团时当了鸽子，被其他人轮番揍了一顿，受到 {$hurt} 点伤害"
                     ];
                 }
             } else {
@@ -223,7 +224,7 @@ class _Meta_event extends Plugin {
                     "{$callAtkUserWithBld} 偷袭 {$callHurtUserWithBld} 成功，造成 {$hurt} 点伤害",
 
                     "{$callHurtUserWithBld} 溜到了 {$callAtkUserWithBld} 背后，想要背刺，却被碾压而过的河蟹撞飞，受到 {$hurt} 点伤害",
-                    "{$callHurtUserWithBld} 尝试背刺 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现后用挺起的胸大肌反弹了伤害，受到了 {$hurt} 点伤害"
+                    // "{$callHurtUserWithBld} 尝试背刺 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现后用挺起的胸大肌反弹了伤害，受到了 {$hurt} 点伤害"
                 ];
             }
             $msg .= $eventList[mt_rand(0,count($eventList)-1)];

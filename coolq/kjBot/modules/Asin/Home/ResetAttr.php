@@ -20,6 +20,7 @@ class ResetAttr extends Module
 			$msg .= CQCode::At($User_id)."\n";
         }
         $dAttr = new \Domain\UserAttr();
+        return $event->sendBack('这里错了？');
         $resetAttr = $dAttr->resetAttr($qq);
         if ($resetAttr === -1) {
             $msg .= '洗点失败：您没有加入刺客组织';

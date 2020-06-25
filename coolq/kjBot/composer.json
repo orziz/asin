@@ -12,7 +12,6 @@
         },
         "files": [
             "../../PHF/bootstrap.php",
-            "../../source/class/class_core.php",
             "framework/helpers.php",
             "framework/functions.php"
         ]

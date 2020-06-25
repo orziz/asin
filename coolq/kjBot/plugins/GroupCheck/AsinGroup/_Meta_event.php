@@ -178,9 +178,9 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 回想起《刺客伍六七》，仿佛受到了什么感悟，回复了 {$addBld} 点血量",
                         "{$callHurtUserWithBld} 大喊了一声“子不语牛逼”，突然一道圣光从天而降，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
 
-                        "{$callHurtUserWithBld} 绕到了 {$callAtkUserWithBld} 身后，温柔的摸了一下 {$callAtkUserWithBld} ，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
+                        // "{$callHurtUserWithBld} 绕到了 {$callAtkUserWithBld} 身后，温柔的摸了一下 {$callAtkUserWithBld} ，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
                         "{$callHurtUserWithBld} 混进了婚礼现场骗吃骗喝，{$callHurtUserWithBld} 回复了 {$addBld} 点血量",
-                        "{$callHurtUserWithBld} 发现了一只蒜头王八，尝试捕捉，被蒜头爸爸用藤编抽打了一顿，抖M的 {$callHurtUserWithBld} 恢复了 {$addBld} 点血量"
+                        // "{$callHurtUserWithBld} 发现了一只蒜头王八，尝试捕捉，被蒜头爸爸用藤编抽打了一顿，抖M的 {$callHurtUserWithBld} 恢复了 {$addBld} 点血量"
                     ];
                 } else  {
                     // $hurt = min($hurtUserData['bld'],mt_rand(1,40));

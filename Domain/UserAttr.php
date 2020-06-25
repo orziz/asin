@@ -24,7 +24,7 @@ class UserAttr {
 	 */
 	public function addAttr($pk,array $datas) {
 		$userAttr = $this->model->getData($pk);
-		if (!$userAttr) return;
+		if (!$userAttr) return -2;
 		$free = $userAttr['free'];
 		if (isset($datas[$this->_pk])) unset($datas[$this->_pk]);
 		foreach ($datas as $key => $value) {

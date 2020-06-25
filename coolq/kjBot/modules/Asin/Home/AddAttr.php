@@ -27,7 +27,8 @@ class AddAttr extends Module
 		if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id)."\n";
         }
-        $obj = array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$qq);
+        // $obj = array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$qq);
+        $obj = array('qq'=>$qq);
         switch ($args[1]) {
             case '力量':
                 $obj['str'] = $args[2];
@@ -54,15 +55,18 @@ class AddAttr extends Module
                 q('加点失败：未知属性名（可用属性名为 力量/敏捷/体质/智力/感知/魅力）');
                 break;
         }
-        $data = param_post('http://asin.ygame.cc/api.php',$obj);
-        if ($data['errCode'] !== 200) {
-            $msg .= '加点失败：';
-            if ($data['errCode'] === 301) $msg .= '您没有加入刺客组织';
-            if ($data['errCode'] === 302) $msg .= '加点失败';
-            if ($data['errCode'] === 303) $msg .= '自由属性点不足';
+        // $data = param_post('http://asin.ygame.cc/api.php',$obj);
+        $dAttr = new \Domain\UserAttr();
+        $addAttr = $dAttr->addAttr($qq, $obj);
+        if ($addAttr === -1) {
+            $msg .= '加点失败：自由属性点不足';
+        } elseif ($addAttr === -2) {
+            $msg .= '加点失败：您没有加入刺客组织';
+        } elseif (!$addAttr) {
+            $msg .= '加点失败';
         } else {
             $msg .= "增加 {$args[1]} {$args[2]} 点成功，当前属性点为：\n";
-            $userAttr = $data['data'];
+            $userAttr = $dAttr->getUserAttr($qq);
             $msg .= '力量：'.$userAttr['str']."\n";
             $msg .= '敏捷：'.$userAttr['dex']."\n";
             $msg .= '体质：'.$userAttr['con']."\n";

@@ -207,7 +207,8 @@ class _Meta_event extends Plugin {
                         // "{$callHurtUserWithBld} 为了生存参加了抬棺，却因技术不熟练导致棺材翻了，被家属暴打一顿，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 在河边撒尿，惊扰了鱼人，被赏了一脚，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 避让过压路机之后，被一辆无人驾驶的轮椅疾驰而过，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 跑团时当了鸽子，被其他人轮番揍了一顿，受到 {$hurt} 点伤害"
+                        "{$callHurtUserWithBld} 跑团时当了鸽子，被其他人拿去煲汤，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 在平地上散步，突然来了一个平地摔，受到 {$hurt} 点伤害"
                     ];
                 }
             } else {

@@ -19,10 +19,10 @@ class GetMyScoreRank extends Module
 		$atqq = isset($args[1]) ? parseQQ($args[1]) : null;
 		$qq = $atqq ? $atqq : $User_id;
 		$DScore = new \Domain\UserScore();
-		$data = $DScore->getRank($qq);
-		if ($data) {
-			if ($qq == $User_id) $msg .= '您当前的排名为： '.$data['rank'].' ，请继续努力提高排名';
-			else $msg .= '您查询的用户当前排名为：'.$data['rank'];
+		$rank = $DScore->getRank($qq);
+		if ($rank) {
+			if ($qq == $User_id) $msg .= '您当前的排名为： '.$rank.' ，请继续努力提高排名';
+			else $msg .= '您查询的用户当前排名为：'.$rank;
 		} else {
 			if ($qq == $User_id) $msg .= '您暂时没有加入刺客组织';
 			else $msg .= '您查询的用户暂时没有加入刺客组织';

@@ -7,7 +7,6 @@ use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
 use kjBot\Framework\TargetType;
 use kjBot\Framework\DataStorage;
-use \Log;
 
 class _Meta_event extends Plugin {
     public $handleDepth = 2; //捕获到最底层的事件
@@ -86,22 +85,31 @@ class _Meta_event extends Plugin {
                 $credit3 = floor($credit * 0.5);
                 $free3 = 1+floor($asinFightData['memberNum']/10);
 
-                param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
-                param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));
+                $DScore = new \Domain\UserScore();
+                $DAttr = new \Domain\UserAttr();
+
+                // param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$user, 'score'=>$score,'credit'=>$credit));
+                // param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$user, 'free'=>$free));
+                $DScore->add($user, $score, $credit);
+                $DAttr->addAttr($user, array('free'=>$free));
                 $msg = "本次{$actName}活动结束，胜利者为 [". $asinFightData['data'][$user]['groupId'] . ']' .$asinFightData['data'][$user]['nickName']."\n第一名奖励：".$score.' 积分，'.$credit.' 暗币，'.$free.' 自由属性点';
                 // for ($i=0; $i < count($asinFightData['deadMember']); $i++) { 
                 //     $msg .= "\n".($i+2).".\t\t".CQCode::At($asinFightData['deadMember'][$i]);
                 // }
                 // 超 5 人参加给第二名发奖励
                 if ($asinFightData['memberNum'] >= 5) {
-                    param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$deadMember[0], 'score'=>$score2,'credit'=>$credit2));
-                    param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$deadMember[0], 'free'=>$free2));
+                    // param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$deadMember[0], 'score'=>$score2,'credit'=>$credit2));
+                    // param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$deadMember[0], 'free'=>$free2));
+                    $DScore->add($deadMember[0], $score2, $credit2);
+                    $DAttr->addAttr($deadMember[0], array('free'=>$free2));
                     $msg .= "\n第二名奖励：".$score2.' 积分，'.$credit2.' 暗币，'.$free2.' 自由属性点';
                 }
                 // 超 10 人参加给第三名发奖励
                 if ($asinFightData['memberNum'] >= 10) {
-                    param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$deadMember[1], 'score'=>$score3,'credit'=>$credit3));
-                    param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$deadMember[1], 'free'=>$free3));
+                    // param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$deadMember[1], 'score'=>$score3,'credit'=>$credit3));
+                    // param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$deadMember[1], 'free'=>$free3));
+                    $DScore->add($deadMember[1], $score3, $credit3);
+                    $DAttr->addAttr($deadMember[1], array('free'=>$free3));
                     $msg .= "\n第三名奖励：".$score3.' 积分，'.$credit3.' 暗币，'.$free3.' 自由属性点';
                 }
 

@@ -66,8 +66,10 @@ class _Message extends Plugin {
         if ($rand >= 9900 || (false !== strpos($event->getMsg(), '子不语牛逼') && $rand >= 9000)) {
             $score = mt_rand(0,2);
             $credit = mt_rand(1,200);
-            $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
-            if ($data && $data['errCode'] === 200) {
+            $DScore = new \Domain\UserScore();
+            $addAttr = $DScore->add($event->getId(), $score, $credit);
+            // $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userscore', 'action'=>'add', 'qq'=>$event->getId(), 'score'=>$score,'credit'=>$credit));
+            if ($addAttr && $addAttr !== -1) {
                 $eventArr = array(
                     '扶老奶奶过马路，',
                     '帮伍六七卖牛杂，',

@@ -18,15 +18,14 @@ class GetMyScoreRank extends Module
 		if($event instanceof GroupMessageEvent) $msg .= CQCode::At($User_id).' ';
 		$atqq = isset($args[1]) ? parseQQ($args[1]) : null;
 		$qq = $atqq ? $atqq : $User_id;
-		$data = param_post('http://asin.ygame.cc/api.php',array('mod'=>'rank_score','action'=>'getMyRank','qq'=>$qq));
-		if ($data['errCode'] === 200) {
-			if ($qq == $User_id) $msg .= '您当前的排名为： '.$data['data']['rank'].' ，请继续努力提高排名';
-			else $msg .= '您查询的用户当前排名为：'.$data['data']['rank'];
-		} elseif ($data['errCode'] === 301) {
+		$DScore = new \Domain\UserScore();
+		$data = $DScore->getRank($qq);
+		if ($data) {
+			if ($qq == $User_id) $msg .= '您当前的排名为： '.$data['rank'].' ，请继续努力提高排名';
+			else $msg .= '您查询的用户当前排名为：'.$data['rank'];
+		} else {
 			if ($qq == $User_id) $msg .= '您暂时没有加入刺客组织';
 			else $msg .= '您查询的用户暂时没有加入刺客组织';
-		} else {
-			$msg .= '查询失败';
 		}
 		$msg .= "\n查看完整排行榜请点击链接 http://asin.ygame.cc/rank";
 		return $event->sendBack($msg);

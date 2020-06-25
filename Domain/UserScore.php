@@ -14,6 +14,10 @@ class UserScore {
         return $this->model->getData($qq);
     }
 
+    public function setData($qq, $datas) {
+        return $this->model->setData($qq, $datas);
+    }
+
     public function add($qq, $score = 0, $credit = 0) {
         $userScore = $this->getData($qq);
         if (!$userScore) return -1;

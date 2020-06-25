@@ -33,8 +33,8 @@ class _Message extends Plugin {
             $Modules['设置信息'] = \kjBotModule\Asin\Home\SetUserInfo::class;
             $Modules['加入刺客组织'] = \kjBotModule\Asin\Join\JoinOrgan::class;
             $Modules['将所有人录入刺客组织'] = \kjBotModule\Asin\Join\AllJoinOrgan::class;
-            $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
-            $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
+            // $Modules['签到'] = \kjBotModule\Asin\Home\Checkin::class;
+            // $Modules['签到排行榜'] = \kjBotModule\Asin\Rank\CheckinRank::class;
             $Modules['刺客排行榜'] = \kjBotModule\Asin\Rank\ScoreRank::class;
 
             $Modules['增加积分'] = \kjBotModule\Asin\Home\AddScore::class;

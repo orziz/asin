@@ -14,26 +14,14 @@ class JoinOrgan extends Module
 {
 	
 	public function process(array $args, $event){
-        // $arr = array(
-        //     '1063614727', // 子不语
-        //     '2426311997', // 秋心
-        //     '2354782466', // 千刃
-        //     '1845896706', // 零
-        //     '1550329334', // 大jio牛
-        //     '2913696069', // 咸鱼
-        //     '714208139' // 鱼狸
-        // );
         $User_id = $event->getId();
-        // if (!in_array($User_id, $arr)) return $event->sendBack('暂不支持自动加入刺客组织，请联系 '.CQCode::At('2354782466'));
 		$msg = '';
 		if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id).' ';
         }
         $userInfo = $event->getSenderInfo();
-        $data = param_post('http://asin.ygame.cc/api.php',array(
-            'mod' => 'home_userinfo',
-            'action'=>'newUserInfo',
-            'qq'=>$User_id,
+        $DInfo = new \Domain\UserInfo();
+        $newUser = $DInfo->newUser($User_id, array(
             'nickname'=>$userInfo->nickname,
             'age'=>$userInfo->age,
             'sex'=>0,
@@ -57,13 +45,13 @@ class JoinOrgan extends Module
             'rank'=>0
         ));
 
-        if ($data['errCode'] === 200) {
-            $msg .= $data['data']['nickname'].'，刺客组织欢迎您的加入，您目前的排名为 '.$data['data']['rank'].' ，请努力提高排名吧！';
+        if ($newUser === true) {
+            $DScore = new \Domain\UserScore();
+            $msg .= $userInfo->nickname.'，刺客组织欢迎您的加入，您目前的排名为 '.$DScore->getRank($User_id).' ，请努力提高排名吧！';
             return $event->sendBack($msg);
-        } elseif ($data['errCode'] === 301) {
+        } elseif ($newUser === -1) {
             return $event->sendBack($msg.' 您已加入刺客组织，请努力提高排名吧！');
         } else {
-            Log::Error('Coolq JoinOrgan===>'.$data['errMsg']);
             return $event->sendBack('加入刺客组织失败');
         }
     }

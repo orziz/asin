@@ -15,6 +15,10 @@ class UserAttr {
         return $this->model->getData($qq);
     }
 
+    public function setData($qq, $datas) {
+        return $this->model->setData($qq, $datas);
+    }
+
 	/**
 	 * 增加角色属性
 	 *

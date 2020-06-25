@@ -208,7 +208,8 @@ class _Meta_event extends Plugin {
                         "{$callHurtUserWithBld} 在河边撒尿，惊扰了鱼人，被赏了一脚，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 避让过压路机之后，被一辆无人驾驶的轮椅疾驰而过，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 跑团时当了鸽子，被其他人拿去煲汤，受到 {$hurt} 点伤害",
-                        "{$callHurtUserWithBld} 在平地上散步，突然来了一个平地摔，受到 {$hurt} 点伤害"
+                        "{$callHurtUserWithBld} 在平地上散步，突然来了一个平地摔，受到 {$hurt} 点伤害",
+                        "{$callHurtUserWithBld} 正在赶路，突然听到有人大喊一声“塔露拉，呼叫空投”，然后被一个黑影从空中落下砸中，受到 {$hurt} 点伤害"
                     ];
                 }
             } else {

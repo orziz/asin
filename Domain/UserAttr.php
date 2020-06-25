@@ -44,7 +44,11 @@ class UserAttr {
         foreach ($userAttr as $key => $value) {
             if ($key === 'qq') continue;
             if ($key === 'free') continue;
-            $attr += $value-20;
+            if ($value >= 20) {
+                $attr += $value-20;
+            } else {
+                $attr -= 20-$value;
+            }
             $userAttr[$key] = 20;
         }
         $userAttr['free'] += $attr;

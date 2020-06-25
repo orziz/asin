@@ -21,8 +21,12 @@ class Info extends Module
 			$msg .= CQCode::At($User_id)."\n";
         }
         $DInfo = new \Domain\UserInfo();
-        // $data = param_post('http://asin.ygame.cc/api.php',array('mod' => 'home_userinfo', 'action'=>'getUserInfo', 'qq'=>$qq));
+        $DScore = new \Domain\UserScore();
         $userInfo = $DInfo->getData($qq);
+        $userScore = $DScore->getData($qq);
+        $userInfo['score'] = $userScore['score'];
+        $userInfo['credit'] = $userScore['credit'];
+        $userInfo['rank'] = $DScore->getRank($qq);
         if (!$userInfo) {
             $msg .= '您查询的用户暂未加入刺客组织';
         } else {

@@ -26,7 +26,7 @@ class UserAttr {
 		$userAttr = $this->model->getData($pk);
 		if (!$userAttr) return -2;
 		$free = $userAttr['free'];
-		if (isset($datas[$this->_pk])) unset($datas[$this->_pk]);
+		if (isset($datas['qq'])) unset($datas['qq']);
 		foreach ($datas as $key => $value) {
 			if ($key != 'free') $free -= $value;
 			if ($free < 0) return -1;

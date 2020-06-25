@@ -28,7 +28,7 @@ class AddAttr extends Module
 			$msg .= CQCode::At($User_id)."\n";
         }
         // $obj = array('mod' => 'home_userattr', 'action'=>'addUserAttr', 'qq'=>$qq);
-        $obj = array('qq'=>$qq);
+        $obj = array();
         switch ($args[1]) {
             case '力量':
                 $obj['str'] = $args[2];

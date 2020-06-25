@@ -120,8 +120,6 @@ class _Meta_event extends Plugin {
                     $msg .= "\n".($i+2).".\t\t[".$value['groupId'].']'.$value['nickName'];
                     $i++;
                 }
-                $msgData = "ajax=1&fromBot=1&fid=3&subject=【刺客大乱斗】排名结算_".getTime('Y-m-d_H:i:s')."&doctype=2&message=".implode("\n\n",explode('\n',$msg));
-                request_post('https://567.pohun.com/?thread-create.htm',$msgData);
                 return $event->sendTo(TargetType::Group,$groupId,$msg); 
             }
             // 从参赛人员中随机获取两名成员

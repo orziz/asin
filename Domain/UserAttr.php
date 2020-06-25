@@ -38,6 +38,7 @@ class UserAttr {
     
     /** 洗点 */
     public function resetAttr($pk) {
+        return -1;
         $userAttr = $this->model->getData($pk);
         if (!$userAttr) return -1;
         $attr = 0;

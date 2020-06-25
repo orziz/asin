@@ -35,4 +35,8 @@ class UserScore {
         return $this->model->getRank($qq);
     }
 
+    public function getRankList($limit = 0) {
+        return $this->model->getRankList($limit);
+    }
+
 }

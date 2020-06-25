@@ -21,7 +21,6 @@ class ResetAttr extends Module
         }
         $dAttr = new \Domain\UserAttr();
         $resetAttr = $dAttr->resetAttr($qq);
-        return $event->sendBack('这里错了？？');
         if ($resetAttr === -1) {
             $msg .= '洗点失败：您没有加入刺客组织';
         } elseif (!$resetAttr) {

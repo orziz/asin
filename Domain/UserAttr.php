@@ -38,7 +38,6 @@ class UserAttr {
     
     /** 洗点 */
     public function resetAttr($pk) {
-        return -1;
         $userAttr = $this->model->getData($pk);
         if (!$userAttr) return -1;
         $attr = 0;
@@ -51,7 +50,7 @@ class UserAttr {
         $userAttr['free'] += $attr;
         $qq = $userAttr['qq'];
         unset($userAttr['qq']);
-        return $this->model->update($userAttr, $qq);
+        return $this->model->update($userAttr, array('qq'=>$qq));
     }
 
     public function getUserAttrWithInfo($qq) {

@@ -20,11 +20,15 @@ class JoinOrgan extends Module
 			$msg .= CQCode::At($User_id).' ';
         }
         $userInfo = $event->getSenderInfo();
-        return $event->sendBack(json_encode($userInfo));
+        try {
+            $age = $userInfo->age;
+        } catch (\Throwable $th) {
+            $age = 18;
+        }
         $DInfo = new \Domain\UserInfo();
         $newUser = $DInfo->newUser($User_id, array(
             'nickname'=>$userInfo->nickname,
-            'age'=>$userInfo->age,
+            'age'=>$age,
             'sex'=>0,
             'height'=>170,
             'weight'=>50,

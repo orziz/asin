@@ -24,9 +24,6 @@ class AllJoinOrgan extends Module
         for ($i=0; $i < count($groupMemberList); $i++) {
             $memberInfo = $groupMemberList[$i];
             if ($memberInfo->user_id == '1352219126') continue;
-            $score = 0;
-            $credit = 0;
-            $free = 0;
             $DInfo->newUser($memberInfo->user_id, array(
                 'qq'=>$memberInfo->user_id,
                 'nickname'=>$memberInfo->nickname,
@@ -34,21 +31,14 @@ class AllJoinOrgan extends Module
                 'sex'=>0,
                 'height'=>170,
                 'weight'=>50,
-                'str'=>20,
-                'dex'=>20,
-                'con'=>20,
-                'ine'=>20,
-                'wis'=>20,
-                'cha'=>20,
-                'free'=>20+$free,
                 'arms'=>'',
                 'introduce'=>'此人太过神秘，暂时没有相关信息',
                 'skill1'=>'',
                 'skill2'=>'',
                 'skill3'=>'',
                 'skill4'=>'',
-                'score'=>0+$score,
-                'credit'=>0+$credit,
+                'score'=>0,
+                'credit'=>0,
                 'rank'=>0
             ));
         }

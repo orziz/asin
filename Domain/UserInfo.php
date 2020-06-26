@@ -38,13 +38,13 @@ class UserInfo {
         ));
         if (!$newUserScore) return -3;
         $newUserAttr = $DAttr->setData($qq,array(
-            'str'=> $datas['str'] ?? 20,
-            'dex'=> $datas['dex'] ?? 20,
-            'con'=> $datas['con'] ?? 20,
-            'ine'=> $datas['ine'] ?? 20,
-            'wis'=> $datas['wis'] ?? 20,
-            'cha'=> $datas['cha'] ?? 20,
-            'free'=> $datas['free'] ?? 20
+            'str'=> $datas['str'] ?? 0,
+            'dex'=> $datas['dex'] ?? 0,
+            'con'=> $datas['con'] ?? 0,
+            'ine'=> $datas['ine'] ?? 0,
+            'wis'=> $datas['wis'] ?? 0,
+            'cha'=> $datas['cha'] ?? 0,
+            'free'=> $datas['free'] ?? 150
         ));
         if (!$newUserAttr) return -4;
         $newUserSkill = $DSkill->setData($qq,array(

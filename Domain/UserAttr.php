@@ -55,7 +55,7 @@ class UserAttr {
             // }
             // $userAttr[$key] = 20;
             // 洗点全部洗成 0
-            $attr = $value;
+            $attr += $value;
             $userAttr[$key] = 0;
         }
         $userAttr['free'] += $attr;

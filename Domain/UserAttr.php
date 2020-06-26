@@ -83,6 +83,7 @@ class UserAttr {
         $user = $this->getUserAttrWithInfo($qq);
         if (!$user) return false;
         $user['nickName'] = $user['nickname'];
+        // 血量上限
         $user['maxBld'] = $user['bld'] = 50+floor(log10($user['con']+1)*50);
         // 攻击力
         $user['atk'] = 20+floor(log10($user['str']+1)*20);
@@ -91,7 +92,9 @@ class UserAttr {
         // 感知判定系数
         $user['rat'] = floor(log10($user['wis']+1)*20);
         // 减伤系数
-        $user['shc'] = floor(log10($user['wis']+1)*16.35);
+        $user['shc'] = floor(log10($user['cha']+1)*16.35);
+        // 回血率
+        $user['abr'] = floor(log10($user['ine']+1)*12);
         return $user;
     }
 

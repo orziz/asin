@@ -84,9 +84,14 @@ class UserAttr {
         if (!$user) return false;
         $user['nickName'] = $user['nickname'];
         $user['maxBld'] = $user['bld'] = 50+floor(log10($user['con']+1)*50);
+        // 攻击力
         $user['atk'] = 20+floor(log10($user['str']+1)*20);
+        // 暴击率
         $user['crit'] = floor(log10($user['dex']+1)*15);
+        // 感知判定系数
         $user['rat'] = floor(log10($user['wis']+1)*20);
+        // 减伤系数
+        $user['shc'] = floor(log10($user['wis']+1)*16.35);
         return $user;
     }
 

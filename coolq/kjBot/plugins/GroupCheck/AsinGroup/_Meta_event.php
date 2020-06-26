@@ -166,17 +166,25 @@ class _Meta_event extends Plugin {
             $addBld = 0;
             // 初始化暴击
             $isCrit = false;
+            // 初始化减伤
+            $isSHC = mt_rand(0, 100) <= $hurtUserData['shc'];
+            // 初始化减伤值
+            $subHurt = 0;
+            // 初始化事件
+            $isSolo = mt_rand(1,10000) <= 5000;
+            $isAddBld = mt_rand(0,$hurtUserData['ine']) > 35;
             // 初始化消息
             $msg = $actName.$asinFightData['msgId'].'. ';
             // 随机触发双人事件或者单人事件
-            if (mt_rand(1,10000) <= 5000) {
+            if ($isSolo) {
                 // 触发单人事件
-                if (mt_rand(0,$hurtUserData['ine']) > 35) {
+                if ($isAddBld) {
                     // 触发加血事件
                     $addBld = mt_rand(0,$hurtUserData['maxBld']-$hurtUserBld);
                     // $isCrit = mt_rand(0,$hurtUserData['crit']) > 50;
-                    $isCrit = mt_rand(0, 100) <= $hurtUserData['crit'];
-                    if ($isCrit) $addBld = min($hurtUserData['maxBld']-$hurtUserBld,$addBld*2);
+                    // $isCrit = mt_rand(0, 100) <= $hurtUserData['crit'];
+                    // if ($isCrit) $addBld = min($hurtUserData['maxBld']-$hurtUserBld,$addBld*2);
+                    if ($isSHC) $addBld = min($hurtUserData['maxBld']-$hurtUserBld,$addBld*2);
                     $eventList = [
                         "{$callHurtUserWithBld} 感知到一股洪荒之力，回复了 {$addBld} 点血量",
                         "{$callHurtUserWithBld} 觉得自己应该回复一下血量了，所以回复了 {$addBld} 点血量",
@@ -194,6 +202,9 @@ class _Meta_event extends Plugin {
                     $hurt = min($hurtUserData['bld'],mt_rand(1,50));
                     $isCrit = mt_rand(1,10000) > 9500;
                     if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
+                    // 伤害减免
+                    if ($isSHC) $subHurt = mt_rand(0, $hurt);
+                    $hurt -= $subHurt;
                     $eventList = [
                         "{$callHurtUserWithBld} 误入汪星人基地，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
@@ -224,6 +235,9 @@ class _Meta_event extends Plugin {
                 // $isCrit = mt_rand(0,$atkUserData['crit']) > 50;
                 $isCrit = mt_rand(0, 100) <= $atkUserData['crit'];
                 if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
+                // 伤害减免
+                if ($isSHC) $subHurt = mt_rand(0, $hurt);
+                $hurt -= $subHurt;
                 $eventList = [
                     "{$callAtkUserWithBld} 绕到 {$callHurtUserWithBld} 身后，给予沉重一击，造成 {$hurt} 点伤害",
                     "{$callHurtUserWithBld} 试图偷袭 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现，受到 {$hurt} 点伤害",
@@ -236,7 +250,19 @@ class _Meta_event extends Plugin {
                 ];
             }
             $msg .= $eventList[mt_rand(0,count($eventList)-1)];
-            if ($isCrit) $msg .= "（暴击！！！）";
+            // 伤害暴击
+            // if ($isCrit) $msg .= "（暴击！！！）";
+            if ($isSolo) {
+                if ($isAddBld && $isSHC) {
+                    $msg .= "（暴击！！！）";
+                } elseif (!$isAddBld && $isCrit) {
+                    $msg .= "（暴击！！！）";
+                    if ($isSHC) $msg .= "(伤害减免： {$subHurt} )";
+                }
+            } else {
+                if ($isCrit) $msg .= "（暴击！！！）";
+                if ($isSHC) $msg .= "(伤害减免： {$subHurt} )";
+            }
             // 修改受击者血量
             $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld;
             // 判断是否死亡

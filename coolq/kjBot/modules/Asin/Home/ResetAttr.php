@@ -12,7 +12,7 @@ class ResetAttr extends Module
 	
 	public function process(array $args, $event){
         $msg = '';
-        $isConfirm = isset($args[1]) && isset($args[1]) === '确认';
+        $isConfirm = isset($args[1]) && $args[1] === '确认';
         if (isset($args[2])) checkAuth($event);
 		$atqq = isset($args[2]) ? parseQQ($args[2]) : null;
 		$User_id = $event->getId();

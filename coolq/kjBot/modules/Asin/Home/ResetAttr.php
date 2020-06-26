@@ -12,19 +12,23 @@ class ResetAttr extends Module
 	
 	public function process(array $args, $event){
         $msg = '';
-        if (isset($args[1])) checkAuth($event);
-		$atqq = isset($args[1]) ? parseQQ($args[1]) : null;
+        $isConfirm = isset($args[1]) && isset($args[1]) === '确认';
+        if (isset($args[2])) checkAuth($event);
+		$atqq = isset($args[2]) ? parseQQ($args[2]) : null;
 		$User_id = $event->getId();
 		$qq = $atqq ? $atqq : $User_id;
 		if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id)."\n";
         }
+        if (!$isConfirm) return $event->sendBack($msg.'洗点需要消耗 5000 暗币，确认洗点请输入`洗点 确认`（中间带空格）');
         $dAttr = new \Domain\UserAttr();
         $resetAttr = $dAttr->resetAttr($qq);
         if ($resetAttr === -1) {
             $msg .= '洗点失败：您没有加入刺客组织';
         } elseif (!$resetAttr) {
             $msg .= '洗点失败';
+        } elseif ($resetAttr === -2) {
+            $msg .= '洗点失败：您的暗币不足5000';
         } else {
             $userAttr = $dAttr->getUserAttrWithFight($qq);
             $msg .= "洗点成功，当前属性点为：\n";

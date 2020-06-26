@@ -44,6 +44,10 @@ class UserAttr {
     public function resetAttr($pk) {
         $userAttr = $this->model->getData($pk);
         if (!$userAttr) return -1;
+        $DScore = new UserScore();
+        $userScore = $DScore->getData($pk);
+        if ($userScore['credit'] < 5000) return -2;
+        $DScore->setData($pk, array('credit'=>$userScore['credit']-5000));
         $attr = 0;
         foreach ($userAttr as $key => $value) {
             if ($key === 'qq') continue;

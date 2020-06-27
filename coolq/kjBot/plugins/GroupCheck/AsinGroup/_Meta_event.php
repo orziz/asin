@@ -167,12 +167,13 @@ class _Meta_event extends Plugin {
             // 初始化暴击
             $isCrit = false;
             // 初始化减伤
-            $isSHC = mt_rand(0, 100) <= $hurtUserData['shc'];
+            $isSHC = mt_rand(1, 100) <= $hurtUserData['shc'];
+            $shc = mt_rand(0, $hurtUserData['shc'])/100;
             // 初始化减伤值
             $subHurt = 0;
             // 初始化事件
             $isSolo = mt_rand(1,10000) <= 5000;
-            $isAddBld = mt_rand(0,100) <= $hurtUserData['abr'];
+            $isAddBld = mt_rand(1,100) <= $hurtUserData['abr'];
             // 初始化消息
             $msg = $actName.$asinFightData['msgId'].'. ';
             // 随机触发双人事件或者单人事件
@@ -203,8 +204,8 @@ class _Meta_event extends Plugin {
                     $isCrit = mt_rand(1,10000) > 9500;
                     if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
                     // 伤害减免
-                    if ($isSHC) $subHurt = floor($hurt*0.55);
-                    $hurt -= $subHurt;
+                    if ($isSHC) $subHurt = floor($hurt*$shc);
+                    // $hurt -= $subHurt;
                     $eventList = [
                         "{$callHurtUserWithBld} 误入汪星人基地，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
@@ -233,11 +234,11 @@ class _Meta_event extends Plugin {
                 // 触发双人事件
                 $hurt = min($hurtUserData['bld'],mt_rand(0,$atkUserData['atk']));
                 // $isCrit = mt_rand(0,$atkUserData['crit']) > 50;
-                $isCrit = mt_rand(0, 100) <= $atkUserData['crit'];
+                $isCrit = mt_rand(1, 100) <= $atkUserData['crit'];
                 if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
                 // 伤害减免
-                if ($isSHC) $subHurt = floor($hurt*0.55);
-                $hurt -= $subHurt;
+                if ($isSHC) $subHurt = floor($hurt*$shc);
+                // $hurt -= $subHurt;
                 $eventList = [
                     "{$callAtkUserWithBld} 绕到 {$callHurtUserWithBld} 身后，给予沉重一击，造成 {$hurt} 点伤害",
                     "{$callHurtUserWithBld} 试图偷袭 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现，受到 {$hurt} 点伤害",
@@ -257,14 +258,14 @@ class _Meta_event extends Plugin {
                     $msg .= "（暴击！！！）";
                 } elseif (!$isAddBld && $isCrit) {
                     $msg .= "（暴击！！！）";
-                    if ($isSHC) $msg .= "(伤害减免： {$subHurt} )";
+                    if ($isSHC) $msg .= "(伤害减免： {$subHurt} = ".($hurt-$subHurt)." )";
                 }
             } else {
                 if ($isCrit) $msg .= "（暴击！！！）";
-                if ($isSHC) $msg .= "(伤害减免： {$subHurt} )";
+                if ($isSHC) $msg .= "(伤害减免： {$subHurt} = ".($hurt-$subHurt)." )";
             }
             // 修改受击者血量
-            $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld;
+            $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld - $subHurt;
             // 判断是否死亡
             if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
                 $msg .= "\n".$callHurtUser." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);

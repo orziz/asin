@@ -258,11 +258,11 @@ class _Meta_event extends Plugin {
                     $msg .= "（暴击！！！）";
                 } elseif (!$isAddBld && $isCrit) {
                     $msg .= "（暴击！！！）";
-                    if ($isSHC) $msg .= "(伤害减免： {$subHurt} = ".($hurt-$subHurt)." )";
+                    if ($isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";
                 }
             } else {
                 if ($isCrit) $msg .= "（暴击！！！）";
-                if ($isSHC) $msg .= "(伤害减免： {$subHurt} = ".($hurt-$subHurt)." )";
+                if ($isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";
             }
             // 修改受击者血量
             $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld - $subHurt;

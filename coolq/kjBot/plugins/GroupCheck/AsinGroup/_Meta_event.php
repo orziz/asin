@@ -258,8 +258,8 @@ class _Meta_event extends Plugin {
                     $msg .= "（暴击！！！）";
                 } elseif (!$isAddBld && $isCrit) {
                     $msg .= "（暴击！！！）";
-                    if ($isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";
                 }
+                if (!$isAddBld && $isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";
             } else {
                 if ($isCrit) $msg .= "（暴击！！！）";
                 if ($isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";

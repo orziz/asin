@@ -205,7 +205,7 @@ class _Meta_event extends Plugin {
                     if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
                     // 伤害减免
                     if ($isSHC) $subHurt = floor($hurt*$shc);
-                    // $hurt -= $subHurt;
+                    $hurt -= $subHurt;
                     $eventList = [
                         "{$callHurtUserWithBld} 误入汪星人基地，受到 {$hurt} 点伤害",
                         "{$callHurtUserWithBld} 看到一对情侣秀恩爱，受到 {$hurt} 点伤害",
@@ -238,7 +238,7 @@ class _Meta_event extends Plugin {
                 if ($isCrit) $hurt = min($hurtUserData['bld'],$hurt*2);
                 // 伤害减免
                 if ($isSHC) $subHurt = floor($hurt*$shc);
-                // $hurt -= $subHurt;
+                $hurt -= $subHurt;
                 $eventList = [
                     "{$callAtkUserWithBld} 绕到 {$callHurtUserWithBld} 身后，给予沉重一击，造成 {$hurt} 点伤害",
                     "{$callHurtUserWithBld} 试图偷袭 {$callAtkUserWithBld} ，被 {$callAtkUserWithBld} 发现，受到 {$hurt} 点伤害",
@@ -259,13 +259,13 @@ class _Meta_event extends Plugin {
                 } elseif (!$isAddBld && $isCrit) {
                     $msg .= "（暴击！！！）";
                 }
-                if (!$isAddBld && $isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";
+                if (!$isAddBld && $isSHC) $msg .= "（伤害减免： ".($hurt+$subHurt)."-{$subHurt} ）";
             } else {
                 if ($isCrit) $msg .= "（暴击！！！）";
-                if ($isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";
+                if ($isSHC) $msg .= "（伤害减免： ".($hurt+$subHurt)."-{$subHurt} ）";
             }
             // 修改受击者血量
-            $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld + $subHurt;
+            $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld;
             // 判断是否死亡
             if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
                 $msg .= "\n".$callHurtUser." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);

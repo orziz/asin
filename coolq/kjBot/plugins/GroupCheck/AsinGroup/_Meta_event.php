@@ -265,7 +265,7 @@ class _Meta_event extends Plugin {
                 if ($isSHC) $msg .= "（伤害减免： {$subHurt} = ".($hurt-$subHurt)." ）";
             }
             // 修改受击者血量
-            $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld - $subHurt;
+            $asinFightData['data'][$hurtUser]['bld'] = $hurtUserData['bld'] - $hurt + $addBld + $subHurt;
             // 判断是否死亡
             if ($asinFightData['data'][$hurtUser]['bld'] <= 0) {
                 $msg .= "\n".$callHurtUser." 重伤淘汰，本次{$actName}排名为：".count($asinFightData['data']);

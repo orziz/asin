@@ -46,8 +46,8 @@ class UserAttr {
         if (!$userAttr) return -1;
         $DScore = new UserScore();
         $userScore = $DScore->getData($pk);
-        if ($userScore['credit'] < 5000) return -2;
-        $DScore->setData($pk, array('credit'=>$userScore['credit']-5000));
+        if ($userScore['credit'] < 2000) return -2;
+        $DScore->setData($pk, array('credit'=>$userScore['credit']-2000));
         $attr = 0;
         foreach ($userAttr as $key => $value) {
             if ($key === 'qq') continue;

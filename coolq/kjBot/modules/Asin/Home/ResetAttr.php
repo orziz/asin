@@ -20,7 +20,7 @@ class ResetAttr extends Module
 		if($event instanceof GroupMessageEvent){
 			$msg .= CQCode::At($User_id)."\n";
         }
-        if (!$isConfirm) return $event->sendBack($msg.'洗点需要消耗 5000 暗币，确认洗点请输入`洗点 确认`（中间带空格）');
+        if (!$isConfirm) return $event->sendBack($msg.'洗点需要消耗 2000 暗币，确认洗点请输入`洗点 确认`（中间带空格）');
         $dAttr = new \Domain\UserAttr();
         $resetAttr = $dAttr->resetAttr($qq);
         if ($resetAttr === -1) {
@@ -28,7 +28,7 @@ class ResetAttr extends Module
         } elseif (!$resetAttr) {
             $msg .= '洗点失败';
         } elseif ($resetAttr === -2) {
-            $msg .= '洗点失败：您的暗币不足5000';
+            $msg .= '洗点失败：您的暗币不足 2000';
         } else {
             $userAttr = $dAttr->getUserAttrWithFight($qq);
             $msg .= "洗点成功，当前属性点为：\n";

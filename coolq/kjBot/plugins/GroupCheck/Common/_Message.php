@@ -57,7 +57,7 @@ class _Message extends Plugin {
                 '命令……命令……命令解析失败，系统……唔……系统即将……系统即将爆炸',
                 CQCode::At($event->getId()) . ' 怎么？想小爷了？',
                 CQCode::At($event->getId()) . ' 咋啦？憨批',
-                '子不语说，他是想把我做成“人工智障”，我问他什么是“人工智障”，他说他负责人工，我负责智障',
+                '子不语说，他是想把我做成“人工智障”。我问他什么是“人工智障”，他说他负责人工，我负责智障……',
                 '再乱叫我让傻狗咬你！'
             ];
             return $event->sendBack($eventList[mt_rand(0,count($eventList)-1)]);

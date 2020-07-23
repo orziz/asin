@@ -19,4 +19,6 @@ $Modules = [
 	'开启功能' => kjBotModule\Common\Manager\OpenMod::class,
 
 	'垃圾分类' => kjBotModule\Common\Life\Trash::class,
+
+	'.m' => kjBotModule\Monopoly\Main::class,
 ];

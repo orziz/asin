@@ -18,7 +18,7 @@ class Main extends Module {
 	public function process(array $args, $event) {
         if (!isset($args[1])) q('请输入指令');
         $obj = [
-            '开始' => $this->init
+            '开始' => "$this->init"
         ];
         return $obj[$args[1]]($event);
     }

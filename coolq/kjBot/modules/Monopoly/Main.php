@@ -20,7 +20,7 @@ class Main extends Module {
         $obj = [
             '开始' => $this->init
         ];
-        return $event->sendBack(gettype($obj[$args[1]]).$obj[$args[1]]);
+        return $event->sendBack($args[1].' '.gettype($this->init).' '.$this->init.' '.gettype($obj[$args[1]]).$obj[$args[1]]);
         return $obj[$args[1]]($event);
     }
 

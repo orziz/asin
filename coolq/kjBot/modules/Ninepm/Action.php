@@ -41,6 +41,7 @@ class Action {
         Data::setDataByKey('state', 2);
         Data::setDataByKey('cuser', array('user'=>$admin));
         $users = Data::setDataByKey('users', array());
+        q(count($users));
         if (count($users) < 1) q('人数不足，无法开启游戏，请至少等待一位玩家');
         $Queue[] = $event->sendBack('游戏开始成功，由庄家 '.CQCode::At($admin).' 先摸牌');
         $Queue = array_merge($Queue, $this->newCuser($event));

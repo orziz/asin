@@ -22,6 +22,9 @@ class Main extends Module {
         $actions = [
             '坐庄' => 'init',
             '开始' => 'start',
+            '参加' => 'join',
+            '要' => 'need',
+            '过' => 'pass',
         ];
         if (!isset($actions[$args[1]])) q('指令不正确');
         $action = $actions[$args[1]];

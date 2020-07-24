@@ -110,9 +110,9 @@ class Action {
         }
         if ($v > 21) {
             $Queue[] = $event->sendBack(CQCode::At($cu)." 您已爆牌");
-            $cu = Brand::changeUser();
-            if ($cu !== false) {
-                $Queue[] = $event->sendBack('接下来是 '. CQCode::At($cu). ' 的回合');
+            $chu = Brand::changeUser();
+            if ($chu !== false) {
+                $Queue[] = $event->sendBack('接下来是 '. CQCode::At($chu). ' 的回合');
                 $Queue = array_merge($Queue, $this->newCuser($event));
             } else {
                 $Queue[] = $event->sendBack($this->end($event));

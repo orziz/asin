@@ -76,6 +76,7 @@ class Brand {
         $brands = Data::getDataByKey('brands', self::getBrand());
         $scrad = array_rand($brands, 1);
         unset($brands["$scrad"]);
+        Data::setDataByKey('brands', $brands);
         return $scrad;
     }
 

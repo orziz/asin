@@ -60,7 +60,6 @@ class Action {
         foreach ($cb as $value) {
             $v += $value['value'];
         }
-        q($v);
         if ($v > 21 || count($cb) >= 5) {
             if ($v > 21) {
                 $Queue[] = $event->sendBack($msg."\n您已爆牌");
@@ -75,6 +74,7 @@ class Action {
                 $Queue[] = $event->sendBack('游戏结束，请等待结算');
                 $Queue = array_merge($Queue, $this->end($event));
             }
+            q(count($Queue).($v > 21 ? 'aa':'bb'));
             return $Queue;
         }
         return $event->sendBack($msg);

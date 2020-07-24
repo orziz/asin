@@ -111,10 +111,10 @@ EOF;
 
     private function newCuser($event) {
         $cu = Data::getDataByKey('cuser')['user'];
-        $dc = Brand::sendBrand();
+        // $dc = Brand::sendBrand();
         $oc = Brand::sendBrand();
-        $Queue[] = $event->sendTo(TargetType::Private, $cu, '您本次牌面为：'.Brand::id2text($dc));
-        $Queue[] = $event->sendBack(CQCode::At($cu). ' 暗牌已私聊给您，如未收到请先添加小不语为好友');
+        // $Queue[] = $event->sendTo(TargetType::Private, $cu, '您本次牌面为：'.Brand::id2text($dc));
+        // $Queue[] = $event->sendBack(CQCode::At($cu). ' 暗牌已私聊给您，如未收到请先添加小不语为好友');
         $Queue[] = $event->sendBack(CQCode::At($cu). ' 您本次牌面为：'.Brand::id2text($oc));
         $cb = Brand::getCuserBrand();
         $v = 0;

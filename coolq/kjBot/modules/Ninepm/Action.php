@@ -60,6 +60,7 @@ class Action {
         foreach ($cb as $value) {
             $v += $value['value'];
         }
+        q($v);
         if ($v > 21 || count($cb) >= 5) {
             if ($v > 21) {
                 $Queue[] = $event->sendBack($msg."\n您已爆牌");

@@ -109,7 +109,7 @@ class Action {
     private function end($event) {
         $ausers = Data::getDataByKey('ausers', array());
         Data::setDataByKey('state', 0);
-        foreach ($$ausers as $key => $value) {
+        foreach ($ausers as $key => $value) {
             $msg = CQCode::At($key) . ' 排面为为：';
             $n = 0;
             foreach ($value as $k => $v) {

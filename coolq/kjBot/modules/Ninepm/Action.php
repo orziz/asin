@@ -74,7 +74,6 @@ class Action {
                 $Queue[] = $event->sendBack('游戏结束，请等待结算');
                 $Queue = array_merge($Queue, $this->end($event));
             }
-            q(count($Queue).($v > 21 ? 'aa':'bb'));
             return $Queue;
         }
         return $event->sendBack($msg);

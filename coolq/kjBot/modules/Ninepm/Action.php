@@ -17,6 +17,7 @@ class Action {
         Data::setDataByKey('admin', $event->getId());
         Data::setDataByKey('brands', Brand::getBrand());
         Data::setDataByKey('users', array());
+        Data::setDataByKey('ausers', array());
         return $event->sendBack('21点开启成功，玩家可加入游戏，由 '.CQCode::At($event->getId()).' 坐庄');
     }
 
@@ -141,7 +142,7 @@ EOF;
         foreach ($ausers as $key => $value) {
             $msg .= "\n".CQCode::At($key) . ' 牌面为：';
             $n = 0;
-            foreach ($value as $k => $v) {
+            foreach ($value as $v) {
                 if ($n !== 0) $msg .= '+';
                 $msg .= $v['text'];
                 $n += $v['value'];

@@ -16,6 +16,7 @@ class Action {
         Data::setDataByKey('state', 1);
         Data::setDataByKey('admin', $event->getId());
         Data::setDataByKey('brands', Brand::getBrand());
+        Data::setDataByKey('users', array());
         return $event->sendBack('21点开启成功，玩家可加入游戏，由 '.CQCode::At($event->getId()).' 坐庄');
     }
 

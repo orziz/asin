@@ -103,13 +103,13 @@ class Brand {
     /** 更换玩家 */
     public static function changeUser() {
         $cuser = Data::getDataByKey('cuser');
-        $users = Data::getDataByKey('users');
+        $users = Data::getDataByKey('users', array());
+        $ausers = Data::getDataByKey('ausers', array());
+        $ausers[$cuser['user']] = $cuser['brands'];
+        Data::setDataByKey('ausers', $ausers);
         if (count($users)>0) {
             $user = array_shift($users);
             Data::setDataByKey('users', $users);
-            $ausers = Data::getDataByKey('ausers', array());
-            $ausers[$cuser['user']] = $cuser['brands'];
-            Data::setDataByKey('ausers', $ausers);
             Data::setDataByKey('cuser', array('user'=>$user));
             return $user;
         }

@@ -2,7 +2,7 @@
 
 /** 数据存储类 */
 
-namespace kjbotModule\Ninepm;
+namespace kjBotModule\Ninepm;
 use kjBot\Framework\DataStorage;
 
 class Data {

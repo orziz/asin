@@ -1,9 +1,9 @@
 <?php
 
-namespace kjbotModule\Ninepm;
+namespace kjBotModule\Ninepm;
 
 use kjBot\SDK\CQCode;
-use kjbotModule\Ninepm\Data;
+use kjBotModule\Ninepm\Data;
 
 class Action {
 

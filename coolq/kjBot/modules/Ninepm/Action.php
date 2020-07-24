@@ -97,6 +97,17 @@ class Action {
         return $Queue;
     }
 
+    public function help($event) {
+$msg = <<<EOF
+.21 坐庄 -> 庄家坐庄，仅游戏未开始时使用
+.21 开始 -> 庄家开始，仅庄家坐庄后可使用，仅庄家可用
+.21 参加 -> 玩家加入游戏，仅庄家坐庄后可使用
+.21 要 -> 玩家摸牌，仅当前回合玩家可用
+.21 过 -> 玩家过牌，仅当前回合玩家可用，然后进入下一玩家回合或游戏结束
+EOF;
+        return $event->sendBack($msg);
+    }
+
     private function newCuser($event) {
         $cu = Data::getDataByKey('cuser')['user'];
         $dc = Brand::sendBrand();

@@ -71,8 +71,8 @@ class Action {
                 $Queue[] = $event->sendBack('接下来是 '. CQCode::At($cu). ' 的回合');
                 $Queue = array_merge($Queue, $this->newCuser($event));
             } else {
-                $Queue[] = $event->sendBack('游戏结束，请等待结算');
-                $Queue = array_merge($Queue, $this->end($event));
+                $Queue[] = $this->end($event);
+                // $Queue = array_merge($Queue, $this->end($event));
             }
             return $Queue;
         }
@@ -90,8 +90,8 @@ class Action {
             $Queue[] = $event->sendBack('接下来是 '. CQCode::At($cu). ' 的回合');
             $Queue = array_merge($Queue, $this->newCuser($event));
         } else {
-            $Queue[] = $event->sendBack('游戏结束，请等待结算');
-            $Queue = array_merge($Queue, $this->end($event));
+            $Queue[] = $this->end($event);
+            // $Queue = array_merge($Queue, $this->end($event));
         }
         return $Queue;
     }
@@ -109,8 +109,9 @@ class Action {
     private function end($event) {
         $ausers = Data::getDataByKey('ausers', array());
         Data::setDataByKey('state', 0);
+        $msg = '游戏结束，本次各玩家牌面为：';
         foreach ($ausers as $key => $value) {
-            $msg = CQCode::At($key) . ' 排面为为：';
+            $msg .= "\n".CQCode::At($key) . ' 排面为：';
             $n = 0;
             foreach ($value as $k => $v) {
                 if ($n !== 0) $msg .= '+';
@@ -118,9 +119,10 @@ class Action {
                 $n += $v['value'];
             }
             $msg .= '，总计：'.$n;
-            $Queue[] = $event->sendBack($msg);
+            // $Queue[] = $event->sendBack($msg);
         }
-        return $Queue;
+        return $msg;
+        // return $Queue;
     }
 
 }

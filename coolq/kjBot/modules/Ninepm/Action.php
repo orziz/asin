@@ -38,8 +38,8 @@ class Action {
         if (!$admin) q('没有庄家，不能开始游戏');
         if ($admin !== $event->getId()) q('你不是庄家，不能开始游戏');
         if ($state !== 1) q('游戏正在进行或没有人坐庄，不能开始');
-        $users = Data::getDataByKey('users', array());
-        if (count($users) < 1) q('人数不足，无法开启游戏，请至少等待一位玩家');
+        // $users = Data::getDataByKey('users', array());
+        // if (count($users) < 1) q('人数不足，无法开启游戏，请至少等待一位玩家');
         Data::setDataByKey('state', 2);
         Data::setDataByKey('cuser', array('user'=>$admin));
         $Queue[] = $event->sendBack('游戏开始成功，由庄家 '.CQCode::At($admin).' 先摸牌');

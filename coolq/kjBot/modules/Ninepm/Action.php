@@ -103,6 +103,22 @@ class Action {
         $Queue[] = $event->sendTo(TargetType::Private, $cu, '您本次牌面为：'.Brand::id2text($dc));
         $Queue[] = $event->sendBack(CQCode::At($cu). ' 暗牌已私聊给您，如未收到请先添加小不语为好友');
         $Queue[] = $event->sendBack(CQCode::At($cu). ' 您本次牌面为：'.Brand::id2text($oc));
+        $cb = Brand::getCuserBrand();
+        $v = 0;
+        foreach ($cb as $value) {
+            $v += $value['value'];
+        }
+        if ($v > 21) {
+            $Queue[] = $event->sendBack(CQCode::At($cu)." 您已爆牌");
+            $cu = Brand::changeUser();
+            if ($cu !== false) {
+                $Queue[] = $event->sendBack('接下来是 '. CQCode::At($cu). ' 的回合');
+                $Queue = array_merge($Queue, $this->newCuser($event));
+            } else {
+                $Queue[] = $event->sendBack($this->end($event));
+                // $Queue = array_merge($Queue, $this->end($event));
+            }
+        }
         return $Queue;
     }
 

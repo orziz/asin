@@ -1,6 +1,6 @@
 <?php
 
-namespace kjbotmodule\Ninepm;
+namespace kjbotModule\Ninepm;
 
 use kjBot\SDK\CQCode;
 use kjbotModule\Ninepm\Data;

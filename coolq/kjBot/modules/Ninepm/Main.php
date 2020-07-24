@@ -23,6 +23,7 @@ class Main extends Module {
             '开始' => 'init'
         ];
         if (!isset($actions[$args[1]])) q('指令不正确');
+        $action = $actions[$args[1]];
         return $class->$actions[$args[1]]($event);
     }
 

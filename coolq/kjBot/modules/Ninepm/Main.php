@@ -24,7 +24,7 @@ class Main extends Module {
         ];
         if (!isset($actions[$args[1]])) q('指令不正确');
         $action = $actions[$args[1]];
-        return $class->$actions[$args[1]]($event);
+        return $class->$action($event);
     }
 
 }

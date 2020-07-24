@@ -20,7 +20,8 @@ class Main extends Module {
         if (!isset($args[1])) q('请输入指令');
         $class = new Action();
         $actions = [
-            '开始' => 'init'
+            '坐庄' => 'init',
+            '开始' => 'start',
         ];
         if (!isset($actions[$args[1]])) q('指令不正确');
         $action = $actions[$args[1]];

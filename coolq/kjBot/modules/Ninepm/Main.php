@@ -9,7 +9,7 @@ use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
 use kjbotModule\Ninepm\Data;
-use kjbotmodule\Ninepm\Action;
+use kjbotModule\Ninepm\Action;
 
 /**
  * 帮助文档

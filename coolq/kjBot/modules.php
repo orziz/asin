@@ -21,4 +21,5 @@ $Modules = [
 	'垃圾分类' => kjBotModule\Common\Life\Trash::class,
 
 	'.m' => kjBotModule\Monopoly\Main::class,
+	'.21' => kjBotModule\Ninepm\Main::class,
 ];

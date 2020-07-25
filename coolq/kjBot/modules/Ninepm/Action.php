@@ -142,11 +142,17 @@ EOF;
         foreach ($ausers as $key => $value) {
             $msg .= "\n".CQCode::At($key) . ' 牌面为：';
             $n = 0;
-            foreach ($value as $v) {
+            $as = [];
+            foreach ($value as $k => $v) {
                 if ($n !== 0) $msg .= '+';
                 $msg .= $v['text'];
-                $n += $v['value'];
+                if (in_array($k, array('1','14','27','40'))) {
+                    array_push($as, 'A');
+                } else {
+                    $n += $v['value'];
+                }
             }
+            if (count($as) > 0) $n .= '+' . implode('+', $as);
             $msg .= '，总计：'.$n;
             // $Queue[] = $event->sendBack($msg);
         }

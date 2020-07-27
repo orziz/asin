@@ -141,16 +141,17 @@ EOF;
         $msg = '游戏结束，本次各玩家牌面为：';
         foreach ($ausers as $key => $value) {
             $msg .= "\n".CQCode::At($key) . ' 牌面为：';
-            $n = 0;
+            $i = $n = 0;
             $as = [];
             foreach ($value as $k => $v) {
-                if ($n !== 0) $msg .= '+';
+                if ($i !== 0) $msg .= '+';
                 $msg .= $v['text'];
                 if (in_array($k, array('1','14','27','40'))) {
                     array_push($as, 'A');
                 } else {
                     $n += $v['value'];
                 }
+                $i++;
             }
             if (count($as) > 0) $n .= '+' . implode('+', $as);
             $msg .= '，总计：'.$n;

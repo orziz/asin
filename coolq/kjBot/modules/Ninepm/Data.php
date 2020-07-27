@@ -8,12 +8,23 @@ use kjBot\Framework\DataStorage;
 class Data {
 
     public static function getData() {
-        $data = DataStorage::GetData('Ninepm.json');
+        global $event;
+        if ($event->fromGroup()) {
+            $data = DataStorage::GetData(implode(DIRECTORY_SEPARATOR, array('Ninepm', $event->groupId.'.json')));
+        } else {
+            $data = DataStorage::GetData('Ninepm.json');
+        }
         return $data ? json_decode($data, true) : $data;
     }
 
     public static function setData($data) {
-        return DataStorage::SetData('Ninepm.json', json_encode($data));
+        global $event;
+        if ($event->fromGroup()) {
+            $path = implode(DIRECTORY_SEPARATOR, array('Ninepm', $event->groupId.'.json'));
+        } else {
+            $path = 'Ninepm.json';
+        }
+        return DataStorage::SetData($path, json_encode($data));
     }
 
     public static function getDataByKey($key, $value = null) {

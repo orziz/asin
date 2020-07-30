@@ -8,7 +8,8 @@ use kjBot\Framework\Module;
 use kjBot\Framework\Message;
 use kjBot\Framework\Event\GroupMessageEvent;
 use kjBot\SDK\CQCode;
-use kjbotModule\Monopoly\Data;
+use kjBotModule\Monopoly\Data;
+use kjBotModule\Monopoly\Action;
 
 /**
  * 帮助文档
@@ -17,18 +18,18 @@ class Main extends Module {
 
 	public function process(array $args, $event) {
         if (!isset($args[1])) q('请输入指令');
-        $obj = [
-            '开始' => $this->init
+        $class = new Action();
+        $actions = [
+            '坐庄' => 'init',
+            '开始' => 'start',
+            '参加' => 'join',
+            '要' => 'need',
+            '过' => 'pass',
+            '帮助' => 'help',
         ];
-        return $event->sendBack($args[1].' '.gettype($this->init).' '.$this->init.' '.gettype($obj[$args[1]]).$obj[$args[1]]);
-        return $obj[$args[1]]($event);
-    }
-
-    public function init($event) {
-        $state = Data::getDataByKey('state', 0);
-        if ($state > 0) q('游戏已开始');
-        Data::setDataByKey('state', 1);
-        return $event->sendBack('大富翁开启成功，玩家可加入游戏');
+        if (!isset($actions[$args[1]]) && method_exists($class, $actions[$args[1]])) q('指令不正确');
+        $action = $actions[$args[1]];
+        return $class->$action($event);
     }
 
 }

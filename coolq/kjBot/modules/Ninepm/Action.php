@@ -105,8 +105,24 @@ $msg = <<<EOF
 .21 参加 -> 玩家加入游戏，仅庄家坐庄后可使用
 .21 要 -> 玩家摸牌，仅当前回合玩家可用
 .21 过 -> 玩家过牌，仅当前回合玩家可用，然后进入下一玩家回合或游戏结束
+.21 庄家 -> 查看当前庄家
+.21 玩家 -> 查看当前玩家
 EOF;
         return $event->sendBack($msg);
+    }
+
+    public function showAdmin($event) {
+        $state = Data::getDataByKey('state', 0);
+        if ($state === 0) q('当前没有人坐庄');
+        $user = Data::getDataByKey('admin');
+        return $event->sendBack('当前庄家为：'.CQCode::At($user));
+    }
+
+    public function showCUser($event) {
+        $state = Data::getDataByKey('state', 0);
+        if ($state !== 2) q('游戏未开始');
+        $user = Data::getDataByKey('cuser')['user'];
+        return $event->sendBack('当前庄家为：'.CQCode::At($user));
     }
 
     private function newCuser($event) {

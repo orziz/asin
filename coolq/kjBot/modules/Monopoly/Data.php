@@ -2,7 +2,7 @@
 
 /** 数据存储类 */
 
-namespace kjbotModule\Monopoly;
+namespace kjBotModule\Monopoly;
 use kjBot\Framework\DataStorage;
 
 class Data {

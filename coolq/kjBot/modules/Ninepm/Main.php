@@ -26,6 +26,8 @@ class Main extends Module {
             '要' => 'need',
             '过' => 'pass',
             '帮助' => 'help',
+            '庄家' => 'showAdmin',
+            '玩家' => 'showCUser',
         ];
         if (!isset($actions[$args[1]])) q('指令不正确');
         $action = $actions[$args[1]];

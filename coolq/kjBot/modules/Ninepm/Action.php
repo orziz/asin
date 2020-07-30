@@ -53,6 +53,7 @@ class Action {
         $state = Data::getDataByKey('state', 0);
         if ($state !== 2) q('游戏未开始');
         $cuser = Data::getDataByKey('cuser')['user'];
+        $admin = Data::getDataByKey('admin');
         $msg = CQCode::At($event->getId());
         if ($event->getId() !== $cuser) return $event->sendBack($msg.' 当前不是您的回合');
         $oc = Brand::sendBrand();
@@ -62,8 +63,8 @@ class Action {
         foreach ($cb as $value) {
             $v += $value['value'];
         }
-        if ($v > 21 || count($cb) >= 5) {
-            if ($v > 21) {
+        if ((($cuser !== $admin) && $v > 21) || count($cb) >= 5) {
+            if (($cuser !== $admin) && $v > 21) {
                 $Queue[] = $event->sendBack($msg."\n您已爆牌");
             } else {
                 $Queue[] = $event->sendBack($msg."\n您已抽够五张牌");

@@ -107,6 +107,7 @@ $msg = <<<EOF
 .21 过 -> 玩家过牌，仅当前回合玩家可用，然后进入下一玩家回合或游戏结束
 .21 庄家 -> 查看当前庄家
 .21 玩家 -> 查看当前玩家
+.21 状态 -> 查看当前状态
 EOF;
         return $event->sendBack($msg);
     }
@@ -123,6 +124,14 @@ EOF;
         if ($state !== 2) q('游戏未开始');
         $user = Data::getDataByKey('cuser')['user'];
         return $event->sendBack('当前庄家为：'.CQCode::At($user));
+    }
+
+    public function showState($event) {
+        $state = Data::getDataByKey('state', 0);
+        if ($state === 0) $s = '空闲';
+        if ($state === 1) $s = '准备中';
+        if ($state === 2) $s = '游戏中';
+        return $event->sendBack('当前游戏状态为：'.$s);
     }
 
     private function newCuser($event) {

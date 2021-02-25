@@ -1,6 +1,8 @@
 <?php
 namespace kjBot\SDK;
 
+use PHF\Log;
+
 class CoolQ{
 
     private $host;
@@ -403,6 +405,8 @@ class CoolQ{
         foreach($param as $key => $value){
             $queryStr.= ($key.'='.urlencode(is_bool($value)?((int)$value):$value).'&');
         }
+        $url = 'http://'.$this->host.$api.$queryStr;
+        Log::Debug("rl----->$url");
         $result = json_decode(file_get_contents('http://'.$this->host.$api.$queryStr));
 
         switch($result->retcode){

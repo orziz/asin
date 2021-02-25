@@ -140,7 +140,7 @@ EOF;
         $dc = Brand::sendBrand();
         $oc = Brand::sendBrand();
         $Queue[] = $event->sendTo(TargetType::Private, $cu, '您本次抽卡为：'.Brand::id2text($dc));
-        $Queue[] = $event->sendBack(CQCode::At($cu). ' 暗牌已私聊给您，如未收到请先添加小不语为好友');
+        $Queue[] = $event->sendBack(CQCode::At($cu). ' 暗牌已私聊给您，如未收到请先添加小不语为好友并给小不语发一个"你好"');
         $Queue[] = $event->sendBack(CQCode::At($cu). ' 您本次牌面为：'.Brand::id2text($oc));
         $cb = Brand::getCuserBrand();
         $v = 0;

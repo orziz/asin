@@ -46,7 +46,7 @@ function Config($key, $default = NULL){
 
 function event2pluginMethods($event): array{
     $methods[0] = 'handle';
-    $methods[1] = $event->postType;
+    $methods[1] = is_null($event->postType)?'':$event->postType;
     $methods[2] = $methods[1].(is_null($event->type)?'':('_'.$event->type));
     $methods[3] = $methods[2].(is_null($event->subType)?'':('_'.$event->subType));
     return $methods;

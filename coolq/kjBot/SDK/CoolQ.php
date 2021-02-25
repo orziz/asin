@@ -400,7 +400,6 @@ class CoolQ{
     private function query($api, $param){
         $queryStr = '?';
         $param['access_token'] = $this->token; //追加access_token到参数表
-        $param['secret'] = $this->token; //追加secret到参数表
         foreach($param as $key => $value){
             $queryStr.= ($key.'='.urlencode(is_bool($value)?((int)$value):$value).'&');
         }

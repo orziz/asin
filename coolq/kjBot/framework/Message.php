@@ -1,8 +1,6 @@
 <?php
 namespace kjBot\Framework;
 
-use PHF\Log;
-
 class Message{
     protected $type = TargetType::Group;
     protected $id;
@@ -23,7 +21,6 @@ class Message{
     }
 
     function send($cq){
-        Log::Debug('3---------------');
         if($this->type === TargetType::Group){
             if($this->async){
                 $cq->sendGroupMsgAsync($this->id, $this->msg, $this->escape);

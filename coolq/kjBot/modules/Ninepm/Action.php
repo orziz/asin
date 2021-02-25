@@ -113,6 +113,16 @@ EOF;
         return $event->sendBack($msg);
     }
 
+    public function rule($event) {
+$msg = <<<EOF
+黑杰克（A+10/J/Q/K）
+五小龙（抽满五张且总点数不大于21）
+点数（点数比大小）
+爆牌（超过21点）
+EOF;
+        return $event->sendBack($msg);
+    }
+
     public function showAdmin($event) {
         $state = Data::getDataByKey('state', 0);
         if ($state === 0) q('当前没有人坐庄');

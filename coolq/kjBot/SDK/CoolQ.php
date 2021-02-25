@@ -405,8 +405,6 @@ class CoolQ{
         foreach($param as $key => $value){
             $queryStr.= ($key.'='.urlencode(is_bool($value)?((int)$value):$value).'&');
         }
-        $url = 'http://'.$this->host.$api.$queryStr;
-        Log::Debug("rl----->$url");
         $result = json_decode(file_get_contents('http://'.$this->host.$api.$queryStr));
 
         switch($result->retcode){
@@ -414,9 +412,14 @@ class CoolQ{
                 return $result->data;
             case 1:
                 return NULL;
+            case 100:
+                // 这应该是访问错误
+                return $result->data;
             default:
-                throw new \Exception("Query Failed", $result);
-                // throw new \Exception("Query Failed", $result->retcode);
+                // throw new \Exception("Query Failed", $result);
+                $url = 'http://'.$this->host.$api.$queryStr;
+                Log::Debug("url----->$url");
+                throw new \Exception("Query Failed", $result->retcode);
         }
     }
 

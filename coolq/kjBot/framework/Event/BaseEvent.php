@@ -3,6 +3,7 @@ namespace kjBot\Framework\Event;
 
 use kjBot\Framework\Message;
 use kjBot\Framework\TargetType;
+use PHF\Log;
 
 class BaseEvent{
 
@@ -48,10 +49,12 @@ class BaseEvent{
     }
 
     public function sendPrivate(?string $msg): Message{
+        Log::Debug('2---------------');
         return new Message($msg, $this->userId, TargetType::Private);
     }
 
     public function sendBack(?string $msg): Message{
+        Log::Debug('1---------------');
         if(@$this->groupId!==NULL)
         return new Message($msg, $this->groupId, TargetType::Group);
         else return $this->sendPrivate($msg);

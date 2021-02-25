@@ -1,7 +1,5 @@
 <?php
 
-use PHF\Log;
-
 if(function_exists('fastcgi_finish_request'))fastcgi_finish_request();
 require_once('init.php');
 

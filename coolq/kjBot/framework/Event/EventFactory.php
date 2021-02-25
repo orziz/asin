@@ -55,6 +55,9 @@ class EventFactory{
                     default:
                     throw new \Exception('Unknown meta event: '.\export($obj));
                 }
+            case 'message_sent':
+                // 自身发送的消息，直接不处理
+                break;
             default:
                 throw new \Exception("Event {$obj->post_type} undefined: ".\export($obj));
         }

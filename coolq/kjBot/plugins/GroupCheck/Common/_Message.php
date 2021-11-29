@@ -50,16 +50,18 @@ class _Message extends Plugin {
     private function checkCallRGZZ($event) {
         if ($this->hasMsg($event,'人工智障')) {
             $eventList = [
-                CQCode::At($event->getId()) . ' 你才是智障！你全家都是智障！',
-                '谁在叫我？',
-                CQCode::At($event->getId()) . ' 我在呢我在呢！别叫了！',
-                CQCode::At($event->getId()) . ' 狗再叫',
-                '命令……命令……命令解析失败，系统……唔……系统即将……系统即将爆炸',
-                CQCode::At($event->getId()) . ' 怎么？想小爷了？',
-                CQCode::At($event->getId()) . ' 咋啦？憨批',
-                '子不语说，他是想把我做成“人工智障”。我问他什么是“人工智障”，他说他负责人工，我负责智障……',
-                '再乱叫我让傻狗咬你！',
-                '叫我有什么用？去找子不语啊，我又不能自己改代码'
+                CQCode::At($event->getId()) . ' 你才是智障！你全家都是智障！'
+                , '谁在叫我？'
+                , CQCode::At($event->getId()) . ' 我在呢我在呢！别叫了！'
+                , CQCode::At($event->getId()) . ' 狗再叫'
+                , '命令……命令……命令解析失败，系统……唔……系统即将……系统即将爆炸'
+                , CQCode::At($event->getId()) . ' 怎么？想小爷了？'
+                , CQCode::At($event->getId()) . ' 咋啦？憨批'
+                , '子不语说，他是想把我做成“人工智障”。我问他什么是“人工智障”，他说他负责人工，我负责智障……'
+                , '再乱叫我让萝卜子咬你！'
+                , '叫我有什么用？去找子不语啊，我又不能自己改代码'
+                , CQCode::At($event->getId()) . ' 你是不是有什么奇怪的嗜好？'
+                , '我不是人工智障，我是人工智障！'
             ];
             return $event->sendBack($eventList[mt_rand(0,count($eventList)-1)]);
         }

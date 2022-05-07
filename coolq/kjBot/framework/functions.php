@@ -6,7 +6,7 @@ use kjBot\Framework\Event\BaseEvent;
 use kjBot\Framework\TargetType;
 use kjBot\Framework\Message;
 use kjBot\Framework\DataStorage;
-use \Log;
+// use \Log;
 
 /**
  * 是否在黑名单内

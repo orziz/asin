@@ -18,7 +18,14 @@ class Loader
         'Api' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Api',
         'Module' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Module',
         // 插件层
-        'Plugin' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Plugin'
+        'Plugin' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Plugin',
+
+
+        "kjBot" =>  __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'coolq' . DIRECTORY_SEPARATOR . 'kjBot',
+        'kjBot\\SDK' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'coolq' . DIRECTORY_SEPARATOR . 'kjBot'. DIRECTORY_SEPARATOR . "SDK",
+        'kjBot\\Framework' => __DIR__ . DIRECTORY_SEPARATOR,
+        'kjBotModule' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'coolq' . DIRECTORY_SEPARATOR . 'kjBot'. DIRECTORY_SEPARATOR . 'modules',
+        'kjBotPlugin' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'coolq' . DIRECTORY_SEPARATOR . 'kjBot'. DIRECTORY_SEPARATOR. 'plugins'
     );
 
     /**
@@ -38,6 +45,9 @@ class Loader
     private static function findFile($class)
     {
         $vendor = substr($class, 0, strpos($class, '\\')); // 顶级命名空间
+        if (in_array($vendor, array_keys(["kjBot", "kjBotPlugin"]))) {
+            return;
+        }
         $vendorDir = self::$vendorMap[$vendor]; // 文件基目录
         $filePath = substr($class, strlen($vendor)) . '.php'; // 文件相对路径
         return strtr($vendorDir . $filePath, '\\', DIRECTORY_SEPARATOR); // 文件标准路径

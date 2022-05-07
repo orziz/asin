@@ -27,6 +27,8 @@ class EventFactory{
                         return new GroupIncreaseEvent($obj);
                     case 'friend_add':
                         return new NewFriendEvent($obj);
+                    case 'group_ban':
+                        return new GroupBanEvent($obj);
                     default:
                         throw new \Exception('Unknow notice event: '.\export($obj));
                 }

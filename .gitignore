@@ -3,9 +3,15 @@
 /index.html
 /static
 /coolq/kjBot/vendor
+/coolq/kjBot/storage
 
 !/coolq/kjBot/plugins/
 !/coolq/kjBot/modules/
 !/coolq/kjBot/framework/
+
+/config/global.php
+/config/config_global.php
+
+/log/*
 
 qqconn

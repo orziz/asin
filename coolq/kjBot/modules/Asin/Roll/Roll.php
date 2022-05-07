@@ -63,7 +63,7 @@ class Roll extends Module
             if ($type) {
                 $msg .= "您目前".$typeName."为 ".$userInfo[$type]."\n";
                 $min = isset($args[3]) ? intval($args[2]) : 1;
-                $max = isset($args[2]) ? isset($args[3]) ? intval($args[3]) : intval($args[2]) : 100;
+                $max = isset($args[2]) ? (isset($args[3]) ? intval($args[3]) : intval($args[2])) : 100;
                 $max2 = floor($max/2+0.5);
                 if ($max2 === 0 || $max == $max2) $rand = 0;
                 else {
@@ -73,7 +73,7 @@ class Roll extends Module
                 }
             } else {
                 $min = isset($args[2]) ? intval($args[1]) : 1;
-                $max = isset($args[1]) ? isset($args[2]) ? intval($args[2]) : intval($args[1]) : 100;
+                $max = isset($args[1]) ? (isset($args[2]) ? intval($args[2]) : intval($args[1])) : 100;
                 $rand = mt_rand($min,$max);
             }
             $msg .= $min.'d'.$max.'：'. $rand;

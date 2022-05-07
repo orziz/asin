@@ -11,7 +11,7 @@ class UserSkill {
     }
 
     public function setData($qq, $datas) {
-        return $this->setData($qq, $datas);
+        return $this->model->setData($qq, $datas);
     }
 
 }
